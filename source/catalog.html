@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Guitar shop - интернет-магазин для покупки гитары">
     <title>Guitar Shop</title>
-    <link rel="preload" href="fonts/droidsans.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/droid-sans.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="css/style.min.css">
   </head>
   <body class="page-body">
@@ -51,7 +51,58 @@
       </div>
     </header>
     <main class="page-main">
-
+      <div>
+        <h1>Каталог гитар</h1>
+        <ul class="page-main__breadcrumbs breadcrumbs">
+          <li><a href="index.html">Главная</a></li>
+          <li>Каталог</li>
+        </ul>
+        <section class="catalog">
+          <h2 class="visually-hidden">Форма выбора гитары</h2>
+          <form class="form" method="post">
+            <h3>Фильтр</h3>
+            <fieldset class="form__price-fieldset">
+              <legend>Цена, ₽</legend>
+              <p>
+                <input type="number" name="price" id="min-price" placeholder="1 000">
+                <label class="visually-hidden" for="min-price">Цена от</label>
+                <input type="number" name="price" id="max-price" placeholder="30 000">
+                <label class="visually-hidden" for="max-price">Цена до</label>
+              </p>
+            </fieldset>
+            <fieldset class="form__checkbox-fieldset">
+              <legend>Тип гитар</legend>
+              <input class="visually-hidden" type="checkbox" name="guitar-type" id="acoustic" aria-label="Акустические гитары">
+              <label for="acoustic">Акустические гитары</label>
+              <input class="visually-hidden" type="checkbox" name="guitar-type" id="electric" aria-label="Электрогитары" checked>
+              <label for="electric">Электрогитары</label>
+              <input class="visually-hidden" type="checkbox" name="guitar-type" id="ukulele" aria-label="Укулеле" checked>
+              <label for="ukulele">Укулеле</label>
+            </fieldset>
+            <fieldset class="form__checkbox-fieldset">
+              <legend>Количество струн</legend>
+              <input class="visually-hidden" type="checkbox" name="strings-number" id="4-strings" aria-label="4 струны" checked>
+              <label for="4-strings">4</label>
+              <input class="visually-hidden" type="checkbox" name="strings-number" id="6-strings" aria-label="6 струн6" checked>
+              <label for="6-strings">6</label>
+              <input class="visually-hidden" type="checkbox" name="strings-number" id="7-strings" aria-label="7 струн">
+              <label for="7-strings">7</label>
+              <input class="visually-hidden" type="checkbox" name="strings-number" id="12-strings" aria-label="12 струн" disabled>
+              <label for="12-strings">12</label>
+            </fieldset>
+            <button class="button button--submit" type="submit">Показать</button>
+          </form>
+          <div>
+            <p class="catalog__sort-buttons">
+              Сортировать:
+              <button type="button">по цене</button>
+              <button type="button">по популярности</button>
+              <button type="button"><span class="visually-hidden">по возрастанию</span></button>
+              <button type="button"><span class="visually-hidden">по убыванию</span></button>
+            </p>
+          </div>
+        </section>
+      </div>
     </main>
     <footer class="page-footer">
       <div>

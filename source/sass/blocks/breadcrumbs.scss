@@ -1,0 +1,33 @@
+.breadcrumbs {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+  color: $black;
+}
+
+.breadcrumbs li {
+  letter-spacing: 0.05em;
+}
+
+.breadcrumbs li::after {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  width: 12px;
+  height: 7px;
+  margin-left: 11px;
+  margin-right: 12px;
+  background-image: url("../img/icons/icon-arrow-right.svg");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}
+
+.breadcrumbs li:last-child::after {
+  display: none;
+}

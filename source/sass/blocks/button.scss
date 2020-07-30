@@ -1,0 +1,31 @@
+.button {
+  width: 89px;
+  height: 23px;
+  border: none;
+  background-color: $button;
+  border-radius: 2px;
+  font-family: "Droid Sans", "Verdana", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  color: $white;
+  outline: none;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: $button-hover;
+  }
+
+  &:active {
+    background-color: $gray;
+  }
+}
+
+.button--submit {
+  height: 30px;
+  width: 120px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
