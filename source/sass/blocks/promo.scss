@@ -1,0 +1,59 @@
+.promo {
+  padding-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.promo h3 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 15px;
+  letter-spacing: 0.125em;
+  color: $black;
+}
+
+.promo p {
+  margin: 0;
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.075em;
+  color: $black;
+}
+
+.promo input {
+  width: 170px;
+  height: 36px;
+  margin-top: 19px;
+  margin-right: 29px;
+  border: 2px solid $light-gray;
+  box-sizing: border-box;
+  border-radius: 2px;
+  text-align: center;
+  letter-spacing: 0.075em;
+
+  &:hover,
+  &:focus {
+    border-color: $gray;
+  }
+
+  &:active {
+    border-color: $label-disabled;
+  }
+}
+
+.promo__result {
+  text-align: right;
+}
+
+.promo__result p {
+  margin: 0;
+  padding-right: 3px;
+  margin-bottom: 44px;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 15px;
+  letter-spacing: 0.065em;
+  color: $black;
+}

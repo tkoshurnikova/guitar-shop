@@ -25,6 +25,13 @@
   letter-spacing: 0.08em;
   color: #585757;
   cursor: pointer;
+  outline: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $black;
+  }
 }
 
 .catalog__sort-buttons button:first-of-type {

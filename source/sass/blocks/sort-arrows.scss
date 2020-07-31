@@ -17,6 +17,13 @@
   border-left-color: transparent;
   border-right-color: transparent;
   background-color: transparent;
+  outline: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-bottom-color: $black;
+  }
 }
 
 .sort-arrows button:last-child {
@@ -27,4 +34,10 @@
   border-left-color: transparent;
   border-right-color: transparent;
   background-color: transparent;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-top-color: $black;
+  }
 }

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Guitar shop - интернет-магазин для покупки гитары">
+    <title>Guitar Shop</title>
+    <link rel="preload" href="fonts/droid-sans.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/style.min.css">
+  </head>
+  <body class="page-body">
+    <div class="visually-hidden">
+      <include src ="build/img/sprite_auto.svg"></include>
+    </div>
+    <header class="page-header">
+      <div>
+        <a class="page-header__logo" href="index.html">
+          <svg width="67" height="70"><use xlink:href="#icon-logo"></use></svg>
+        </a>
+        <nav class="page-header__nav">
+          <ul>
+            <li>
+              <a href="catalog.html">Каталог</a>
+            </li>
+            <li>
+              <a href="https://htmlacademy.ru/">Где купить?</a>
+            </li>
+            <li>
+              <a href="https://htmlacademy.ru/">О компании</a>
+            </li>
+            <li>
+              <a href="https://htmlacademy.ru/">Cервис-центры</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="page-header__links">
+          <a href="#">
+            <span class="visually-hidden">Местоположение</span>
+            <svg width="16" height="16" fill="none"><use xlink:href="#icon-map-pin"></use></svg>
+          </a>
+          <a href="#">
+            <span class="visually-hidden">Поиск</span>
+            <svg width="14" height="14"><use xlink:href="#icon-search"></use></svg>
+          </a>
+          <a href="cart.html">
+            <span class="visually-hidden">Корзина</span>
+            <svg width="14" height="15"><use xlink:href="#icon-cart"></use></svg>
+          </a>
+        </div>
+      </div>
+    </header>
+    <main class="page-main page-main--cart">
+      <div>
+        <h1>Корзина</h1>
+        <ul class="page-main__breadcrumbs breadcrumbs">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="catalog.html">Каталог</a></li>
+          <li>Оформляем</li>
+        </ul>
+        <section class="cart">
+          <h2 class="visually-hidden">Список товаров</h2>
+          <ul>
+            <li>
+              <button class="cart__close-button" type="button">
+                <span class="visually-hidden">Удалить из корзины</span>
+                <svg width="11.66" height="11.66"><use xlink:href="#icon-cross"></use></svg>
+              </button>
+              <img src="img/guitars/guitar-1.png" width="52" height="130" alt="Фото гитары">
+              <div class="cart__item-info">
+                <h3>ЭлектроГитара Честер bass</h3>
+                <p>Артикул: SO757575</p>
+                <p>Электрогитара, 6 струнная </p>
+              </div>
+              <p class="cart__price">17 500 ₽</p>
+              <div class="cart__quantity">
+                <button type="button">-</button>
+                <input type="number" name="quantity" id="quantity" value="1">
+                <label class="visually-hidden" for="quantity">Количество</label>
+                <button type="button">+</button>
+              </div>
+              <p class="cart__price cart__price--full">17 500 ₽</p>
+            </li>
+            <li>
+              <button class="cart__close-button" type="button">
+                <span class="visually-hidden">Удалить из корзины</span>
+                <svg width="11.66" height="11.66"><use xlink:href="#icon-cross"></use></svg>
+              </button>
+              <img src="img/guitars/guitar-1.png" width="52" height="130" alt="Фото гитары">
+              <div class="cart__item-info">
+                <h3>ЭлектроГитара Честер bass</h3>
+                <p>Артикул: SO757575</p>
+                <p>Электрогитара, 6 струнная </p>
+              </div>
+              <p class="cart__price">17 500 ₽</p>
+              <div class="cart__quantity">
+                <button type="button">-</button>
+                <input type="number" name="quantity" id="quantity" value="1">
+                <label class="visually-hidden" for="quantity">Количество</label>
+                <button type="button">+</button>
+              </div>
+              <p class="cart__price cart__price--full">17 500 ₽</p>
+            </li>
+          </ul>
+          <section class="promo">
+            <form>
+              <h3>Промокод на скидку</h3>
+              <p>Введите свой промокод, если он у вас есть.</p>
+              <input type="text" name="promo" value="GITARAHIT" id="promo">
+              <label class="visually-hidden" for="promo">Промокод</label>
+              <button class="button button--promo" type="submit">Применить купон</button>
+            </form>
+            <div class="promo__result">
+              <p>Всего: 47 000 ₽</p>
+              <a class="button button--order" href="https://htmlacademy.ru/">Оформить заказ</a>
+            </div>
+          </section>
+        </section>
+      </div>
+    </main>
+    <footer class="page-footer">
+      <div>
+        <div class="page-footer__left">
+          <a class="page-footer__logo" href="index.html">
+            <svg width="67" height="70"><use xlink:href="#icon-logo"></use></svg>
+          </a>
+          <ul class="page-footer__social-links">
+            <li>
+              <a href="#">
+                <span class="visually-hidden">Facebook</span>
+                <svg width="24" height="24"><use xlink:href="#icon-fb"></use></svg>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="visually-hidden">Instagram</span>
+                <svg width="24" height="24"><use xlink:href="#icon-ig"></use></svg>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="visually-hidden">Twitter</span>
+                <svg width="24" height="24"><use xlink:href="#icon-tw"></use></svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="page-footer__center">
+          <div>
+            <h3>О нас</h3>
+            <p>Магазин гитар, музыкальных инструментов и гитарная мастерская в Санкт-Петербурге.</p>
+            <p>Все инструменты проверены, отстроены и доведены до идеала! </p>
+          </div>
+          <div>
+            <h3>Каталог</h3>
+            <ul>
+              <li>
+                <a href="#">Акустические гитары</a>
+              </li>
+              <li>
+                <a href="#">Классические гитары</a>
+              </li>
+              <li>
+                <a href="#">Электрогитары</a>
+              </li>
+              <li>
+                <a href="#">Бас-гитары</a>
+              </li>
+              <li>
+                <a href="#">Укулеле</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3>Информация</h3>
+            <ul>
+              <li>
+                <a href="#">Где купить?</a>
+              </li>
+              <li>
+                <a href="#">Блог</a>
+              </li>
+              <li>
+                <a href="#">Вопрос - ответ</a>
+              </li>
+              <li>
+                <a href="#">Возврат</a>
+              </li>
+              <li>
+                <a href="#">Сервис центры</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="page-footer__right">
+          <h3>Контакты</h3>
+          <address>г. Санкт-Петербург, м. Невский проспект, ул. Казанская 6.</address>
+          <a class="page-footer__phone" href="tel:+78125005050">
+            <svg width="8" height="8"><use xlink:href="#icon-phone"></use></svg>
+            8-812-500-50-50
+          </a>
+          <p>
+            Режим работы:<br>
+            <svg width="10" height="10"><use xlink:href="#icon-clock"></use></svg>
+            с 11:00 до 20:00, без выходных.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <script src="js/main.js"></script>
+  </body>
+</html>

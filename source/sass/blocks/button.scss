@@ -48,3 +48,37 @@
 .button--buy svg {
   margin-right: 2.64px;
 }
+
+.button--promo {
+  width: 200px;
+  height: 36px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 15px;
+  letter-spacing: 0.1em;
+}
+
+.button--order {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 220px;
+  height: 36px;
+  background: $button-buy;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 15px;
+  letter-spacing: 0.125em;
+  color: $white;
+
+  &:hover,
+  &:focus {
+    background-color: $button-buy-hover;
+  }
+
+  &:active {
+    background-color: $button-buy-click;
+  }
+}
