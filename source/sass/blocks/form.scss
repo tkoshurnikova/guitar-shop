@@ -60,6 +60,10 @@
   background-color: #585757;
 }
 
+.form__price-fieldset span {
+  margin-left: -3px;
+}
+
 .form__price-fieldset input::placeholder {
   text-align: center;
 }

@@ -1,0 +1,30 @@
+.sort-arrows {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 237px;
+  margin-top: 4px;
+}
+
+.sort-arrows button {
+  display: inline-block;
+  vertical-align: top;
+  width: 0;
+  height: 0;
+  padding: 0;
+  border: 6px solid #6c6c6c;
+  border-top: 0;
+  border-bottom-width: 10px;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  background-color: transparent;
+}
+
+.sort-arrows button:last-child {
+  margin-left: 11px;
+  border: 6px solid #6c6c6c;
+  border-bottom: 0;
+  border-top-width: 10px;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  background-color: transparent;
+}

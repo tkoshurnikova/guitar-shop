@@ -62,7 +62,7 @@
           <form class="form" method="post">
             <h3>Фильтр</h3>
             <fieldset class="form__price-fieldset">
-              <legend>Цена, ₽</legend>
+              <legend>Цена, <span>₽</span></legend>
               <p>
                 <input type="number" name="price" id="min-price" placeholder="1 000">
                 <label class="visually-hidden" for="min-price">Цена от</label>
@@ -83,7 +83,7 @@
               <legend>Количество струн</legend>
               <input class="visually-hidden" type="checkbox" name="strings-number" id="4-strings" aria-label="4 струны" checked>
               <label for="4-strings">4</label>
-              <input class="visually-hidden" type="checkbox" name="strings-number" id="6-strings" aria-label="6 струн6" checked>
+              <input class="visually-hidden" type="checkbox" name="strings-number" id="6-strings" aria-label="6 струн" checked>
               <label for="6-strings">6</label>
               <input class="visually-hidden" type="checkbox" name="strings-number" id="7-strings" aria-label="7 струн">
               <label for="7-strings">7</label>
@@ -93,13 +93,329 @@
             <button class="button button--submit" type="submit">Показать</button>
           </form>
           <div>
-            <p class="catalog__sort-buttons">
+            <div class="catalog__sort-buttons">
               Сортировать:
               <button type="button">по цене</button>
               <button type="button">по популярности</button>
-              <button type="button"><span class="visually-hidden">по возрастанию</span></button>
-              <button type="button"><span class="visually-hidden">по убыванию</span></button>
-            </p>
+              <div class="sort-arrows">
+                <button type="button"><span class="visually-hidden">по возрастанию</span></button>
+                <button type="button"><span class="visually-hidden">по убыванию</span></button>
+              </div>
+            </div>
+            <ul class="catalog__list">
+              <li>
+                <img width="80" height="202" src="img/guitars/guitar-1.png" alt="Фото гитары">
+                <p>
+                  <span class="catalog__rating-overlay">
+                    <span class="catalog__stars">
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                    </span>
+                    <span class="catalog__stars--full">
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                    </span>
+                  </span>
+                  <span>15</span>
+                </p>
+                <p>
+                  <span>Честер Bass</span>
+                  <span>17 500 ₽</span>
+                </p>
+                <p>
+                  <button class="button" type="button">Подробнее</button>
+                  <button class="button button--buy"  type="button">
+                    <svg width="10.36" height="10.5"><use xlink:href="#icon-buy"></use></svg>
+                    Купить
+                  </button>
+                </p>
+              </li>
+              <li>
+                <img width="80" height="202" src="img/guitars/guitar-1.png" alt="Фото гитары">
+                <p>
+                  <span class="catalog__rating-overlay">
+                    <span class="catalog__stars">
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                    </span>
+                    <span class="catalog__stars--full">
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                    </span>
+                  </span>
+                  <span>15</span>
+                </p>
+                <p>
+                  <span>Честер Bass</span>
+                  <span>17 500 ₽</span>
+                </p>
+                <p>
+                  <button class="button" type="button">Подробнее</button>
+                  <button class="button button--buy"  type="button">
+                    <svg width="10.36" height="10.5"><use xlink:href="#icon-buy"></use></svg>
+                    Купить
+                  </button>
+                </p>
+              </li>
+              <li>
+                <img width="80" height="202" src="img/guitars/guitar-1.png" alt="Фото гитары">
+                <p>
+                  <span class="catalog__rating-overlay">
+                    <span class="catalog__stars">
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                    </span>
+                    <span class="catalog__stars--full">
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                    </span>
+                  </span>
+                  <span>15</span>
+                </p>
+                <p>
+                  <span>Честер Bass</span>
+                  <span>17 500 ₽</span>
+                </p>
+                <p>
+                  <button class="button" type="button">Подробнее</button>
+                  <button class="button button--buy"  type="button">
+                    <svg width="10.36" height="10.5"><use xlink:href="#icon-buy"></use></svg>
+                    Купить
+                  </button>
+                </p>
+              </li>
+              <li>
+                <img width="80" height="202" src="img/guitars/guitar-1.png" alt="Фото гитары">
+                <p>
+                  <span class="catalog__rating-overlay">
+                    <span class="catalog__stars">
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                    </span>
+                    <span class="catalog__stars--full">
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                    </span>
+                  </span>
+                  <span>15</span>
+                </p>
+                <p>
+                  <span>Честер Bass</span>
+                  <span>17 500 ₽</span>
+                </p>
+                <p>
+                  <button class="button" type="button">Подробнее</button>
+                  <button class="button button--buy"  type="button">
+                    <svg width="10.36" height="10.5"><use xlink:href="#icon-buy"></use></svg>
+                    Купить
+                  </button>
+                </p>
+              </li>
+              <li>
+                <img width="80" height="202" src="img/guitars/guitar-1.png" alt="Фото гитары">
+                <p>
+                  <span class="catalog__rating-overlay">
+                    <span class="catalog__stars">
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                    </span>
+                    <span class="catalog__stars--full">
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                    </span>
+                  </span>
+                  <span>15</span>
+                </p>
+                <p>
+                  <span>Честер Bass</span>
+                  <span>17 500 ₽</span>
+                </p>
+                <p>
+                  <button class="button" type="button">Подробнее</button>
+                  <button class="button button--buy"  type="button">
+                    <svg width="10.36" height="10.5"><use xlink:href="#icon-buy"></use></svg>
+                    Купить
+                  </button>
+                </p>
+              </li>
+              <li>
+                <img width="80" height="202" src="img/guitars/guitar-1.png" alt="Фото гитары">
+                <p>
+                  <span class="catalog__rating-overlay">
+                    <span class="catalog__stars">
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                    </span>
+                    <span class="catalog__stars--full">
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                    </span>
+                  </span>
+                  <span>15</span>
+                </p>
+                <p>
+                  <span>Честер Bass</span>
+                  <span>17 500 ₽</span>
+                </p>
+                <p>
+                  <button class="button" type="button">Подробнее</button>
+                  <button class="button button--buy"  type="button">
+                    <svg width="10.36" height="10.5"><use xlink:href="#icon-buy"></use></svg>
+                    Купить
+                  </button>
+                </p>
+              </li>
+              <li>
+                <img width="80" height="202" src="img/guitars/guitar-1.png" alt="Фото гитары">
+                <p>
+                  <span class="catalog__rating-overlay">
+                    <span class="catalog__stars">
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                    </span>
+                    <span class="catalog__stars--full">
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                    </span>
+                  </span>
+                  <span>15</span>
+                </p>
+                <p>
+                  <span>Честер Bass</span>
+                  <span>17 500 ₽</span>
+                </p>
+                <p>
+                  <button class="button" type="button">Подробнее</button>
+                  <button class="button button--buy"  type="button">
+                    <svg width="10.36" height="10.5"><use xlink:href="#icon-buy"></use></svg>
+                    Купить
+                  </button>
+                </p>
+              </li>
+              <li>
+                <img width="80" height="202" src="img/guitars/guitar-1.png" alt="Фото гитары">
+                <p>
+                  <span class="catalog__rating-overlay">
+                    <span class="catalog__stars">
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                    </span>
+                    <span class="catalog__stars--full">
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                    </span>
+                  </span>
+                  <span>15</span>
+                </p>
+                <p>
+                  <span>Честер Bass</span>
+                  <span>17 500 ₽</span>
+                </p>
+                <p>
+                  <button class="button" type="button">Подробнее</button>
+                  <button class="button button--buy"  type="button">
+                    <svg width="10.36" height="10.5"><use xlink:href="#icon-buy"></use></svg>
+                    Купить
+                  </button>
+                </p>
+              </li>
+              <li>
+                <img width="80" height="202" src="img/guitars/guitar-1.png" alt="Фото гитары">
+                <p>
+                  <span class="catalog__rating-overlay">
+                    <span class="catalog__stars">
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star"></use></svg>
+                    </span>
+                    <span class="catalog__stars--full">
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                      <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
+                    </span>
+                  </span>
+                  <span>15</span>
+                </p>
+                <p>
+                  <span>Честер Bass</span>
+                  <span>17 500 ₽</span>
+                </p>
+                <p>
+                  <button class="button" type="button">Подробнее</button>
+                  <button class="button button--buy"  type="button">
+                    <svg width="10.36" height="10.5"><use xlink:href="#icon-buy"></use></svg>
+                    Купить
+                  </button>
+                </p>
+              </li>
+            </ul>
+            <ul class="pagination">
+              <li class="pagination__item pagination__item--active">
+                <a>1</a>
+              </li>
+              <li class="pagination__item">
+                <a href="#">2</a>
+              </li>
+              <li class="pagination__item">...</li>
+              <li class="pagination__item">
+                <a href="#">7</a>
+              </li>
+              <li class="pagination__item">
+                <a href="#">Далее</a>
+              </li>
+            </ul>
           </div>
         </section>
       </div>

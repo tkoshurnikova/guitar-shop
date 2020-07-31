@@ -9,6 +9,7 @@
   font-weight: bold;
   font-size: 12px;
   line-height: 14px;
+  letter-spacing: 0.06em;
   color: $white;
   outline: none;
   cursor: pointer;
@@ -28,4 +29,22 @@
   width: 120px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
+}
+
+.button--buy {
+  width: 87px;
+  background-color: $button-buy;
+
+  &:hover,
+  &:focus {
+    background-color: $button-buy-hover;
+  }
+
+  &:active {
+    background-color: $button-buy-click;
+  }
+}
+
+.button--buy svg {
+  margin-right: 2.64px;
 }
