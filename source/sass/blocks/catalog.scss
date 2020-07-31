@@ -64,6 +64,7 @@
   margin-top: 3px;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 }
 
 .catalog__rating-overlay {
@@ -78,7 +79,7 @@
 .catalog__rating-overlay .catalog__stars--full {
   width: 65px;
   display: inline-block;
-  top: 0;
+  top: -5px;
   left: 0;
   position: absolute;
   margin-top: -9px;
