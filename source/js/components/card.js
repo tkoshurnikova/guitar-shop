@@ -1,6 +1,6 @@
 import {formatPrice} from '../utils.js';
 
-export const createCardTemplate = ({item, title, price}) => {
+export const createCardTemplate = ({item, title, popularity, price}) => {
   return (
     `<li>
       <img width="68" height="190" src="img/guitars/guitar-${item}.png" alt="Фото гитары">
@@ -21,7 +21,7 @@ export const createCardTemplate = ({item, title, price}) => {
             <svg width="9.93" height="9.48"><use xlink:href="#icon-star-full"></use></svg>
           </span>
         </span>
-        <span>15</span>
+        <span>${popularity}</span>
       </p>
       <p>
         <span>${title}</span>

@@ -22,16 +22,22 @@
   color: $black;
 }
 
+.promo .promo__coupon {
+  display: flex;
+  align-items: center;
+  margin-top: 18px;
+}
+
 .promo input {
   width: 170px;
   height: 36px;
-  margin-top: 19px;
-  margin-right: 29px;
+  margin-right: 33px;
   border: 2px solid $light-gray;
   box-sizing: border-box;
   border-radius: 2px;
   text-align: center;
   letter-spacing: 0.075em;
+  font-size: 16px;
 
   &:hover,
   &:focus {
@@ -43,14 +49,11 @@
   }
 }
 
-.promo__result {
-  text-align: right;
-}
-
 .promo__result p {
   margin: 0;
   padding-right: 3px;
   margin-bottom: 44px;
+  text-align: right;
   font-weight: bold;
   font-size: 20px;
   line-height: 15px;
