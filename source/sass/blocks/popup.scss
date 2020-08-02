@@ -1,0 +1,101 @@
+.popup {
+  position: fixed;
+  top: 136px;
+  left: calc(50% - 370px);
+  width: 740px;
+  box-sizing: border-box;
+  padding: 28px 50px;
+  background-color: $white;
+  z-index: 10;
+  overflow: hidden;
+  box-shadow: 0 5px 6px rgba(63, 63, 63, 0.2);
+  border-radius: 4px;
+}
+
+.popup--closed {
+  display: none;
+}
+
+.popup__close-button {
+  position: absolute;
+  right: 17px;
+  top: 18px;
+  border: none;
+  outline: none;
+  background: none;
+  color: $gray;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: $dark-gray;
+  }
+
+  &:active {
+    color: $label-disabled;
+  }
+}
+
+.popup__content-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 23px;
+}
+
+.popup__item-info {
+  margin-right: 78px;
+}
+
+.popup h2 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 15px;
+  letter-spacing: 0.085em;
+  color: $dark-gray;
+}
+
+.popup h3 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 15px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: $black;
+}
+
+.popup p {
+  margin: 0;
+  margin-top: 5px;
+  font-size: 14px;
+  line-height: 15px;
+  letter-spacing: 0.075em;
+  color: $black;
+}
+
+.popup .button {
+  margin-top: 16px;
+}
+
+.popup .popup__price {
+  font-weight: bold;
+  margin-top: 19px;
+  font-size: 20px;
+  line-height: 15px;
+  letter-spacing: 0.075em;
+  color: $black;
+}
+
+.popup .popup__buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  margin-top: 24px;
+  margin-bottom: 26px;
+  max-width: 478px;
+}
+
+.popup .popup__buttons--vertical {
+  flex-direction: column;
+  margin: 0;
+}

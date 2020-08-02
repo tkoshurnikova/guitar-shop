@@ -87,3 +87,46 @@
     background-color: $button-buy-click;
   }
 }
+
+.button--to-cart {
+  width: 220px;
+  height: 46px;
+  font-size: 16px;
+  line-height: 15px;
+  letter-spacing: 0.12em;
+  background-color: $button-buy;
+
+  &:hover,
+  &:focus {
+    background-color: $button-buy-hover;
+  }
+
+  &:active {
+    background-color: $button-buy-click;
+  }
+}
+
+.button--shopping {
+  width: 220px;
+  height: 46px;
+  border: 1px solid $button-hover;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 15px;
+  letter-spacing: 0.12em;
+  color: $button-hover;
+  background-color: transparent;
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    color: rgba(88, 87, 87, 0.7);
+    border-color: rgba(88, 87, 87, 0.7);
+  }
+
+  &:active {
+    background-color: transparent;
+    color: rgba(88, 87, 87, 0.5);
+    border-color: rgba(88, 87, 87, 0.5);
+  }
+}
