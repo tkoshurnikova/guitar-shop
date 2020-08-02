@@ -1,9 +1,15 @@
-import {formatPrice} from '../utils.js';
+import AbstractComponent from './abstract-component.js';
+import {formatPrice} from '../utils/format.js';
+import {IMAGES} from '../const.js';
 
-export const createCardTemplate = ({item, title, popularity, price}) => {
+export const createCardTemplate = ({item, title, type, popularity, price}) => {
+  const getImage = () => {
+    return (item < 8) ? `img/guitars/guitar-${item}.png` : IMAGES[type];
+  };
+
   return (
     `<li>
-      <img width="68" height="190" src="img/guitars/guitar-${item}.png" alt="Фото гитары">
+      <img width="68" height="190" src="${getImage()}" alt="Фото гитары">
       <p>
         <span class="catalog__rating-overlay">
           <span class="catalog__stars">
@@ -37,3 +43,18 @@ export const createCardTemplate = ({item, title, popularity, price}) => {
     </li>`
   );
 };
+
+export default class Card extends AbstractComponent {
+  constructor(card) {
+    super();
+    this._card = card;
+  }
+
+  getTemplate() {
+    return createCardTemplate(this._card);
+  }
+
+  setBuyButtonClickHandler(handler) {
+    this.getElement().querySelector(`.button--buy`).addEventListener(`click`, handler);
+  }
+}

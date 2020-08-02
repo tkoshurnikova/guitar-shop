@@ -3,16 +3,14 @@ export const openPopup = (popup) => {
   const overlay = document.querySelector(`.overlay`);
   const body = document.querySelector(`body`);
 
-  const onOpenButtonClick = (evt) => {
-    evt.preventDefault();
+  const onOpenButtonClick = () => {
     popup.classList.remove(`popup--closed`);
     overlay.classList.remove(`overlay--hidden`);
     body.classList.add(`no-scroll`);
     window.addEventListener(`keydown`, onEscPress);
   };
 
-  const onCloseButtonClick = (evt) => {
-    evt.preventDefault();
+  const onCloseButtonClick = () => {
     popup.classList.add(`popup--closed`);
     overlay.classList.add(`overlay--hidden`);
     body.classList.remove(`no-scroll`);

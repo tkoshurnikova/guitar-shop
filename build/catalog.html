@@ -96,67 +96,6 @@
         </ul>
         <section class="catalog">
           <h2 class="visually-hidden">Форма выбора гитары</h2>
-          <form class="form" method="post">
-            <h3>Фильтр</h3>
-            <fieldset class="form__price-fieldset">
-              <legend>Цена, <span>₽</span></legend>
-              <p>
-                <input type="number" name="price" id="min-price" placeholder="1 000">
-                <label class="visually-hidden" for="min-price">Цена от</label>
-                <input type="number" name="price" id="max-price" placeholder="30 000">
-                <label class="visually-hidden" for="max-price">Цена до</label>
-              </p>
-            </fieldset>
-            <fieldset class="form__checkbox-fieldset">
-              <legend>Тип гитар</legend>
-              <input class="visually-hidden" type="checkbox" name="guitar-type" id="acoustic" aria-label="Акустические гитары">
-              <label for="acoustic">Акустические гитары</label>
-              <input class="visually-hidden" type="checkbox" name="guitar-type" id="electric" aria-label="Электрогитары" checked="">
-              <label for="electric">Электрогитары</label>
-              <input class="visually-hidden" type="checkbox" name="guitar-type" id="ukulele" aria-label="Укулеле" checked="">
-              <label for="ukulele">Укулеле</label>
-            </fieldset>
-            <fieldset class="form__checkbox-fieldset">
-              <legend>Количество струн</legend>
-              <input class="visually-hidden" type="checkbox" name="strings-number" id="4-strings" aria-label="4 струны" checked="">
-              <label for="4-strings">4</label>
-              <input class="visually-hidden" type="checkbox" name="strings-number" id="6-strings" aria-label="6 струн" checked="">
-              <label for="6-strings">6</label>
-              <input class="visually-hidden" type="checkbox" name="strings-number" id="7-strings" aria-label="7 струн">
-              <label for="7-strings">7</label>
-              <input class="visually-hidden" type="checkbox" name="strings-number" id="12-strings" aria-label="12 струн" disabled="">
-              <label for="12-strings">12</label>
-            </fieldset>
-            <button class="button button--submit" type="submit">Показать</button>
-          </form>
-          <div>
-            <div class="catalog__sort-buttons">
-              Сортировать:
-              <button type="button">по цене</button>
-              <button type="button">по популярности</button>
-              <div class="sort-arrows">
-                <button type="button"><span class="visually-hidden">по возрастанию</span></button>
-                <button type="button"><span class="visually-hidden">по убыванию</span></button>
-              </div>
-            </div>
-            <ul class="catalog__list">
-            </ul>
-            <ul class="pagination">
-              <li class="pagination__item pagination__item--active">
-                <a>1</a>
-              </li>
-              <li class="pagination__item">
-                <a href="#">2</a>
-              </li>
-              <li class="pagination__item">...</li>
-              <li class="pagination__item">
-                <a href="#">7</a>
-              </li>
-              <li class="pagination__item">
-                <a href="#">Далее</a>
-              </li>
-            </ul>
-          </div>
         </section>
       </div>
     </main>
@@ -249,7 +188,7 @@
         </div>
       </div>
     </footer>
-    <div class="popup popup--closed">
+    <div class="popup popup--closed" id="add-to-cart">
       <button class="popup__close-button" type="button">
         <span class="visually-hidden">Закрыть окно</span>
         <svg width="11.66" height="11.66"><use xlink:href="#icon-cross"></use></svg>
