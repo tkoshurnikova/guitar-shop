@@ -371,6 +371,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Filter; });
 /* harmony import */ var _abstract_component_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract-component.js */ "./source/js/components/abstract-component.js");
 /* harmony import */ var _utils_debounce_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/debounce.js */ "./source/js/utils/debounce.js");
+/* harmony import */ var _utils_format_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/format.js */ "./source/js/utils/format.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -393,6 +394,19 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
 
 
 
@@ -407,11 +421,14 @@ var createCheckboxFieldset = function createCheckboxFieldset(filter) {
   return "<fieldset class=\"form__checkbox-fieldset ".concat(filter.type, "\">\n      <legend>").concat(filter.title, "</legend>\n      ").concat(checkboxMarkup, "\n    </fieldset>");
 };
 
-var createFilterTemplate = function createFilterTemplate(filters) {
+var createFilterTemplate = function createFilterTemplate(filters, cards) {
   var checkboxFieldsets = filters.map(function (filter) {
     return createCheckboxFieldset(filter);
   }).join("\n");
-  return "<form class=\"form\" method=\"post\">\n      <h3>\u0424\u0438\u043B\u044C\u0442\u0440</h3>\n      <fieldset class=\"form__price-fieldset\">\n        <legend>\u0426\u0435\u043D\u0430, <span>\u20BD</span></legend>\n        <p>\n          <input type=\"number\" name=\"price\" id=\"min-price\" placeholder=\"1 000\">\n          <label class=\"visually-hidden\" for=\"min-price\">\u0426\u0435\u043D\u0430 \u043E\u0442</label>\n          <input type=\"number\" name=\"price\" id=\"max-price\" placeholder=\"30 000\">\n          <label class=\"visually-hidden\" for=\"max-price\">\u0426\u0435\u043D\u0430 \u0434\u043E</label>\n        </p>\n      </fieldset>\n      ".concat(checkboxFieldsets, "\n    </form>");
+  var prices = cards.map(function (card) {
+    return Number(card.price);
+  });
+  return "<form class=\"form\" method=\"post\">\n      <h3>\u0424\u0438\u043B\u044C\u0442\u0440</h3>\n      <fieldset class=\"form__price-fieldset\">\n        <legend>\u0426\u0435\u043D\u0430, <span>\u20BD</span></legend>\n        <p>\n          <input type=\"number\" name=\"price\" id=\"min-price\" placeholder=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.min.apply(Math, _toConsumableArray(prices))), "\" min=\"0\">\n          <label class=\"visually-hidden\" for=\"min-price\">\u0426\u0435\u043D\u0430 \u043E\u0442</label>\n          <input type=\"number\" name=\"price\" id=\"max-price\" placeholder=\"").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.max.apply(Math, _toConsumableArray(prices))), "\" min=\"0\">\n          <label class=\"visually-hidden\" for=\"max-price\">\u0426\u0435\u043D\u0430 \u0434\u043E</label>\n        </p>\n      </fieldset>\n      ").concat(checkboxFieldsets, "\n    </form>");
 };
 
 var Filter = /*#__PURE__*/function (_AbstractComponent) {
@@ -419,28 +436,60 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
 
   var _super = _createSuper(Filter);
 
-  function Filter(filters) {
+  function Filter(filters, cards) {
     var _this;
 
     _classCallCheck(this, Filter);
 
     _this = _super.call(this);
     _this._filters = filters;
+    _this._cards = cards;
+
+    _this._subscribeOnEvents();
+
     return _this;
   }
 
   _createClass(Filter, [{
     key: "getTemplate",
     value: function getTemplate() {
-      return createFilterTemplate(this._filters);
+      return createFilterTemplate(this._filters, this._cards);
     }
   }, {
-    key: "setFilterChangetHandler",
-    value: function setFilterChangetHandler(handler) {
+    key: "setFilterChangeHandler",
+    value: function setFilterChangeHandler(handler) {
       this.getElement().addEventListener("change", Object(_utils_debounce_js__WEBPACK_IMPORTED_MODULE_1__["debounce"])(function (evt) {
         var filterName = evt.target.name;
         handler(filterName);
       }));
+    }
+  }, {
+    key: "_subscribeOnEvents",
+    value: function _subscribeOnEvents() {
+      var element = this.getElement();
+      var cards = this._cards;
+      var prices = cards.map(function (card) {
+        return Number(card.price);
+      });
+      element.querySelector(".form__price-fieldset").addEventListener("change", function () {
+        var minPrice = element.querySelector("#min-price");
+        var maxPrice = element.querySelector("#max-price");
+
+        if (maxPrice.value && minPrice.value && maxPrice.value < minPrice.value) {
+          var min = maxPrice.value < Math.min.apply(Math, _toConsumableArray(prices)) ? Math.min.apply(Math, _toConsumableArray(prices)) : maxPrice.value;
+          var max = minPrice.value > Math.max.apply(Math, _toConsumableArray(prices)) ? Math.max.apply(Math, _toConsumableArray(prices)) : minPrice.value;
+          minPrice.value = min;
+          maxPrice.value = max;
+        }
+
+        if (minPrice.value && minPrice.value < Math.min.apply(Math, _toConsumableArray(prices))) {
+          minPrice.value = Math.min.apply(Math, _toConsumableArray(prices));
+        }
+
+        if (maxPrice.value && maxPrice.value > Math.max.apply(Math, _toConsumableArray(prices))) {
+          maxPrice.value = Math.max.apply(Math, _toConsumableArray(prices));
+        }
+      });
     }
   }]);
 
@@ -583,14 +632,13 @@ var Sort = /*#__PURE__*/function (_AbstractComponent) {
 /*!****************************!*\
   !*** ./source/js/const.js ***!
   \****************************/
-/*! exports provided: CARDS_PER_PAGE, Filters, FilterType, IMAGES */
+/*! exports provided: CARDS_PER_PAGE, Filters, IMAGES */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CARDS_PER_PAGE", function() { return CARDS_PER_PAGE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Filters", function() { return Filters; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FilterType", function() { return FilterType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IMAGES", function() { return IMAGES; });
 var CARDS_PER_PAGE = 9;
 var Filters = [{
@@ -637,11 +685,6 @@ var Filters = [{
     'isChecked': false
   }]
 }];
-var FilterType = {
-  TYPE: "guitar-type",
-  STRINGS: "strings-number",
-  ALL: "all"
-};
 var IMAGES = {
   'акустическая гитара': "img/guitars/guitar-5.png",
   'электрогитара': "img/guitars/guitar-1.png",
@@ -752,7 +795,7 @@ var CardsController = /*#__PURE__*/function () {
     value: function render() {
       var container = this._container;
 
-      var cards = this._cardsModel.getCards();
+      var cards = this._cardsModel.getCardsAll();
 
       Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_2__["render"])(container, this._cardsListComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_2__["RenderPosition"].BEFOREEND);
 
@@ -824,7 +867,6 @@ var FilterController = /*#__PURE__*/function () {
 
     this._container = container;
     this._cardsModel = cardsModel;
-    this._activeFilterType = _const_js__WEBPACK_IMPORTED_MODULE_2__["FilterType"].ALL;
     this._filterComponent = null;
     this._onFilterChange = this._onFilterChange.bind(this);
   }
@@ -833,18 +875,19 @@ var FilterController = /*#__PURE__*/function () {
     key: "render",
     value: function render() {
       var container = this._container;
-      this._filterComponent = new _components_filter_js__WEBPACK_IMPORTED_MODULE_0__["default"](_const_js__WEBPACK_IMPORTED_MODULE_2__["Filters"]);
 
-      this._filterComponent.setFilterChangetHandler(this._onFilterChange);
+      var cards = this._cardsModel.getCardsAll();
+
+      this._filterComponent = new _components_filter_js__WEBPACK_IMPORTED_MODULE_0__["default"](_const_js__WEBPACK_IMPORTED_MODULE_2__["Filters"], cards);
+
+      this._filterComponent.setFilterChangeHandler(this._onFilterChange);
 
       Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_1__["render"])(container, this._filterComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_1__["RenderPosition"].BEFOREEND);
     }
   }, {
     key: "_onFilterChange",
-    value: function _onFilterChange(filterType) {
-      this._cardsModel.setFilter(filterType);
-
-      this._activeFilterType = filterType;
+    value: function _onFilterChange() {
+      this._cardsModel.setFilter();
     }
   }]);
 
@@ -1135,7 +1178,6 @@ Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_7__["render"])(catalogContentSe
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Cards; });
 /* harmony import */ var _utils_filter_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/filter.js */ "./source/js/utils/filter.js");
-/* harmony import */ var _const_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../const.js */ "./source/js/const.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -1144,13 +1186,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-
 var Cards = /*#__PURE__*/function () {
   function Cards() {
     _classCallCheck(this, Cards);
 
     this._cards = [];
-    this._activeFilterType = _const_js__WEBPACK_IMPORTED_MODULE_1__["FilterType"].ALL;
     this._filterChangeHandlers = [];
   }
 
@@ -1162,7 +1202,7 @@ var Cards = /*#__PURE__*/function () {
   }, {
     key: "getCards",
     value: function getCards() {
-      return Object(_utils_filter_js__WEBPACK_IMPORTED_MODULE_0__["getCardsByFilter"])(this._cards, this._activeFilterType);
+      return Object(_utils_filter_js__WEBPACK_IMPORTED_MODULE_0__["getCardsByFilter"])(this._cards);
     }
   }, {
     key: "setCards",
@@ -1171,9 +1211,7 @@ var Cards = /*#__PURE__*/function () {
     }
   }, {
     key: "setFilter",
-    value: function setFilter(filterType) {
-      this._activeFilterType = filterType;
-
+    value: function setFilter() {
       this._callHandlers(this._filterChangeHandlers);
     }
   }, {
@@ -1237,8 +1275,22 @@ var debounce = function debounce(cb) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCardsByFilter", function() { return getCardsByFilter; });
-/* harmony import */ var _const_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../const.js */ "./source/js/const.js");
+var samePriceCheck = function samePriceCheck(item) {
+  var form = document.querySelector(".form");
+  var inputMinPrice = form.querySelector("#min-price").value;
+  var inputMaxPrice = form.querySelector("#max-price").value;
+  var card = "";
 
+  if (inputMinPrice && inputMaxPrice) {
+    if (Number(item.price) <= inputMaxPrice && Number(item.price) >= inputMinPrice) {
+      card = item;
+    }
+  } else {
+    card = item;
+  }
+
+  return card;
+};
 
 var sameFeatureCheck = function sameFeatureCheck(item) {
   var checkedTypeFeatures = Array.from(document.querySelector(".form").querySelector(".guitar-type").querySelectorAll("input:checked"));
@@ -1251,7 +1303,7 @@ var sameFeatureCheck = function sameFeatureCheck(item) {
     });
 
     if (checkedTypeFeatures.length && checkedStringsFeatures.length) {
-      return checkedLabels.includes(item.type) || checkedLabels.includes(item.strings);
+      return checkedLabels.includes(item.type) && checkedLabels.includes(item.strings);
     } else if (checkedTypeFeatures.length) {
       return checkedLabels.includes(item.type);
     } else {
@@ -1262,23 +1314,10 @@ var sameFeatureCheck = function sameFeatureCheck(item) {
   }
 };
 
-var getCardsByFilter = function getCardsByFilter(cards, filter) {
-  switch (filter) {
-    case _const_js__WEBPACK_IMPORTED_MODULE_0__["FilterType"].TYPE:
-      return cards.filter(function (card) {
-        return sameFeatureCheck(card);
-      });
-
-    case _const_js__WEBPACK_IMPORTED_MODULE_0__["FilterType"].STRINGS:
-      return cards.filter(function (card) {
-        return sameFeatureCheck(card);
-      });
-
-    case _const_js__WEBPACK_IMPORTED_MODULE_0__["FilterType"].ALL:
-      return cards;
-  }
-
-  return cards;
+var getCardsByFilter = function getCardsByFilter(cards) {
+  return cards.filter(function (card) {
+    return sameFeatureCheck(card) && samePriceCheck(card);
+  });
 };
 
 /***/ }),

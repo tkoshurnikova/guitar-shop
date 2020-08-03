@@ -1,5 +1,6 @@
 import AbstractComponent from './abstract-component.js';
 import {debounce} from '../utils/debounce.js';
+import {formatPrice} from '../utils/format.js';
 
 const createCheckboxMarkup = (type, item) => {
   return (
@@ -31,8 +32,9 @@ const createCheckboxFieldset = (filter) => {
   );
 };
 
-const createFilterTemplate = (filters) => {
+const createFilterTemplate = (filters, cards) => {
   const checkboxFieldsets = filters.map((filter) => createCheckboxFieldset(filter)).join(`\n`);
+  const prices = cards.map((card) => Number(card.price));
 
   return (
     `<form class="form" method="post">
@@ -40,9 +42,9 @@ const createFilterTemplate = (filters) => {
       <fieldset class="form__price-fieldset">
         <legend>Цена, <span>₽</span></legend>
         <p>
-          <input type="number" name="price" id="min-price" placeholder="1 000">
+          <input type="number" name="price" id="min-price" placeholder="${formatPrice(Math.min(...prices))}" min="0">
           <label class="visually-hidden" for="min-price">Цена от</label>
-          <input type="number" name="price" id="max-price" placeholder="30 000">
+          <input type="number" name="price" id="max-price" placeholder="${formatPrice(Math.max(...prices))}" min="0">
           <label class="visually-hidden" for="max-price">Цена до</label>
         </p>
       </fieldset>
@@ -52,19 +54,48 @@ const createFilterTemplate = (filters) => {
 };
 
 export default class Filter extends AbstractComponent {
-  constructor(filters) {
+  constructor(filters, cards) {
     super();
     this._filters = filters;
+    this._cards = cards;
+    this._subscribeOnEvents();
   }
 
   getTemplate() {
-    return createFilterTemplate(this._filters);
+    return createFilterTemplate(this._filters, this._cards);
   }
 
-  setFilterChangetHandler(handler) {
+  setFilterChangeHandler(handler) {
     this.getElement().addEventListener(`change`, debounce((evt) => {
       const filterName = evt.target.name;
       handler(filterName);
     }));
+  }
+
+  _subscribeOnEvents() {
+    const element = this.getElement();
+    const cards = this._cards;
+    const prices = cards.map((card) => Number(card.price));
+
+    element.querySelector(`.form__price-fieldset`).addEventListener(`change`, () => {
+      const minPrice = element.querySelector(`#min-price`);
+      const maxPrice = element.querySelector(`#max-price`);
+
+      if (maxPrice.value && minPrice.value && maxPrice.value < minPrice.value) {
+        const min = maxPrice.value < Math.min(...prices) ? Math.min(...prices) : maxPrice.value;
+        const max = minPrice.value > Math.max(...prices) ? Math.max(...prices) : minPrice.value;
+        minPrice.value = min;
+        maxPrice.value = max;
+      }
+
+      if (minPrice.value && minPrice.value < Math.min(...prices)) {
+        minPrice.value = Math.min(...prices);
+      }
+
+      if (maxPrice.value && maxPrice.value > Math.max(...prices)) {
+        maxPrice.value = Math.max(...prices);
+      }
+
+    });
   }
 }

@@ -57,12 +57,6 @@ export const Filters = [
   }
 ];
 
-export const FilterType = {
-  TYPE: `guitar-type`,
-  STRINGS: `strings-number`,
-  ALL: `all`
-};
-
 export const IMAGES = {
   'акустическая гитара': `img/guitars/guitar-5.png`,
   'электрогитара': `img/guitars/guitar-1.png`,

@@ -14,7 +14,7 @@ export default class CardsController {
 
   render() {
     const container = this._container;
-    const cards = this._cardsModel.getCards();
+    const cards = this._cardsModel.getCardsAll();
 
     render(container, this._cardsListComponent, RenderPosition.BEFOREEND);
     this._renderCards(cards);
