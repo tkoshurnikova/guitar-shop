@@ -11,6 +11,7 @@ const createCheckboxMarkup = (type, item) => {
     id="${item.type}"
     aria-label="${item.label}"
     ${item.isChecked ? `checked` : ``}
+    ${item.isDisabled ? `disabled` : ``}
     data-label="${item.item}"
     >
     <label
@@ -33,8 +34,8 @@ const createCheckboxFieldset = (filter) => {
 };
 
 const createFilterTemplate = (filters, cards) => {
-  const checkboxFieldsets = filters.map((filter) => createCheckboxFieldset(filter)).join(`\n`);
   const prices = cards.map((card) => Number(card.price));
+  const checkboxFieldsets = filters.map((filter) => createCheckboxFieldset(filter)).join(`\n`);
 
   return (
     `<form class="form" method="post">
@@ -66,9 +67,8 @@ export default class Filter extends AbstractComponent {
   }
 
   setFilterChangeHandler(handler) {
-    this.getElement().addEventListener(`change`, debounce((evt) => {
-      const filterName = evt.target.name;
-      handler(filterName);
+    this.getElement().addEventListener(`change`, debounce(() => {
+      handler();
     }));
   }
 
@@ -76,6 +76,7 @@ export default class Filter extends AbstractComponent {
     const element = this.getElement();
     const cards = this._cards;
     const prices = cards.map((card) => Number(card.price));
+    const filters = this._filters;
 
     element.querySelector(`.form__price-fieldset`).addEventListener(`change`, () => {
       const minPrice = element.querySelector(`#min-price`);
@@ -95,7 +96,22 @@ export default class Filter extends AbstractComponent {
       if (maxPrice.value && maxPrice.value > Math.max(...prices)) {
         maxPrice.value = Math.max(...prices);
       }
-
     });
+
+    element.querySelector(`.guitar-type`).querySelectorAll(`input[type='checkbox']`).forEach((input) => input.addEventListener(`change`, (evt) => {
+      filters[0].checkboxes.forEach((checkbox) => {
+        if (checkbox.item === evt.target.dataset.label) {
+          checkbox.isChecked = evt.target.checked;
+        }
+      });
+    }));
+
+    element.querySelector(`.strings-number`).querySelectorAll(`input[type='checkbox']`).forEach((input) => input.addEventListener(`change`, (evt) => {
+      filters[1].checkboxes.forEach((checkbox) => {
+        if (checkbox.item === evt.target.dataset.label) {
+          checkbox.isChecked = evt.target.checked;
+        }
+      });
+    }));
   }
 }

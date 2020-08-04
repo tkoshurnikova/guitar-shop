@@ -411,7 +411,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 var createCheckboxMarkup = function createCheckboxMarkup(type, item) {
-  return "<input\n    class=\"visually-hidden\"\n    type=\"checkbox\"\n    name=\"".concat(type, "\"\n    id=\"").concat(item.type, "\"\n    aria-label=\"").concat(item.label, "\"\n    ").concat(item.isChecked ? "checked" : "", "\n    data-label=\"").concat(item.item, "\"\n    >\n    <label\n    for=\"").concat(item.type, "\"\n      >\n    ").concat(item.label, "\n    </label>");
+  return "<input\n    class=\"visually-hidden\"\n    type=\"checkbox\"\n    name=\"".concat(type, "\"\n    id=\"").concat(item.type, "\"\n    aria-label=\"").concat(item.label, "\"\n    ").concat(item.isChecked ? "checked" : "", "\n    ").concat(item.isDisabled ? "disabled" : "", "\n    data-label=\"").concat(item.item, "\"\n    >\n    <label\n    for=\"").concat(item.type, "\"\n      >\n    ").concat(item.label, "\n    </label>");
 };
 
 var createCheckboxFieldset = function createCheckboxFieldset(filter) {
@@ -422,12 +422,12 @@ var createCheckboxFieldset = function createCheckboxFieldset(filter) {
 };
 
 var createFilterTemplate = function createFilterTemplate(filters, cards) {
-  var checkboxFieldsets = filters.map(function (filter) {
-    return createCheckboxFieldset(filter);
-  }).join("\n");
   var prices = cards.map(function (card) {
     return Number(card.price);
   });
+  var checkboxFieldsets = filters.map(function (filter) {
+    return createCheckboxFieldset(filter);
+  }).join("\n");
   return "<form class=\"form\" method=\"post\">\n      <h3>\u0424\u0438\u043B\u044C\u0442\u0440</h3>\n      <fieldset class=\"form__price-fieldset\">\n        <legend>\u0426\u0435\u043D\u0430, <span>\u20BD</span></legend>\n        <p>\n          <input type=\"number\" name=\"price\" id=\"min-price\" placeholder=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.min.apply(Math, _toConsumableArray(prices))), "\" min=\"0\">\n          <label class=\"visually-hidden\" for=\"min-price\">\u0426\u0435\u043D\u0430 \u043E\u0442</label>\n          <input type=\"number\" name=\"price\" id=\"max-price\" placeholder=\"").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.max.apply(Math, _toConsumableArray(prices))), "\" min=\"0\">\n          <label class=\"visually-hidden\" for=\"max-price\">\u0426\u0435\u043D\u0430 \u0434\u043E</label>\n        </p>\n      </fieldset>\n      ").concat(checkboxFieldsets, "\n    </form>");
 };
 
@@ -458,9 +458,8 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
   }, {
     key: "setFilterChangeHandler",
     value: function setFilterChangeHandler(handler) {
-      this.getElement().addEventListener("change", Object(_utils_debounce_js__WEBPACK_IMPORTED_MODULE_1__["debounce"])(function (evt) {
-        var filterName = evt.target.name;
-        handler(filterName);
+      this.getElement().addEventListener("change", Object(_utils_debounce_js__WEBPACK_IMPORTED_MODULE_1__["debounce"])(function () {
+        handler();
       }));
     }
   }, {
@@ -471,6 +470,7 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
       var prices = cards.map(function (card) {
         return Number(card.price);
       });
+      var filters = this._filters;
       element.querySelector(".form__price-fieldset").addEventListener("change", function () {
         var minPrice = element.querySelector("#min-price");
         var maxPrice = element.querySelector("#max-price");
@@ -489,6 +489,24 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
         if (maxPrice.value && maxPrice.value > Math.max.apply(Math, _toConsumableArray(prices))) {
           maxPrice.value = Math.max.apply(Math, _toConsumableArray(prices));
         }
+      });
+      element.querySelector(".guitar-type").querySelectorAll("input[type='checkbox']").forEach(function (input) {
+        return input.addEventListener("change", function (evt) {
+          filters[0].checkboxes.forEach(function (checkbox) {
+            if (checkbox.item === evt.target.dataset.label) {
+              checkbox.isChecked = evt.target.checked;
+            }
+          });
+        });
+      });
+      element.querySelector(".strings-number").querySelectorAll("input[type='checkbox']").forEach(function (input) {
+        return input.addEventListener("change", function (evt) {
+          filters[1].checkboxes.forEach(function (checkbox) {
+            if (checkbox.item === evt.target.dataset.label) {
+              checkbox.isChecked = evt.target.checked;
+            }
+          });
+        });
       });
     }
   }]);
@@ -648,17 +666,20 @@ var Filters = [{
     'type': "acoustic",
     'label': "\u0410\u043A\u0443\u0441\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0433\u0438\u0442\u0430\u0440\u044B",
     'item': "\u0430\u043A\u0443\u0441\u0442\u0438\u0447\u0435\u0441\u043A\u0430\u044F \u0433\u0438\u0442\u0430\u0440\u0430",
-    'isChecked': false
+    'isChecked': false,
+    'isDisabled': false
   }, {
     'type': "electro",
     'label': "\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u0433\u0438\u0442\u0430\u0440\u044B",
     'item': "\u044D\u043B\u0435\u043A\u0442\u0440\u043E\u0433\u0438\u0442\u0430\u0440\u0430",
-    'isChecked': false
+    'isChecked': false,
+    'isDisabled': false
   }, {
     'type': "ukulele",
     'label': "\u0423\u043A\u0443\u043B\u0435\u043B\u0435",
     'item': "\u0443\u043A\u0443\u043B\u0435\u043B\u0435",
-    'isChecked': false
+    'isChecked': false,
+    'isDisabled': false
   }]
 }, {
   'title': "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0441\u0442\u0440\u0443\u043D",
@@ -667,22 +688,26 @@ var Filters = [{
     'type': "4-strings",
     'label': "4",
     'item': "4",
-    'isChecked': false
+    'isChecked': false,
+    'isDisabled': false
   }, {
     'type': "6-strings",
     'label': "6",
     'item': "6",
-    'isChecked': false
+    'isChecked': false,
+    'isDisabled': false
   }, {
     'type': "7-strings",
     'label': "7",
     'item': "7",
-    'isChecked': false
+    'isChecked': false,
+    'isDisabled': false
   }, {
     'type': "12-strings",
     'label': "12",
     'item': "12",
-    'isChecked': false
+    'isChecked': false,
+    'isDisabled': false
   }]
 }];
 var IMAGES = {
@@ -875,19 +900,36 @@ var FilterController = /*#__PURE__*/function () {
     key: "render",
     value: function render() {
       var container = this._container;
+      var oldComponent = this._filterComponent;
 
-      var cards = this._cardsModel.getCardsAll();
+      var cards = this._cardsModel.getCards();
 
+      var strings = cards.map(function (card) {
+        return card.strings;
+      });
+      _const_js__WEBPACK_IMPORTED_MODULE_2__["Filters"][1].checkboxes.forEach(function (checkbox) {
+        if (strings.indexOf(checkbox.item) === -1) {
+          checkbox.isDisabled = true;
+        } else {
+          checkbox.isDisabled = false;
+        }
+      });
       this._filterComponent = new _components_filter_js__WEBPACK_IMPORTED_MODULE_0__["default"](_const_js__WEBPACK_IMPORTED_MODULE_2__["Filters"], cards);
 
       this._filterComponent.setFilterChangeHandler(this._onFilterChange);
 
-      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_1__["render"])(container, this._filterComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_1__["RenderPosition"].BEFOREEND);
+      if (oldComponent) {
+        Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_1__["replace"])(this._filterComponent, oldComponent);
+      } else {
+        Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_1__["render"])(container, this._filterComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_1__["RenderPosition"].BEFOREEND);
+      }
     }
   }, {
     key: "_onFilterChange",
     value: function _onFilterChange() {
       this._cardsModel.setFilter();
+
+      this.render();
     }
   }]);
 
@@ -1277,12 +1319,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCardsByFilter", function() { return getCardsByFilter; });
 var samePriceCheck = function samePriceCheck(item) {
   var form = document.querySelector(".form");
-  var inputMinPrice = form.querySelector("#min-price").value;
-  var inputMaxPrice = form.querySelector("#max-price").value;
   var card = "";
 
-  if (inputMinPrice && inputMaxPrice) {
-    if (Number(item.price) <= inputMaxPrice && Number(item.price) >= inputMinPrice) {
+  if (form) {
+    var inputMinPrice = form.querySelector("#min-price").value;
+    var inputMaxPrice = form.querySelector("#max-price").value;
+
+    if (inputMinPrice && inputMaxPrice) {
+      if (Number(item.price) <= inputMaxPrice && Number(item.price) >= inputMinPrice) {
+        card = item;
+      }
+    } else {
       card = item;
     }
   } else {
@@ -1293,21 +1340,27 @@ var samePriceCheck = function samePriceCheck(item) {
 };
 
 var sameFeatureCheck = function sameFeatureCheck(item) {
-  var checkedTypeFeatures = Array.from(document.querySelector(".form").querySelector(".guitar-type").querySelectorAll("input:checked"));
-  var checkedStringsFeatures = Array.from(document.querySelector(".form").querySelector(".strings-number").querySelectorAll("input:checked"));
-  var checkedFeatures = checkedTypeFeatures.concat(checkedStringsFeatures);
+  var form = document.querySelector(".form");
 
-  if (checkedTypeFeatures.length || checkedStringsFeatures.length) {
-    var checkedLabels = checkedFeatures.map(function (element) {
-      return element.dataset.label;
-    });
+  if (form) {
+    var checkedTypeFeatures = Array.from(form.querySelector(".guitar-type").querySelectorAll("input:checked"));
+    var checkedStringsFeatures = Array.from(form.querySelector(".strings-number").querySelectorAll("input:checked"));
+    var checkedFeatures = checkedTypeFeatures.concat(checkedStringsFeatures);
 
-    if (checkedTypeFeatures.length && checkedStringsFeatures.length) {
-      return checkedLabels.includes(item.type) && checkedLabels.includes(item.strings);
-    } else if (checkedTypeFeatures.length) {
-      return checkedLabels.includes(item.type);
+    if (checkedTypeFeatures.length || checkedStringsFeatures.length) {
+      var checkedLabels = checkedFeatures.map(function (element) {
+        return element.dataset.label;
+      });
+
+      if (checkedTypeFeatures.length && checkedStringsFeatures.length) {
+        return checkedLabels.includes(item.type) && checkedLabels.includes(item.strings);
+      } else if (checkedTypeFeatures.length) {
+        return checkedLabels.includes(item.type);
+      } else {
+        return checkedLabels.includes(item.strings);
+      }
     } else {
-      return checkedLabels.includes(item.strings);
+      return item;
     }
   } else {
     return item;
@@ -1384,7 +1437,7 @@ var openPopup = function openPopup(popup) {
 /*!***********************************!*\
   !*** ./source/js/utils/render.js ***!
   \***********************************/
-/*! exports provided: RenderPosition, createElement, render */
+/*! exports provided: RenderPosition, createElement, render, replace */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1392,6 +1445,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RenderPosition", function() { return RenderPosition; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElement", function() { return createElement; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "replace", function() { return replace; });
 var RenderPosition = {
   AFTERBEGIN: "afterbegin",
   BEFOREEND: "beforeend"
@@ -1410,6 +1464,16 @@ var render = function render(container, component, place) {
     case RenderPosition.BEFOREEND:
       container.append(component.getElement());
       break;
+  }
+};
+var replace = function replace(newComponent, oldComponent) {
+  var parentElement = oldComponent.getElement().parentElement;
+  var newElement = newComponent.getElement();
+  var oldElement = oldComponent.getElement();
+  var isExistElements = !!(parentElement && newElement && oldElement);
+
+  if (isExistElements && parentElement.contains(oldElement)) {
+    parentElement.replaceChild(newElement, oldElement);
   }
 };
 

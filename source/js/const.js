@@ -9,19 +9,22 @@ export const Filters = [
         'type': `acoustic`,
         'label': `Акустические гитары`,
         'item': `акустическая гитара`,
-        'isChecked': false
+        'isChecked': false,
+        'isDisabled': false
       },
       {
         'type': `electro`,
         'label': `Электрогитары`,
         'item': `электрогитара`,
-        'isChecked': false
+        'isChecked': false,
+        'isDisabled': false
       },
       {
         'type': `ukulele`,
         'label': `Укулеле`,
         'item': `укулеле`,
-        'isChecked': false
+        'isChecked': false,
+        'isDisabled': false
       }
     ]
   },
@@ -33,25 +36,29 @@ export const Filters = [
         'type': `4-strings`,
         'label': `4`,
         'item': `4`,
-        'isChecked': false
+        'isChecked': false,
+        'isDisabled': false
       },
       {
         'type': `6-strings`,
         'label': `6`,
         'item': `6`,
-        'isChecked': false
+        'isChecked': false,
+        'isDisabled': false
       },
       {
         'type': `7-strings`,
         'label': `7`,
         'item': `7`,
-        'isChecked': false
+        'isChecked': false,
+        'isDisabled': false
       },
       {
         'type': `12-strings`,
         'label': `12`,
         'item': `12`,
-        'isChecked': false
+        'isChecked': false,
+        'isDisabled': false
       }
     ]
   }
