@@ -411,7 +411,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 var createCheckboxMarkup = function createCheckboxMarkup(type, item) {
-  return "<input\n    class=\"visually-hidden\"\n    type=\"checkbox\"\n    name=\"".concat(type, "\"\n    id=\"").concat(item.type, "\"\n    aria-label=\"").concat(item.label, "\"\n    ").concat(item.isChecked ? "checked" : "", "\n    ").concat(item.isDisabled ? "disabled" : "", "\n    data-label=\"").concat(item.item, "\"\n    >\n    <label\n    for=\"").concat(item.type, "\"\n      >\n    ").concat(item.label, "\n    </label>");
+  return "<input\n      class=\"visually-hidden\"\n      type=\"checkbox\"\n      name=\"".concat(type, "\"\n      id=\"").concat(item.type, "\"\n      aria-label=\"").concat(item.label, "\"\n      ").concat(item.isChecked ? "checked" : "", "\n      ").concat(item.isDisabled ? "disabled" : "", "\n      data-label=\"").concat(item.item, "\"\n    >\n    <label\n      for=\"").concat(item.type, "\"\n    >\n    ").concat(item.label, "\n    </label>");
 };
 
 var createCheckboxFieldset = function createCheckboxFieldset(filter) {
@@ -421,14 +421,14 @@ var createCheckboxFieldset = function createCheckboxFieldset(filter) {
   return "<fieldset class=\"form__checkbox-fieldset ".concat(filter.type, "\">\n      <legend>").concat(filter.title, "</legend>\n      ").concat(checkboxMarkup, "\n    </fieldset>");
 };
 
-var createFilterTemplate = function createFilterTemplate(filters, cards) {
+var createFilterTemplate = function createFilterTemplate(filters, cards, minPrice, maxPrice) {
   var prices = cards.map(function (card) {
     return Number(card.price);
   });
   var checkboxFieldsets = filters.map(function (filter) {
     return createCheckboxFieldset(filter);
   }).join("\n");
-  return "<form class=\"form\" method=\"post\">\n      <h3>\u0424\u0438\u043B\u044C\u0442\u0440</h3>\n      <fieldset class=\"form__price-fieldset\">\n        <legend>\u0426\u0435\u043D\u0430, <span>\u20BD</span></legend>\n        <p>\n          <input type=\"number\" name=\"price\" id=\"min-price\" placeholder=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.min.apply(Math, _toConsumableArray(prices))), "\" min=\"0\">\n          <label class=\"visually-hidden\" for=\"min-price\">\u0426\u0435\u043D\u0430 \u043E\u0442</label>\n          <input type=\"number\" name=\"price\" id=\"max-price\" placeholder=\"").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.max.apply(Math, _toConsumableArray(prices))), "\" min=\"0\">\n          <label class=\"visually-hidden\" for=\"max-price\">\u0426\u0435\u043D\u0430 \u0434\u043E</label>\n        </p>\n      </fieldset>\n      ").concat(checkboxFieldsets, "\n    </form>");
+  return "<form class=\"form\" method=\"post\">\n      <h3>\u0424\u0438\u043B\u044C\u0442\u0440</h3>\n      <fieldset class=\"form__price-fieldset\">\n        <legend>\u0426\u0435\u043D\u0430, <span>\u20BD</span></legend>\n        <p>\n          <input type=\"number\" name=\"price\" id=\"min-price\" placeholder=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.min.apply(Math, _toConsumableArray(prices))), "\" min=\"0\" value=").concat(minPrice, ">\n          <label class=\"visually-hidden\" for=\"min-price\">\u0426\u0435\u043D\u0430 \u043E\u0442</label>\n          <input type=\"number\" name=\"price\" id=\"max-price\" placeholder=\"").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.max.apply(Math, _toConsumableArray(prices))), "\" min=\"0\" value=").concat(maxPrice, ">\n          <label class=\"visually-hidden\" for=\"max-price\">\u0426\u0435\u043D\u0430 \u0434\u043E</label>\n        </p>\n      </fieldset>\n      ").concat(checkboxFieldsets, "\n    </form>");
 };
 
 var Filter = /*#__PURE__*/function (_AbstractComponent) {
@@ -436,7 +436,7 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
 
   var _super = _createSuper(Filter);
 
-  function Filter(filters, cards) {
+  function Filter(filters, cards, minPrice, maxPrice) {
     var _this;
 
     _classCallCheck(this, Filter);
@@ -444,6 +444,8 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
     _this = _super.call(this);
     _this._filters = filters;
     _this._cards = cards;
+    _this._minPrice = minPrice;
+    _this._maxPrice = maxPrice;
 
     _this._subscribeOnEvents();
 
@@ -453,13 +455,20 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
   _createClass(Filter, [{
     key: "getTemplate",
     value: function getTemplate() {
-      return createFilterTemplate(this._filters, this._cards);
+      return createFilterTemplate(this._filters, this._cards, this._minPrice, this._maxPrice);
     }
   }, {
     key: "setFilterChangeHandler",
     value: function setFilterChangeHandler(handler) {
-      this.getElement().addEventListener("change", Object(_utils_debounce_js__WEBPACK_IMPORTED_MODULE_1__["debounce"])(function () {
-        handler();
+      var element = this.getElement();
+      element.addEventListener("change", Object(_utils_debounce_js__WEBPACK_IMPORTED_MODULE_1__["debounce"])(function () {
+        var checkedCheckboxes = Array.from(element.querySelectorAll("input:checked"));
+        var checkboxNames = checkedCheckboxes.map(function (item) {
+          return item.dataset.label;
+        });
+        var minPrice = element.querySelector("#min-price").value;
+        var maxPrice = element.querySelector("#max-price").value;
+        handler(checkboxNames, minPrice, maxPrice);
       }));
     }
   }, {
@@ -476,17 +485,17 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
         var maxPrice = element.querySelector("#max-price");
 
         if (maxPrice.value && minPrice.value && maxPrice.value < minPrice.value) {
-          var min = maxPrice.value < Math.min.apply(Math, _toConsumableArray(prices)) ? Math.min.apply(Math, _toConsumableArray(prices)) : maxPrice.value;
-          var max = minPrice.value > Math.max.apply(Math, _toConsumableArray(prices)) ? Math.max.apply(Math, _toConsumableArray(prices)) : minPrice.value;
+          var min = minPrice.value;
+          var max = maxPrice.value;
           minPrice.value = min;
           maxPrice.value = max;
         }
 
-        if (minPrice.value && minPrice.value < Math.min.apply(Math, _toConsumableArray(prices))) {
+        if (minPrice.value < Math.min.apply(Math, _toConsumableArray(prices))) {
           minPrice.value = Math.min.apply(Math, _toConsumableArray(prices));
         }
 
-        if (maxPrice.value && maxPrice.value > Math.max.apply(Math, _toConsumableArray(prices))) {
+        if (maxPrice.value > Math.max.apply(Math, _toConsumableArray(prices))) {
           maxPrice.value = Math.max.apply(Math, _toConsumableArray(prices));
         }
       });
@@ -820,7 +829,7 @@ var CardsController = /*#__PURE__*/function () {
     value: function render() {
       var container = this._container;
 
-      var cards = this._cardsModel.getCardsAll();
+      var cards = this._cardsModel.getCards();
 
       Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_2__["render"])(container, this._cardsListComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_2__["RenderPosition"].BEFOREEND);
 
@@ -876,11 +885,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_filter_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/filter.js */ "./source/js/components/filter.js");
 /* harmony import */ var _utils_render_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/render.js */ "./source/js/utils/render.js");
 /* harmony import */ var _const_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../const.js */ "./source/js/const.js");
+/* harmony import */ var _utils_filter_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/filter.js */ "./source/js/utils/filter.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -892,6 +903,9 @@ var FilterController = /*#__PURE__*/function () {
 
     this._container = container;
     this._cardsModel = cardsModel;
+    this._checkedCheckboxes = [];
+    this._minPrice = null;
+    this._maxPrice = null;
     this._filterComponent = null;
     this._onFilterChange = this._onFilterChange.bind(this);
   }
@@ -899,22 +913,28 @@ var FilterController = /*#__PURE__*/function () {
   _createClass(FilterController, [{
     key: "render",
     value: function render() {
+      var _this = this;
+
       var container = this._container;
       var oldComponent = this._filterComponent;
 
       var cards = this._cardsModel.getCards();
 
-      var strings = cards.map(function (card) {
-        return card.strings;
+      var minPrice = this._minPrice;
+      var maxPrice = this._maxPrice;
+      var guitarTypeCheckboxes = _const_js__WEBPACK_IMPORTED_MODULE_2__["Filters"][0].checkboxes.map(function (checkbox) {
+        return checkbox.item;
       });
+
+      var guitarTypeCheckedCheckboxes = this._checkedCheckboxes.filter(function (filter) {
+        return guitarTypeCheckboxes.includes(filter);
+      });
+
       _const_js__WEBPACK_IMPORTED_MODULE_2__["Filters"][1].checkboxes.forEach(function (checkbox) {
-        if (strings.indexOf(checkbox.item) === -1) {
-          checkbox.isDisabled = true;
-        } else {
-          checkbox.isDisabled = false;
-        }
+        var arrayLength = Object(_utils_filter_js__WEBPACK_IMPORTED_MODULE_3__["getSameStringsType"])(_this._cardsModel.getCardsByGuitarTypeFilter(), checkbox.item).length;
+        checkbox.isDisabled = arrayLength === 0 && guitarTypeCheckedCheckboxes.length ? true : false;
       });
-      this._filterComponent = new _components_filter_js__WEBPACK_IMPORTED_MODULE_0__["default"](_const_js__WEBPACK_IMPORTED_MODULE_2__["Filters"], cards);
+      this._filterComponent = new _components_filter_js__WEBPACK_IMPORTED_MODULE_0__["default"](_const_js__WEBPACK_IMPORTED_MODULE_2__["Filters"], cards, minPrice, maxPrice);
 
       this._filterComponent.setFilterChangeHandler(this._onFilterChange);
 
@@ -926,9 +946,12 @@ var FilterController = /*#__PURE__*/function () {
     }
   }, {
     key: "_onFilterChange",
-    value: function _onFilterChange() {
-      this._cardsModel.setFilter();
+    value: function _onFilterChange(checkboxNames, minPrice, maxPrice) {
+      this._cardsModel.setFilter(checkboxNames, minPrice, maxPrice);
 
+      this._checkedCheckboxes = checkboxNames;
+      this._minPrice = minPrice;
+      this._maxPrice = maxPrice;
       this.render();
     }
   }]);
@@ -1234,17 +1257,20 @@ var Cards = /*#__PURE__*/function () {
 
     this._cards = [];
     this._filterChangeHandlers = [];
+    this._checkboxNames = [];
+    this._minPrice = null;
+    this._maxPrice = null;
   }
 
   _createClass(Cards, [{
-    key: "getCardsAll",
-    value: function getCardsAll() {
-      return this._cards;
-    }
-  }, {
     key: "getCards",
     value: function getCards() {
-      return Object(_utils_filter_js__WEBPACK_IMPORTED_MODULE_0__["getCardsByFilter"])(this._cards);
+      return Object(_utils_filter_js__WEBPACK_IMPORTED_MODULE_0__["getCardsByFilter"])(this._cards, this._checkboxNames, this._minPrice, this._maxPrice);
+    }
+  }, {
+    key: "getCardsByGuitarTypeFilter",
+    value: function getCardsByGuitarTypeFilter() {
+      return Object(_utils_filter_js__WEBPACK_IMPORTED_MODULE_0__["getSameGuitarType"])(this._cards, this._checkboxNames, this._minPrice, this._maxPrice);
     }
   }, {
     key: "setCards",
@@ -1253,7 +1279,11 @@ var Cards = /*#__PURE__*/function () {
     }
   }, {
     key: "setFilter",
-    value: function setFilter() {
+    value: function setFilter(checkboxNames, minPrice, maxPrice) {
+      this._checkboxNames = checkboxNames;
+      this._minPrice = minPrice;
+      this._maxPrice = maxPrice;
+
       this._callHandlers(this._filterChangeHandlers);
     }
   }, {
@@ -1311,66 +1341,71 @@ var debounce = function debounce(cb) {
 /*!***********************************!*\
   !*** ./source/js/utils/filter.js ***!
   \***********************************/
-/*! exports provided: getCardsByFilter */
+/*! exports provided: getSameGuitarType, getSameStringsType, getCardsByFilter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSameGuitarType", function() { return getSameGuitarType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSameStringsType", function() { return getSameStringsType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCardsByFilter", function() { return getCardsByFilter; });
-var samePriceCheck = function samePriceCheck(item) {
-  var form = document.querySelector(".form");
-  var card = "";
+/* harmony import */ var _const_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../const.js */ "./source/js/const.js");
 
-  if (form) {
-    var inputMinPrice = form.querySelector("#min-price").value;
-    var inputMaxPrice = form.querySelector("#max-price").value;
 
-    if (inputMinPrice && inputMaxPrice) {
-      if (Number(item.price) <= inputMaxPrice && Number(item.price) >= inputMinPrice) {
-        card = item;
-      }
-    } else {
-      card = item;
-    }
+var getSamePrice = function getSamePrice(card, minPrice, maxPrice) {
+  if (minPrice && maxPrice) {
+    return Number(card.price) <= maxPrice && Number(card.price) >= minPrice;
+  } else if (minPrice) {
+    return Number(card.price) >= minPrice;
+  } else if (maxPrice) {
+    return Number(card.price) <= maxPrice;
   } else {
-    card = item;
-  }
-
-  return card;
-};
-
-var sameFeatureCheck = function sameFeatureCheck(item) {
-  var form = document.querySelector(".form");
-
-  if (form) {
-    var checkedTypeFeatures = Array.from(form.querySelector(".guitar-type").querySelectorAll("input:checked"));
-    var checkedStringsFeatures = Array.from(form.querySelector(".strings-number").querySelectorAll("input:checked"));
-    var checkedFeatures = checkedTypeFeatures.concat(checkedStringsFeatures);
-
-    if (checkedTypeFeatures.length || checkedStringsFeatures.length) {
-      var checkedLabels = checkedFeatures.map(function (element) {
-        return element.dataset.label;
-      });
-
-      if (checkedTypeFeatures.length && checkedStringsFeatures.length) {
-        return checkedLabels.includes(item.type) && checkedLabels.includes(item.strings);
-      } else if (checkedTypeFeatures.length) {
-        return checkedLabels.includes(item.type);
-      } else {
-        return checkedLabels.includes(item.strings);
-      }
-    } else {
-      return item;
-    }
-  } else {
-    return item;
+    return card;
   }
 };
 
-var getCardsByFilter = function getCardsByFilter(cards) {
+var getSameGuitarType = function getSameGuitarType(cards, checkboxNames, minPrice, maxPrice) {
   return cards.filter(function (card) {
-    return sameFeatureCheck(card) && samePriceCheck(card);
+    return checkboxNames.includes(card.type) && getSamePrice(card, minPrice, maxPrice);
   });
+};
+var getSameStringsType = function getSameStringsType(cards, checkboxNames, minPrice, maxPrice) {
+  return cards.filter(function (card) {
+    return checkboxNames.includes(card.strings) && getSamePrice(card, minPrice, maxPrice);
+  });
+};
+
+var getSameFilters = function getSameFilters(cards, checkboxNames, minPrice, maxPrice) {
+  return cards.filter(function (card) {
+    return checkboxNames.includes(card.type) && checkboxNames.includes(card.strings) && getSamePrice(card, minPrice, maxPrice);
+  });
+};
+
+var guitarTypeCheckboxes = _const_js__WEBPACK_IMPORTED_MODULE_0__["Filters"][0].checkboxes.map(function (checkbox) {
+  return checkbox.item;
+});
+var stringsNumberCheckboxes = _const_js__WEBPACK_IMPORTED_MODULE_0__["Filters"][1].checkboxes.map(function (checkbox) {
+  return checkbox.item;
+});
+var getCardsByFilter = function getCardsByFilter(cards, checkboxNames, minPrice, maxPrice) {
+  var guitarTypeCheckedCheckboxes = checkboxNames.filter(function (filter) {
+    return guitarTypeCheckboxes.includes(filter);
+  });
+  var stirngsNumberCheckedCheckboxes = checkboxNames.filter(function (filter) {
+    return stringsNumberCheckboxes.includes(filter);
+  });
+
+  if (checkboxNames.length) {
+    if (guitarTypeCheckedCheckboxes.length && !stirngsNumberCheckedCheckboxes.length) {
+      return getSameGuitarType(cards, guitarTypeCheckedCheckboxes, minPrice, maxPrice);
+    } else if (!guitarTypeCheckedCheckboxes.length && stirngsNumberCheckedCheckboxes.length) {
+      return getSameStringsType(cards, stirngsNumberCheckedCheckboxes, minPrice, maxPrice);
+    } else {
+      return getSameFilters(cards, checkboxNames, minPrice, maxPrice);
+    }
+  } else {
+    return cards;
+  }
 };
 
 /***/ }),

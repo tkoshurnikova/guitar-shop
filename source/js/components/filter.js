@@ -5,18 +5,18 @@ import {formatPrice} from '../utils/format.js';
 const createCheckboxMarkup = (type, item) => {
   return (
     `<input
-    class="visually-hidden"
-    type="checkbox"
-    name="${type}"
-    id="${item.type}"
-    aria-label="${item.label}"
-    ${item.isChecked ? `checked` : ``}
-    ${item.isDisabled ? `disabled` : ``}
-    data-label="${item.item}"
+      class="visually-hidden"
+      type="checkbox"
+      name="${type}"
+      id="${item.type}"
+      aria-label="${item.label}"
+      ${item.isChecked ? `checked` : ``}
+      ${item.isDisabled ? `disabled` : ``}
+      data-label="${item.item}"
     >
     <label
-    for="${item.type}"
-      >
+      for="${item.type}"
+    >
     ${item.label}
     </label>`
   );
@@ -33,7 +33,7 @@ const createCheckboxFieldset = (filter) => {
   );
 };
 
-const createFilterTemplate = (filters, cards) => {
+const createFilterTemplate = (filters, cards, minPrice, maxPrice) => {
   const prices = cards.map((card) => Number(card.price));
   const checkboxFieldsets = filters.map((filter) => createCheckboxFieldset(filter)).join(`\n`);
 
@@ -43,9 +43,9 @@ const createFilterTemplate = (filters, cards) => {
       <fieldset class="form__price-fieldset">
         <legend>Цена, <span>₽</span></legend>
         <p>
-          <input type="number" name="price" id="min-price" placeholder="${formatPrice(Math.min(...prices))}" min="0">
+          <input type="number" name="price" id="min-price" placeholder="${formatPrice(Math.min(...prices))}" min="0" value=${minPrice}>
           <label class="visually-hidden" for="min-price">Цена от</label>
-          <input type="number" name="price" id="max-price" placeholder="${formatPrice(Math.max(...prices))}" min="0">
+          <input type="number" name="price" id="max-price" placeholder="${formatPrice(Math.max(...prices))}" min="0" value=${maxPrice}>
           <label class="visually-hidden" for="max-price">Цена до</label>
         </p>
       </fieldset>
@@ -55,20 +55,30 @@ const createFilterTemplate = (filters, cards) => {
 };
 
 export default class Filter extends AbstractComponent {
-  constructor(filters, cards) {
+  constructor(filters, cards, minPrice, maxPrice) {
     super();
     this._filters = filters;
     this._cards = cards;
+    this._minPrice = minPrice;
+    this._maxPrice = maxPrice;
     this._subscribeOnEvents();
   }
 
   getTemplate() {
-    return createFilterTemplate(this._filters, this._cards);
+    return createFilterTemplate(this._filters, this._cards, this._minPrice, this._maxPrice);
   }
 
   setFilterChangeHandler(handler) {
-    this.getElement().addEventListener(`change`, debounce(() => {
-      handler();
+    const element = this.getElement();
+
+    element.addEventListener(`change`, debounce(() => {
+      const checkedCheckboxes = Array.from(element.querySelectorAll(`input:checked`));
+      const checkboxNames = checkedCheckboxes.map((item) => item.dataset.label);
+
+      const minPrice = element.querySelector(`#min-price`).value;
+      const maxPrice = element.querySelector(`#max-price`).value;
+
+      handler(checkboxNames, minPrice, maxPrice);
     }));
   }
 
@@ -83,17 +93,17 @@ export default class Filter extends AbstractComponent {
       const maxPrice = element.querySelector(`#max-price`);
 
       if (maxPrice.value && minPrice.value && maxPrice.value < minPrice.value) {
-        const min = maxPrice.value < Math.min(...prices) ? Math.min(...prices) : maxPrice.value;
-        const max = minPrice.value > Math.max(...prices) ? Math.max(...prices) : minPrice.value;
+        const min = minPrice.value;
+        const max = maxPrice.value;
         minPrice.value = min;
         maxPrice.value = max;
       }
 
-      if (minPrice.value && minPrice.value < Math.min(...prices)) {
+      if (minPrice.value < Math.min(...prices)) {
         minPrice.value = Math.min(...prices);
       }
 
-      if (maxPrice.value && maxPrice.value > Math.max(...prices)) {
+      if (maxPrice.value > Math.max(...prices)) {
         maxPrice.value = Math.max(...prices);
       }
     });

@@ -1,11 +1,16 @@
 import FilterComponent from '../components/filter.js';
 import {render, replace, RenderPosition} from '../utils/render.js';
 import {Filters} from '../const.js';
+import {getSameStringsType} from '../utils/filter.js';
 
 export default class FilterController {
   constructor(container, cardsModel) {
     this._container = container;
     this._cardsModel = cardsModel;
+
+    this._checkedCheckboxes = [];
+    this._minPrice = null;
+    this._maxPrice = null;
 
     this._filterComponent = null;
     this._onFilterChange = this._onFilterChange.bind(this);
@@ -15,17 +20,18 @@ export default class FilterController {
     const container = this._container;
     const oldComponent = this._filterComponent;
     const cards = this._cardsModel.getCards();
+    const minPrice = this._minPrice;
+    const maxPrice = this._maxPrice;
 
-    const strings = cards.map((card) => card.strings);
+    const guitarTypeCheckboxes = Filters[0].checkboxes.map((checkbox) => checkbox.item);
+    const guitarTypeCheckedCheckboxes = this._checkedCheckboxes.filter((filter) => guitarTypeCheckboxes.includes(filter));
+
     Filters[1].checkboxes.forEach((checkbox) => {
-      if (strings.indexOf(checkbox.item) === -1) {
-        checkbox.isDisabled = true;
-      } else {
-        checkbox.isDisabled = false;
-      }
+      const arrayLength = getSameStringsType(this._cardsModel.getCardsByGuitarTypeFilter(), checkbox.item).length;
+      checkbox.isDisabled = (arrayLength === 0 && guitarTypeCheckedCheckboxes.length) ? true : false;
     });
 
-    this._filterComponent = new FilterComponent(Filters, cards);
+    this._filterComponent = new FilterComponent(Filters, cards, minPrice, maxPrice);
     this._filterComponent.setFilterChangeHandler(this._onFilterChange);
 
     if (oldComponent) {
@@ -35,8 +41,11 @@ export default class FilterController {
     }
   }
 
-  _onFilterChange() {
-    this._cardsModel.setFilter();
+  _onFilterChange(checkboxNames, minPrice, maxPrice) {
+    this._cardsModel.setFilter(checkboxNames, minPrice, maxPrice);
+    this._checkedCheckboxes = checkboxNames;
+    this._minPrice = minPrice;
+    this._maxPrice = maxPrice;
     this.render();
   }
 }

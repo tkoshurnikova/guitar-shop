@@ -1,47 +1,51 @@
-const samePriceCheck = (item) => {
-  const form = document.querySelector(`.form`);
-  let card = ``;
-  if (form) {
-    const inputMinPrice = form.querySelector(`#min-price`).value;
-    const inputMaxPrice = form.querySelector(`#max-price`).value;
+import {Filters} from '../const.js';
 
-    if (inputMinPrice && inputMaxPrice) {
-      if (Number(item.price) <= inputMaxPrice && Number(item.price) >= inputMinPrice) {
-        card = item;
-      }
-    } else {
-      card = item;
-    }
+const getSamePrice = (card, minPrice, maxPrice) => {
+  if (minPrice && maxPrice) {
+    return Number(card.price) <= maxPrice && Number(card.price) >= minPrice;
+  } else if (minPrice) {
+    return Number(card.price) >= minPrice;
+  } else if (maxPrice) {
+    return Number(card.price) <= maxPrice;
   } else {
-    card = item;
-  }
-  return card;
-};
-
-const sameFeatureCheck = (item) => {
-  const form = document.querySelector(`.form`);
-  if (form) {
-    const checkedTypeFeatures = Array.from(form.querySelector(`.guitar-type`).querySelectorAll(`input:checked`));
-    const checkedStringsFeatures = Array.from(form.querySelector(`.strings-number`).querySelectorAll(`input:checked`));
-    const checkedFeatures = checkedTypeFeatures.concat(checkedStringsFeatures);
-
-    if (checkedTypeFeatures.length || checkedStringsFeatures.length) {
-      const checkedLabels = checkedFeatures.map((element) => element.dataset.label);
-      if (checkedTypeFeatures.length && checkedStringsFeatures.length) {
-        return checkedLabels.includes(item.type) && checkedLabels.includes(item.strings);
-      } else if (checkedTypeFeatures.length) {
-        return checkedLabels.includes(item.type);
-      } else {
-        return checkedLabels.includes(item.strings);
-      }
-    } else {
-      return item;
-    }
-  } else {
-    return item;
+    return card;
   }
 };
 
-export const getCardsByFilter = (cards) => {
-  return cards.filter((card) => sameFeatureCheck(card) && samePriceCheck(card));
+export const getSameGuitarType = (cards, checkboxNames, minPrice, maxPrice) => {
+  return cards.filter((card) => {
+    return checkboxNames.includes(card.type) && getSamePrice(card, minPrice, maxPrice);
+  });
+};
+
+export const getSameStringsType = (cards, checkboxNames, minPrice, maxPrice) => {
+  return cards.filter((card) => {
+    return checkboxNames.includes(card.strings) && getSamePrice(card, minPrice, maxPrice);
+  });
+};
+
+const getSameFilters = (cards, checkboxNames, minPrice, maxPrice) => {
+  return cards.filter((card) => {
+    return checkboxNames.includes(card.type) && checkboxNames.includes(card.strings) && getSamePrice(card, minPrice, maxPrice);
+  });
+};
+
+const guitarTypeCheckboxes = Filters[0].checkboxes.map((checkbox) => checkbox.item);
+const stringsNumberCheckboxes = Filters[1].checkboxes.map((checkbox) => checkbox.item);
+
+export const getCardsByFilter = (cards, checkboxNames, minPrice, maxPrice) => {
+  const guitarTypeCheckedCheckboxes = checkboxNames.filter((filter) => guitarTypeCheckboxes.includes(filter));
+  const stirngsNumberCheckedCheckboxes = checkboxNames.filter((filter) => stringsNumberCheckboxes.includes(filter));
+
+  if (checkboxNames.length) {
+    if (guitarTypeCheckedCheckboxes.length && !stirngsNumberCheckedCheckboxes.length) {
+      return getSameGuitarType(cards, guitarTypeCheckedCheckboxes, minPrice, maxPrice);
+    } else if (!guitarTypeCheckedCheckboxes.length && stirngsNumberCheckedCheckboxes.length) {
+      return getSameStringsType(cards, stirngsNumberCheckedCheckboxes, minPrice, maxPrice);
+    } else {
+      return getSameFilters(cards, checkboxNames, minPrice, maxPrice);
+    }
+  } else {
+    return cards;
+  }
 };
