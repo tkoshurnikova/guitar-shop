@@ -69,3 +69,11 @@ export const IMAGES = {
   'электрогитара': `img/guitars/guitar-1.png`,
   'укулеле': `img/guitars/guitar-3.png`
 };
+
+export const SortType = {
+  DEFAULT: `default`,
+  PRICE: `price`,
+  POPULARITY: `popularity`,
+  ASCENDING: `ascending`,
+  DESCENDING: `descending`
+};

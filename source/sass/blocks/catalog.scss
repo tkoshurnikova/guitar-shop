@@ -34,6 +34,10 @@
   }
 }
 
+.catalog .catalog__sort-buttons--active {
+  color: $black;
+}
+
 .catalog__sort-buttons button:first-of-type {
   margin-right: 8px;
 }

@@ -428,7 +428,7 @@ var createFilterTemplate = function createFilterTemplate(filters, cards, minPric
   var checkboxFieldsets = filters.map(function (filter) {
     return createCheckboxFieldset(filter);
   }).join("\n");
-  return "<form class=\"form\" method=\"post\">\n      <h3>\u0424\u0438\u043B\u044C\u0442\u0440</h3>\n      <fieldset class=\"form__price-fieldset\">\n        <legend>\u0426\u0435\u043D\u0430, <span>\u20BD</span></legend>\n        <p>\n          <input type=\"number\" name=\"price\" id=\"min-price\" placeholder=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.min.apply(Math, _toConsumableArray(prices))), "\" value=").concat(cards.length ? minPrice : 0, ">\n          <label class=\"visually-hidden\" for=\"min-price\">\u0426\u0435\u043D\u0430 \u043E\u0442</label>\n          <input type=\"number\" name=\"price\" id=\"max-price\" placeholder=\"").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.max.apply(Math, _toConsumableArray(prices))), "\" value=").concat(cards.length ? maxPrice : 0, ">\n          <label class=\"visually-hidden\" for=\"max-price\">\u0426\u0435\u043D\u0430 \u0434\u043E</label>\n        </p>\n      </fieldset>\n      ").concat(checkboxFieldsets, "\n    </form>");
+  return "<form class=\"form\" method=\"post\">\n      <h3>\u0424\u0438\u043B\u044C\u0442\u0440</h3>\n      <fieldset class=\"form__price-fieldset\">\n        <legend>\u0426\u0435\u043D\u0430, <span>\u20BD</span></legend>\n        <p>\n          <input\n            type=\"number\"\n            name=\"price\"\n            id=\"min-price\"\n            placeholder=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.min.apply(Math, _toConsumableArray(prices))), "\"\n            value=").concat(cards.length ? minPrice : 0, "\n          >\n          <label class=\"visually-hidden\" for=\"min-price\">\u0426\u0435\u043D\u0430 \u043E\u0442</label>\n          <input\n            type=\"number\"\n            name=\"price\"\n            id=\"max-price\"\n            placeholder=\"").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.max.apply(Math, _toConsumableArray(prices))), "\"\n            value=").concat(cards.length ? maxPrice : 0, "\n          >\n          <label class=\"visually-hidden\" for=\"max-price\">\u0426\u0435\u043D\u0430 \u0434\u043E</label>\n        </p>\n      </fieldset>\n      ").concat(checkboxFieldsets, "\n    </form>");
 };
 
 var Filter = /*#__PURE__*/function (_AbstractComponent) {
@@ -493,22 +493,26 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
           maxPrice.value = 0;
         }
       });
-      element.querySelector(".guitar-type").querySelectorAll("input[type='checkbox']").forEach(function (input) {
-        return input.addEventListener("change", function (evt) {
-          filters[0].checkboxes.forEach(function (checkbox) {
-            if (checkbox.item === evt.target.dataset.label) {
-              checkbox.isChecked = evt.target.checked;
-            }
-          });
+      element.querySelector(".guitar-type").addEventListener("change", function (evt) {
+        if (evt.target.tagName !== "INPUT") {
+          return;
+        }
+
+        filters[0].checkboxes.forEach(function (checkbox) {
+          if (checkbox.item === evt.target.dataset.label) {
+            checkbox.isChecked = evt.target.checked;
+          }
         });
       });
-      element.querySelector(".strings-number").querySelectorAll("input[type='checkbox']").forEach(function (input) {
-        return input.addEventListener("change", function (evt) {
-          filters[1].checkboxes.forEach(function (checkbox) {
-            if (checkbox.item === evt.target.dataset.label) {
-              checkbox.isChecked = evt.target.checked;
-            }
-          });
+      element.querySelector(".strings-number").addEventListener("change", function (evt) {
+        if (evt.target.tagName !== "INPUT") {
+          return;
+        }
+
+        filters[1].checkboxes.forEach(function (checkbox) {
+          if (checkbox.item === evt.target.dataset.label) {
+            checkbox.isChecked = evt.target.checked;
+          }
         });
       });
     }
@@ -618,6 +622,7 @@ var Pagination = /*#__PURE__*/function (_AbstractComponent) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Sort; });
 /* harmony import */ var _abstract_component_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract-component.js */ "./source/js/components/abstract-component.js");
+/* harmony import */ var _const_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../const.js */ "./source/js/const.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -642,8 +647,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var createSortTemplate = function createSortTemplate() {
-  return "<div class=\"catalog__sort-buttons\">\n      \u0421\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C:\n      <button type=\"button\">\u043F\u043E \u0446\u0435\u043D\u0435</button>\n      <button type=\"button\">\u043F\u043E \u043F\u043E\u043F\u0443\u043B\u044F\u0440\u043D\u043E\u0441\u0442\u0438</button>\n      <div class=\"sort-arrows\">\n        <button type=\"button\"><span class=\"visually-hidden\">\u043F\u043E \u0432\u043E\u0437\u0440\u0430\u0441\u0442\u0430\u043D\u0438\u044E</span></button>\n        <button type=\"button\"><span class=\"visually-hidden\">\u043F\u043E \u0443\u0431\u044B\u0432\u0430\u043D\u0438\u044E</span></button>\n      </div>\n    </div>";
+
+var createSortTemplate = function createSortTemplate(featureSortType, directionSortType) {
+  return "<div class=\"catalog__sort-buttons\">\n      \u0421\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C:\n      <button\n        class=\"".concat(featureSortType === _const_js__WEBPACK_IMPORTED_MODULE_1__["SortType"].PRICE ? "catalog__sort-buttons--active" : "", "\"\n        data-sort-type=\"").concat(_const_js__WEBPACK_IMPORTED_MODULE_1__["SortType"].PRICE, "\"\n        type=\"button\"\n      >\n        \u043F\u043E \u0446\u0435\u043D\u0435\n      </button>\n      <button\n        class=\"").concat(featureSortType === _const_js__WEBPACK_IMPORTED_MODULE_1__["SortType"].POPULARITY ? "catalog__sort-buttons--active" : "", "\"\n        data-sort-type=\"").concat(_const_js__WEBPACK_IMPORTED_MODULE_1__["SortType"].POPULARITY, "\"\n        type=\"button\"\n      >\n        \u043F\u043E \u043F\u043E\u043F\u0443\u043B\u044F\u0440\u043D\u043E\u0441\u0442\u0438\n      </button>\n      <div class=\"sort-arrows\">\n        <button\n          class=\"").concat(directionSortType === _const_js__WEBPACK_IMPORTED_MODULE_1__["SortType"].ASCENDING ? "sort-arrows__active-element" : "", "\"\n          data-sort-type=\"").concat(_const_js__WEBPACK_IMPORTED_MODULE_1__["SortType"].ASCENDING, "\"\n          type=\"button\"\n        >\n          <span class=\"visually-hidden\">\u043F\u043E \u0432\u043E\u0437\u0440\u0430\u0441\u0442\u0430\u043D\u0438\u044E</span>\n        </button>\n        <button\n          class=\"").concat(directionSortType === _const_js__WEBPACK_IMPORTED_MODULE_1__["SortType"].DESCENDING ? "sort-arrows__active-element" : "", "\"\n          data-sort-type=\"").concat(_const_js__WEBPACK_IMPORTED_MODULE_1__["SortType"].DESCENDING, "\"\n          type=\"button\"\n        >\n          <span class=\"visually-hidden\">\u043F\u043E \u0443\u0431\u044B\u0432\u0430\u043D\u0438\u044E</span>\n        </button>\n      </div>\n    </div>");
 };
 
 var Sort = /*#__PURE__*/function (_AbstractComponent) {
@@ -651,16 +657,61 @@ var Sort = /*#__PURE__*/function (_AbstractComponent) {
 
   var _super = _createSuper(Sort);
 
-  function Sort() {
+  function Sort(currentSortFeatureType, currentSortDirectionType) {
+    var _this;
+
     _classCallCheck(this, Sort);
 
-    return _super.call(this);
+    _this = _super.call(this);
+    _this._currentSortFeatureType = currentSortFeatureType;
+    _this._currentSortDirectionType = currentSortDirectionType;
+    return _this;
   }
 
   _createClass(Sort, [{
     key: "getTemplate",
     value: function getTemplate() {
-      return createSortTemplate();
+      return createSortTemplate(this._currentSortFeatureType, this._currentSortDirectionType);
+    }
+  }, {
+    key: "setSortFeatureTypeChangeHandler",
+    value: function setSortFeatureTypeChangeHandler(handler) {
+      var _this2 = this;
+
+      this.getElement().addEventListener("click", function (evt) {
+        if (evt.target.tagName !== "BUTTON") {
+          return;
+        }
+
+        var sortType = evt.target.dataset.sortType;
+        var parentElement = evt.target.parentElement;
+
+        if (_this2._currentSortFeatureType === sortType || !parentElement.classList.contains("catalog__sort-buttons")) {
+          return;
+        }
+
+        handler(sortType);
+      });
+    }
+  }, {
+    key: "setSortDirectionTypeChangeHandler",
+    value: function setSortDirectionTypeChangeHandler(handler) {
+      var _this3 = this;
+
+      this.getElement().addEventListener("click", function (evt) {
+        if (evt.target.tagName !== "BUTTON") {
+          return;
+        }
+
+        var sortType = evt.target.dataset.sortType;
+        var parentElement = evt.target.parentElement;
+
+        if (_this3._currentSorDirectionType === sortType || !parentElement.classList.contains("sort-arrows")) {
+          return;
+        }
+
+        handler(sortType);
+      });
     }
   }]);
 
@@ -675,7 +726,7 @@ var Sort = /*#__PURE__*/function (_AbstractComponent) {
 /*!****************************!*\
   !*** ./source/js/const.js ***!
   \****************************/
-/*! exports provided: CARDS_PER_PAGE, Filters, IMAGES */
+/*! exports provided: CARDS_PER_PAGE, Filters, IMAGES, SortType */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -683,6 +734,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CARDS_PER_PAGE", function() { return CARDS_PER_PAGE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Filters", function() { return Filters; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IMAGES", function() { return IMAGES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SortType", function() { return SortType; });
 var CARDS_PER_PAGE = 9;
 var Filters = [{
   'title': "\u0422\u0438\u043F \u0433\u0438\u0442\u0430\u0440",
@@ -739,6 +791,13 @@ var IMAGES = {
   'акустическая гитара': "img/guitars/guitar-5.png",
   'электрогитара': "img/guitars/guitar-1.png",
   'укулеле': "img/guitars/guitar-3.png"
+};
+var SortType = {
+  DEFAULT: "default",
+  PRICE: "price",
+  POPULARITY: "popularity",
+  ASCENDING: "ascending",
+  DESCENDING: "descending"
 };
 
 /***/ }),
@@ -838,14 +897,19 @@ var CardsController = /*#__PURE__*/function () {
 
     this._container = container;
     this._cardsModel = cardsModel;
+    this._currentSortFeatureType = _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DEFAULT;
+    this._currentSortDirectionType = _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DEFAULT;
     this._cardsListComponent = new _components_cards_list_js__WEBPACK_IMPORTED_MODULE_0__["default"]();
     this._paginationComponent = null;
     this._activePage = 1;
     this._onFilterChange = this._onFilterChange.bind(this);
+    this._onSortFeatureTypeChange = this._onSortFeatureTypeChange.bind(this);
+    this._onSortDirectionTypeChange = this._onSortDirectionTypeChange.bind(this);
 
     this._cardsModel.setFilterChangeHandler(this._onFilterChange);
 
     this._cardContollers = [];
+    this._sortChangeHandlers = [];
   }
 
   _createClass(CardsController, [{
@@ -855,7 +919,7 @@ var CardsController = /*#__PURE__*/function () {
 
       var cards = this._cardsModel.getCards();
 
-      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["render"])(container, new _components_sort_js__WEBPACK_IMPORTED_MODULE_2__["default"](), _utils_render_js__WEBPACK_IMPORTED_MODULE_4__["RenderPosition"].BEFOREEND);
+      this._renderSortComponents();
 
       Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["render"])(container, this._cardsListComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_4__["RenderPosition"].BEFOREEND);
 
@@ -893,6 +957,17 @@ var CardsController = /*#__PURE__*/function () {
       }
     }
   }, {
+    key: "_renderSortComponents",
+    value: function _renderSortComponents() {
+      this._sortComponent = new _components_sort_js__WEBPACK_IMPORTED_MODULE_2__["default"](this._currentSortFeatureType, this._currentSortDirectionType);
+
+      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["render"])(this._container, this._sortComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_4__["RenderPosition"].AFTERBEGIN);
+
+      this._sortComponent.setSortFeatureTypeChangeHandler(this._onSortFeatureTypeChange);
+
+      this._sortComponent.setSortDirectionTypeChangeHandler(this._onSortDirectionTypeChange);
+    }
+  }, {
     key: "_removeCards",
     value: function _removeCards() {
       var catalogList = this._cardsListComponent.getElement();
@@ -915,11 +990,97 @@ var CardsController = /*#__PURE__*/function () {
       this._renderCards(this._cardsModel.getCards());
 
       this._renderPagination(this._cardsModel.getCards());
+
+      this._currentSortFeatureType = _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DEFAULT;
+      this._currentSortDirectionType = _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DEFAULT;
+      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["remove"])(this._sortComponent);
+
+      this._renderSortComponents();
     }
   }, {
     key: "_onFilterChange",
     value: function _onFilterChange() {
       this._update();
+    }
+  }, {
+    key: "_onSortFeatureTypeChange",
+    value: function _onSortFeatureTypeChange(sortType) {
+      var _this = this;
+
+      this._currentSortFeatureType = sortType;
+      var sortedCards = [];
+
+      var cards = this._cardsModel.getCards();
+
+      if (this._currentSortDirectionType === _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DEFAULT) {
+        this._currentSortDirectionType = _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].ASCENDING;
+      }
+
+      switch (sortType) {
+        case _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].PRICE:
+          sortedCards = cards.slice().sort(function (a, b) {
+            return _this._currentSortDirectionType === _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].ASCENDING ? a.price - b.price : b.price - a.price;
+          });
+          break;
+
+        case _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].POPULARITY:
+          sortedCards = cards.slice().sort(function (a, b) {
+            return _this._currentSortDirectionType === _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].ASCENDING ? a.popularity - b.popularity : b.popularity - a.popularity;
+          });
+          break;
+
+        case _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DEFAUL:
+          sortedCards = cards;
+          break;
+      }
+
+      this._removeCards();
+
+      this._renderCards(sortedCards);
+
+      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["remove"])(this._sortComponent);
+
+      this._renderSortComponents();
+    }
+  }, {
+    key: "_onSortDirectionTypeChange",
+    value: function _onSortDirectionTypeChange(sortType) {
+      var _this2 = this;
+
+      this._currentSortDirectionType = sortType;
+      var sortedCards = [];
+
+      var cards = this._cardsModel.getCards();
+
+      if (this._currentSortFeatureType === _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DEFAULT) {
+        this._currentSortFeatureType = _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].PRICE;
+      }
+
+      switch (sortType) {
+        case _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].ASCENDING:
+          sortedCards = cards.slice().sort(function (a, b) {
+            return _this2._currentSortFeatureType === _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].PRICE ? a.price - b.price : a.popularity - b.popularity;
+          });
+          break;
+
+        case _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DESCENDING:
+          sortedCards = cards.slice().sort(function (a, b) {
+            return _this2._currentSortFeatureType === _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].PRICE ? b.price - a.price : b.popularity - a.popularity;
+          });
+          break;
+
+        case _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DEFAUL:
+          sortedCards = cards;
+          break;
+      }
+
+      this._removeCards();
+
+      this._renderCards(sortedCards);
+
+      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["remove"])(this._sortComponent);
+
+      this._renderSortComponents();
     }
   }]);
 

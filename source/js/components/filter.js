@@ -43,9 +43,21 @@ const createFilterTemplate = (filters, cards, minPrice, maxPrice) => {
       <fieldset class="form__price-fieldset">
         <legend>Цена, <span>₽</span></legend>
         <p>
-          <input type="number" name="price" id="min-price" placeholder="${formatPrice(Math.min(...prices))}" value=${cards.length ? minPrice : 0}>
+          <input
+            type="number"
+            name="price"
+            id="min-price"
+            placeholder="${formatPrice(Math.min(...prices))}"
+            value=${cards.length ? minPrice : 0}
+          >
           <label class="visually-hidden" for="min-price">Цена от</label>
-          <input type="number" name="price" id="max-price" placeholder="${formatPrice(Math.max(...prices))}" value=${cards.length ? maxPrice : 0}>
+          <input
+            type="number"
+            name="price"
+            id="max-price"
+            placeholder="${formatPrice(Math.max(...prices))}"
+            value=${cards.length ? maxPrice : 0}
+          >
           <label class="visually-hidden" for="max-price">Цена до</label>
         </p>
       </fieldset>
@@ -104,20 +116,26 @@ export default class Filter extends AbstractComponent {
       }
     });
 
-    element.querySelector(`.guitar-type`).querySelectorAll(`input[type='checkbox']`).forEach((input) => input.addEventListener(`change`, (evt) => {
+    element.querySelector(`.guitar-type`).addEventListener(`change`, (evt) => {
+      if (evt.target.tagName !== `INPUT`) {
+        return;
+      }
       filters[0].checkboxes.forEach((checkbox) => {
         if (checkbox.item === evt.target.dataset.label) {
           checkbox.isChecked = evt.target.checked;
         }
       });
-    }));
+    });
 
-    element.querySelector(`.strings-number`).querySelectorAll(`input[type='checkbox']`).forEach((input) => input.addEventListener(`change`, (evt) => {
+    element.querySelector(`.strings-number`).addEventListener(`change`, (evt) => {
+      if (evt.target.tagName !== `INPUT`) {
+        return;
+      }
       filters[1].checkboxes.forEach((checkbox) => {
         if (checkbox.item === evt.target.dataset.label) {
           checkbox.isChecked = evt.target.checked;
         }
       });
-    }));
+    });
   }
 }

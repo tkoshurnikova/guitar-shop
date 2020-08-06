@@ -26,6 +26,10 @@
   }
 }
 
+.sort-arrows .sort-arrows__active-element {
+  border-bottom-color: $black;
+}
+
 .sort-arrows button:last-child {
   margin-left: 11px;
   border: 6px solid #6c6c6c;
@@ -40,4 +44,8 @@
   &:active {
     border-top-color: $black;
   }
+}
+
+.sort-arrows .sort-arrows__active-element:last-child {
+  border-top-color: $black;
 }
