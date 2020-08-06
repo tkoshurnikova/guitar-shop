@@ -46,6 +46,6 @@ export const getCardsByFilter = (cards, checkboxNames, minPrice, maxPrice) => {
       return getSameFilters(cards, checkboxNames, minPrice, maxPrice);
     }
   } else {
-    return cards;
+    return cards.filter((card) => getSamePrice(card, minPrice, maxPrice));
   }
 };

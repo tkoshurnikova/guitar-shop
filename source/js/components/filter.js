@@ -43,9 +43,9 @@ const createFilterTemplate = (filters, cards, minPrice, maxPrice) => {
       <fieldset class="form__price-fieldset">
         <legend>Цена, <span>₽</span></legend>
         <p>
-          <input type="number" name="price" id="min-price" placeholder="${formatPrice(Math.min(...prices))}" min="0" value=${minPrice}>
+          <input type="number" name="price" id="min-price" placeholder="${formatPrice(Math.min(...prices))}" value=${cards.length ? minPrice : 0}>
           <label class="visually-hidden" for="min-price">Цена от</label>
-          <input type="number" name="price" id="max-price" placeholder="${formatPrice(Math.max(...prices))}" min="0" value=${maxPrice}>
+          <input type="number" name="price" id="max-price" placeholder="${formatPrice(Math.max(...prices))}" value=${cards.length ? maxPrice : 0}>
           <label class="visually-hidden" for="max-price">Цена до</label>
         </p>
       </fieldset>
@@ -84,27 +84,23 @@ export default class Filter extends AbstractComponent {
 
   _subscribeOnEvents() {
     const element = this.getElement();
-    const cards = this._cards;
-    const prices = cards.map((card) => Number(card.price));
     const filters = this._filters;
 
     element.querySelector(`.form__price-fieldset`).addEventListener(`change`, () => {
       const minPrice = element.querySelector(`#min-price`);
       const maxPrice = element.querySelector(`#max-price`);
 
-      if (maxPrice.value && minPrice.value && maxPrice.value < minPrice.value) {
-        const min = minPrice.value;
-        const max = maxPrice.value;
-        minPrice.value = min;
-        maxPrice.value = max;
+      if (maxPrice.value && minPrice.value && Number(maxPrice.value) < Number(minPrice.value)) {
+        minPrice.value = maxPrice.value;
+        maxPrice.value = minPrice.value;
       }
 
-      if (minPrice.value < Math.min(...prices)) {
-        minPrice.value = Math.min(...prices);
+      if (minPrice.value < 0) {
+        minPrice.value = 0;
       }
 
-      if (maxPrice.value > Math.max(...prices)) {
-        maxPrice.value = Math.max(...prices);
+      if (maxPrice.value < 0) {
+        maxPrice.value = 0;
       }
     });
 

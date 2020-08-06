@@ -428,7 +428,7 @@ var createFilterTemplate = function createFilterTemplate(filters, cards, minPric
   var checkboxFieldsets = filters.map(function (filter) {
     return createCheckboxFieldset(filter);
   }).join("\n");
-  return "<form class=\"form\" method=\"post\">\n      <h3>\u0424\u0438\u043B\u044C\u0442\u0440</h3>\n      <fieldset class=\"form__price-fieldset\">\n        <legend>\u0426\u0435\u043D\u0430, <span>\u20BD</span></legend>\n        <p>\n          <input type=\"number\" name=\"price\" id=\"min-price\" placeholder=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.min.apply(Math, _toConsumableArray(prices))), "\" min=\"0\" value=").concat(minPrice, ">\n          <label class=\"visually-hidden\" for=\"min-price\">\u0426\u0435\u043D\u0430 \u043E\u0442</label>\n          <input type=\"number\" name=\"price\" id=\"max-price\" placeholder=\"").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.max.apply(Math, _toConsumableArray(prices))), "\" min=\"0\" value=").concat(maxPrice, ">\n          <label class=\"visually-hidden\" for=\"max-price\">\u0426\u0435\u043D\u0430 \u0434\u043E</label>\n        </p>\n      </fieldset>\n      ").concat(checkboxFieldsets, "\n    </form>");
+  return "<form class=\"form\" method=\"post\">\n      <h3>\u0424\u0438\u043B\u044C\u0442\u0440</h3>\n      <fieldset class=\"form__price-fieldset\">\n        <legend>\u0426\u0435\u043D\u0430, <span>\u20BD</span></legend>\n        <p>\n          <input type=\"number\" name=\"price\" id=\"min-price\" placeholder=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.min.apply(Math, _toConsumableArray(prices))), "\" value=").concat(cards.length ? minPrice : 0, ">\n          <label class=\"visually-hidden\" for=\"min-price\">\u0426\u0435\u043D\u0430 \u043E\u0442</label>\n          <input type=\"number\" name=\"price\" id=\"max-price\" placeholder=\"").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.max.apply(Math, _toConsumableArray(prices))), "\" value=").concat(cards.length ? maxPrice : 0, ">\n          <label class=\"visually-hidden\" for=\"max-price\">\u0426\u0435\u043D\u0430 \u0434\u043E</label>\n        </p>\n      </fieldset>\n      ").concat(checkboxFieldsets, "\n    </form>");
 };
 
 var Filter = /*#__PURE__*/function (_AbstractComponent) {
@@ -475,28 +475,22 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
     key: "_subscribeOnEvents",
     value: function _subscribeOnEvents() {
       var element = this.getElement();
-      var cards = this._cards;
-      var prices = cards.map(function (card) {
-        return Number(card.price);
-      });
       var filters = this._filters;
       element.querySelector(".form__price-fieldset").addEventListener("change", function () {
         var minPrice = element.querySelector("#min-price");
         var maxPrice = element.querySelector("#max-price");
 
-        if (maxPrice.value && minPrice.value && maxPrice.value < minPrice.value) {
-          var min = minPrice.value;
-          var max = maxPrice.value;
-          minPrice.value = min;
-          maxPrice.value = max;
+        if (maxPrice.value && minPrice.value && Number(maxPrice.value) < Number(minPrice.value)) {
+          minPrice.value = maxPrice.value;
+          maxPrice.value = minPrice.value;
         }
 
-        if (minPrice.value < Math.min.apply(Math, _toConsumableArray(prices))) {
-          minPrice.value = Math.min.apply(Math, _toConsumableArray(prices));
+        if (minPrice.value < 0) {
+          minPrice.value = 0;
         }
 
-        if (maxPrice.value > Math.max.apply(Math, _toConsumableArray(prices))) {
-          maxPrice.value = Math.max.apply(Math, _toConsumableArray(prices));
+        if (maxPrice.value < 0) {
+          maxPrice.value = 0;
         }
       });
       element.querySelector(".guitar-type").querySelectorAll("input[type='checkbox']").forEach(function (input) {
@@ -538,6 +532,7 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Pagination; });
 /* harmony import */ var _abstract_component_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract-component.js */ "./source/js/components/abstract-component.js");
+/* harmony import */ var _utils_format_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/format.js */ "./source/js/utils/format.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -562,8 +557,23 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var createPaginationTemplate = function createPaginationTemplate() {
-  return "<ul class=\"pagination\">\n      <li class=\"pagination__item pagination__item--active\">\n        <a>1</a>\n      </li>\n      <li class=\"pagination__item\">\n        <a href=\"#\">2</a>\n      </li>\n      <li class=\"pagination__item\">...</li>\n      <li class=\"pagination__item\">\n        <a href=\"#\">7</a>\n      </li>\n      <li class=\"pagination__item\">\n        <a href=\"#\">\u0414\u0430\u043B\u0435\u0435</a>\n      </li>\n    </ul>";
+
+var createPageElement = function createPageElement(page, activePage) {
+  return "<li class=\"pagination__item ".concat(page === activePage ? "pagination__item--active" : "", "\">\n      ").concat(page === "..." ? page : "<a>".concat(page, "</a>"), "\n    </li>");
+};
+
+var createPaginationTemplate = function createPaginationTemplate(cards, pagesNumber, activePage) {
+  var pages = Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["createArray"])(pagesNumber);
+  pages.push(4, 5, 6, 7); // чтобы было как в макете
+
+  if (pages.length > 3) {
+    pages = [].concat(pages.slice(0, 2), "...", pages[pages.length - 1]);
+  }
+
+  var pagesTemplate = pages.map(function (pageNumber) {
+    return createPageElement(pageNumber, activePage);
+  }).join("\n");
+  return "<ul class=\"pagination\">\n      ".concat(pagesTemplate, "\n      <li class=\"pagination__item pagination__next\">\n        <a href=\"#\">\u0414\u0430\u043B\u0435\u0435</a>\n      </li>\n    </ul>");
 };
 
 var Pagination = /*#__PURE__*/function (_AbstractComponent) {
@@ -571,16 +581,22 @@ var Pagination = /*#__PURE__*/function (_AbstractComponent) {
 
   var _super = _createSuper(Pagination);
 
-  function Pagination() {
+  function Pagination(cards, pagesNumber, activePage) {
+    var _this;
+
     _classCallCheck(this, Pagination);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this);
+    _this._cards = cards;
+    _this._pagesNumber = pagesNumber;
+    _this._activePage = activePage;
+    return _this;
   }
 
   _createClass(Pagination, [{
     key: "getTemplate",
     value: function getTemplate() {
-      return createPaginationTemplate();
+      return createPaginationTemplate(this._cards, this._pagesNumber, this._activePage);
     }
   }]);
 
@@ -798,14 +814,18 @@ var CardControlled = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CardsController; });
 /* harmony import */ var _components_cards_list_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/cards-list.js */ "./source/js/components/cards-list.js");
-/* harmony import */ var _card_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./card.js */ "./source/js/controllers/card.js");
-/* harmony import */ var _utils_render_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/render.js */ "./source/js/utils/render.js");
-/* harmony import */ var _const_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../const.js */ "./source/js/const.js");
+/* harmony import */ var _components_pagination_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/pagination.js */ "./source/js/components/pagination.js");
+/* harmony import */ var _components_sort_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/sort.js */ "./source/js/components/sort.js");
+/* harmony import */ var _card_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./card.js */ "./source/js/controllers/card.js");
+/* harmony import */ var _utils_render_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/render.js */ "./source/js/utils/render.js");
+/* harmony import */ var _const_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../const.js */ "./source/js/const.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
 
 
 
@@ -819,9 +839,13 @@ var CardsController = /*#__PURE__*/function () {
     this._container = container;
     this._cardsModel = cardsModel;
     this._cardsListComponent = new _components_cards_list_js__WEBPACK_IMPORTED_MODULE_0__["default"]();
+    this._paginationComponent = null;
+    this._activePage = 1;
     this._onFilterChange = this._onFilterChange.bind(this);
 
     this._cardsModel.setFilterChangeHandler(this._onFilterChange);
+
+    this._cardContollers = [];
   }
 
   _createClass(CardsController, [{
@@ -831,18 +855,42 @@ var CardsController = /*#__PURE__*/function () {
 
       var cards = this._cardsModel.getCards();
 
-      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_2__["render"])(container, this._cardsListComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_2__["RenderPosition"].BEFOREEND);
+      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["render"])(container, new _components_sort_js__WEBPACK_IMPORTED_MODULE_2__["default"](), _utils_render_js__WEBPACK_IMPORTED_MODULE_4__["RenderPosition"].BEFOREEND);
+
+      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["render"])(container, this._cardsListComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_4__["RenderPosition"].BEFOREEND);
 
       this._renderCards(cards);
+
+      this._renderPagination(cards);
     }
   }, {
     key: "_renderCards",
     value: function _renderCards(cards) {
       var catalogList = document.querySelector(".catalog__list");
-      cards.slice(0, _const_js__WEBPACK_IMPORTED_MODULE_3__["CARDS_PER_PAGE"]).forEach(function (card) {
-        var cardController = new _card_js__WEBPACK_IMPORTED_MODULE_1__["default"](catalogList);
-        cardController.render(card);
-      });
+
+      var renderCardControlles = function renderCardControlles() {
+        var cardControllers = [];
+        cards.slice(0, _const_js__WEBPACK_IMPORTED_MODULE_5__["CARDS_PER_PAGE"]).forEach(function (card) {
+          var cardController = new _card_js__WEBPACK_IMPORTED_MODULE_3__["default"](catalogList);
+          cardController.render(card);
+          cardControllers.push(cardController);
+        });
+        return cardControllers;
+      };
+
+      this._cardContollers = renderCardControlles();
+    }
+  }, {
+    key: "_renderPagination",
+    value: function _renderPagination(cards) {
+      var pagesNumber = Math.ceil(cards.length / _const_js__WEBPACK_IMPORTED_MODULE_5__["CARDS_PER_PAGE"]);
+      var activePage = this._activePage;
+
+      if (pagesNumber !== 1) {
+        this._paginationComponent = new _components_pagination_js__WEBPACK_IMPORTED_MODULE_1__["default"](cards, pagesNumber, activePage);
+
+        Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["render"])(this._container, this._paginationComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_4__["RenderPosition"].BEFOREEND);
+      }
     }
   }, {
     key: "_removeCards",
@@ -850,13 +898,23 @@ var CardsController = /*#__PURE__*/function () {
       var catalogList = this._cardsListComponent.getElement();
 
       catalogList.innerHTML = "";
+      this._cardContollers = [];
+    }
+  }, {
+    key: "_removePagination",
+    value: function _removePagination() {
+      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["remove"])(this._paginationComponent);
     }
   }, {
     key: "_update",
     value: function _update() {
       this._removeCards();
 
+      this._removePagination();
+
       this._renderCards(this._cardsModel.getCards());
+
+      this._renderPagination(this._cardsModel.getCards());
     }
   }, {
     key: "_onFilterChange",
@@ -1207,11 +1265,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _controllers_cards_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./controllers/cards.js */ "./source/js/controllers/cards.js");
 /* harmony import */ var _controllers_filter_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./controllers/filter.js */ "./source/js/controllers/filter.js");
 /* harmony import */ var _components_catalog_content_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/catalog-content.js */ "./source/js/components/catalog-content.js");
-/* harmony import */ var _components_sort_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/sort.js */ "./source/js/components/sort.js");
-/* harmony import */ var _components_pagination_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/pagination.js */ "./source/js/components/pagination.js");
-/* harmony import */ var _utils_render_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./utils/render.js */ "./source/js/utils/render.js");
-
-
+/* harmony import */ var _utils_render_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/render.js */ "./source/js/utils/render.js");
 
 
 
@@ -1223,12 +1277,10 @@ cardsModel.setCards(_guitars_js__WEBPACK_IMPORTED_MODULE_0__["GUITARS"]);
 var catalogSection = document.querySelector(".catalog");
 var filterController = new _controllers_filter_js__WEBPACK_IMPORTED_MODULE_3__["default"](catalogSection, cardsModel);
 filterController.render();
-Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_7__["render"])(catalogSection, new _components_catalog_content_js__WEBPACK_IMPORTED_MODULE_4__["default"](), _utils_render_js__WEBPACK_IMPORTED_MODULE_7__["RenderPosition"].BEFOREEND);
+Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_5__["render"])(catalogSection, new _components_catalog_content_js__WEBPACK_IMPORTED_MODULE_4__["default"](), _utils_render_js__WEBPACK_IMPORTED_MODULE_5__["RenderPosition"].BEFOREEND);
 var catalogContentSection = document.querySelector(".catalog__content");
-Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_7__["render"])(catalogContentSection, new _components_sort_js__WEBPACK_IMPORTED_MODULE_5__["default"](), _utils_render_js__WEBPACK_IMPORTED_MODULE_7__["RenderPosition"].BEFOREEND);
 var cardsController = new _controllers_cards_js__WEBPACK_IMPORTED_MODULE_2__["default"](catalogContentSection, cardsModel);
 cardsController.render();
-Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_7__["render"])(catalogContentSection, new _components_pagination_js__WEBPACK_IMPORTED_MODULE_6__["default"](), _utils_render_js__WEBPACK_IMPORTED_MODULE_7__["RenderPosition"].BEFOREEND);
 
 /***/ }),
 
@@ -1404,7 +1456,9 @@ var getCardsByFilter = function getCardsByFilter(cards, checkboxNames, minPrice,
       return getSameFilters(cards, checkboxNames, minPrice, maxPrice);
     }
   } else {
-    return cards;
+    return cards.filter(function (card) {
+      return getSamePrice(card, minPrice, maxPrice);
+    });
   }
 };
 
@@ -1414,14 +1468,24 @@ var getCardsByFilter = function getCardsByFilter(cards, checkboxNames, minPrice,
 /*!***********************************!*\
   !*** ./source/js/utils/format.js ***!
   \***********************************/
-/*! exports provided: formatPrice */
+/*! exports provided: formatPrice, createArray */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formatPrice", function() { return formatPrice; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createArray", function() { return createArray; });
 var formatPrice = function formatPrice(price) {
   return price.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, "$1 ");
+};
+var createArray = function createArray(maxValue) {
+  var array = [];
+
+  for (var i = 1; i <= maxValue; i++) {
+    array.push(i);
+  }
+
+  return array;
 };
 
 /***/ }),
@@ -1472,7 +1536,7 @@ var openPopup = function openPopup(popup) {
 /*!***********************************!*\
   !*** ./source/js/utils/render.js ***!
   \***********************************/
-/*! exports provided: RenderPosition, createElement, render, replace */
+/*! exports provided: RenderPosition, createElement, render, replace, remove */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1481,6 +1545,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElement", function() { return createElement; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "replace", function() { return replace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "remove", function() { return remove; });
 var RenderPosition = {
   AFTERBEGIN: "afterbegin",
   BEFOREEND: "beforeend"
@@ -1510,6 +1575,10 @@ var replace = function replace(newComponent, oldComponent) {
   if (isExistElements && parentElement.contains(oldElement)) {
     parentElement.replaceChild(newElement, oldElement);
   }
+};
+var remove = function remove(component) {
+  component.getElement().remove();
+  component.removeElement();
 };
 
 /***/ })

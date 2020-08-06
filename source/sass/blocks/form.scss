@@ -50,6 +50,12 @@
   border-radius: 2px;
 }
 
+.form__price-fieldset input::-webkit-outer-spin-button,
+.form__price-fieldset input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
 .form__price-fieldset p::after {
   position: absolute;
   bottom: 14px;
