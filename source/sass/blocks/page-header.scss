@@ -111,6 +111,7 @@
 }
 
 .page-header__links a {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,4 +133,13 @@
 
 .page-header__links a:last-child {
   margin-right: 0;
+}
+
+.page-header__links sup {
+  color: $cart-item;
+  font-size: 10px;
+  line-height: 12px;
+  position: absolute;
+  top: 2px;
+  right: 2px;
 }

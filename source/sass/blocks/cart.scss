@@ -1,3 +1,12 @@
+.cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 940px;
+  flex-basis: 95%;
+  margin: auto;
+}
+
 .cart ul {
   margin: 0;
   padding: 0;

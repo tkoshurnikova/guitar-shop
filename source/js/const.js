@@ -77,3 +77,9 @@ export const SortType = {
   ASCENDING: `ascending`,
   DESCENDING: `descending`
 };
+
+export const PromoCodes = {
+  GITARAHIT: `GITARAHIT`,
+  SUPERGITARA: `SUPERGITARA`,
+  GITARA2020: `GITARA2020`
+};

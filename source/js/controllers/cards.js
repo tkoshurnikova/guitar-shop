@@ -4,6 +4,7 @@ import SortComponent from '../components/sort.js';
 import CardController from './card.js';
 import {render, remove, RenderPosition} from '../utils/render.js';
 import {CARDS_PER_PAGE, SortType} from '../const.js';
+import {saveDataToLocalStorage} from '../utils/local-storage.js';
 
 export default class CardsController {
   constructor(container, cardsModel) {
@@ -21,6 +22,7 @@ export default class CardsController {
     this._onFilterChange = this._onFilterChange.bind(this);
     this._onSortFeatureTypeChange = this._onSortFeatureTypeChange.bind(this);
     this._onSortDirectionTypeChange = this._onSortDirectionTypeChange.bind(this);
+    this._addToCart = this._addToCart.bind(this);
 
     this._cardsModel.setFilterChangeHandler(this._onFilterChange);
 
@@ -36,21 +38,22 @@ export default class CardsController {
     render(container, this._cardsListComponent, RenderPosition.BEFOREEND);
     this._renderCards(cards);
     this._renderPagination(cards);
+    this._setCartItemCount();
   }
 
   _renderCards(cards) {
     const catalogList = document.querySelector(`.catalog__list`);
-    const renderCardControlles = () => {
+    const renderCardControllers = () => {
       const cardControllers = [];
       cards.slice(0, CARDS_PER_PAGE).forEach((card) => {
-        const cardController = new CardController(catalogList);
+        const cardController = new CardController(catalogList, this._addToCart);
         cardController.render(card);
         cardControllers.push(cardController);
       });
       return cardControllers;
     };
 
-    this._cardContollers = renderCardControlles();
+    this._cardContollers = renderCardControllers();
   }
 
   _renderPagination(cards) {
@@ -160,5 +163,25 @@ export default class CardsController {
     this._renderCards(sortedCards);
     remove(this._sortComponent);
     this._renderSortComponents();
+  }
+
+  _setCartItemCount() {
+    const cartItems = document.querySelector(`.page-header__cart-items sup`);
+    let cartItemsCounter = Number(cartItems.textContent);
+    cartItemsCounter = JSON.parse(localStorage.getItem(`session`)).length;
+
+    if (cartItemsCounter > 0) {
+      cartItems.parentElement.classList.remove(`visually-hidden`);
+    } else {
+      cartItems.parentElement.classList.add(`visually-hidden`);
+    }
+
+    cartItems.innerHTML = cartItemsCounter;
+  }
+
+
+  _addToCart(card) {
+    saveDataToLocalStorage(card);
+    this._setCartItemCount();
   }
 }

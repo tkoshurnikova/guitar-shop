@@ -1,15 +1,10 @@
 import AbstractComponent from './abstract-component.js';
-import {formatPrice} from '../utils/format.js';
-import {IMAGES} from '../const.js';
+import {formatPrice, getImage} from '../utils/format.js';
 
 export const createCardTemplate = ({item, title, type, popularity, price}) => {
-  const getImage = () => {
-    return (item < 8) ? `img/guitars/guitar-${item}.png` : IMAGES[type];
-  };
-
   return (
     `<li>
-      <img width="68" height="190" src="${getImage()}" alt="Фото гитары">
+      <img width="68" height="190" src="${getImage(item, type)}" alt="Фото гитары">
       <p>
         <span class="catalog__rating-overlay">
           <span class="catalog__stars">

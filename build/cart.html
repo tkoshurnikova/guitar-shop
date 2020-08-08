@@ -83,6 +83,7 @@
           <a href="cart.html">
             <span class="visually-hidden">Корзина</span>
             <svg width="14" height="15"><use xlink:href="#icon-cart"></use></svg>
+            <span class="page-header__cart-items visually-hidden"><sup>0</sup></span>
           </a>
         </div>
       </div>
@@ -95,66 +96,6 @@
           <li><a href="catalog.html">Каталог</a></li>
           <li>Оформляем</li>
         </ul>
-        <section class="cart">
-          <h2 class="visually-hidden">Список товаров</h2>
-          <ul>
-            <li>
-              <button class="cart__close-button" type="button">
-                <span class="visually-hidden">Удалить из корзины</span>
-                <svg width="11.66" height="11.66"><use xlink:href="#icon-cross"></use></svg>
-              </button>
-              <img src="img/guitars/guitar-1.png" width="52" height="130" alt="Фото гитары">
-              <div class="cart__item-info">
-                <h3>ЭлектроГитара Честер bass</h3>
-                <p>Артикул: SO757575</p>
-                <p>Электрогитара, 6 струнная </p>
-              </div>
-              <p class="cart__price">17 500 ₽</p>
-              <div class="cart__quantity">
-                <button type="button">-</button>
-                <input type="number" name="quantity" id="quantity" value="1">
-                <label class="visually-hidden" for="quantity">Количество</label>
-                <button type="button">+</button>
-              </div>
-              <p class="cart__price cart__price--full">17 500 ₽</p>
-            </li>
-            <li>
-              <button class="cart__close-button" type="button">
-                <span class="visually-hidden">Удалить из корзины</span>
-                <svg width="11.66" height="11.66"><use xlink:href="#icon-cross"></use></svg>
-              </button>
-              <img src="img/guitars/guitar-1.png" width="52" height="130" alt="Фото гитары">
-              <div class="cart__item-info">
-                <h3>ЭлектроГитара Честер bass</h3>
-                <p>Артикул: SO757575</p>
-                <p>Электрогитара, 6 струнная </p>
-              </div>
-              <p class="cart__price">17 500 ₽</p>
-              <div class="cart__quantity">
-                <button type="button">-</button>
-                <input type="number" name="quantity" id="quantity" value="1">
-                <label class="visually-hidden" for="quantity">Количество</label>
-                <button type="button">+</button>
-              </div>
-              <p class="cart__price cart__price--full">17 500 ₽</p>
-            </li>
-          </ul>
-          <section class="promo">
-            <form>
-              <h3>Промокод на скидку</h3>
-              <p>Введите свой промокод, если он у вас есть.</p>
-              <p class="promo__coupon">
-                <input type="text" name="promo" value="GITARAHIT" id="promo">
-                <label class="visually-hidden" for="promo">Промокод</label>
-                <button class="button button--promo" type="submit">Применить купон</button>
-              </p>
-            </form>
-            <div class="promo__result">
-              <p>Всего: 47 000 ₽</p>
-              <a class="button button--order" href="https://htmlacademy.ru/">Оформить заказ</a>
-            </div>
-          </section>
-        </section>
       </div>
     </main>
     <footer class="page-footer">
@@ -246,26 +187,6 @@
         </div>
       </div>
     </footer>
-    <div class="popup popup--closed">
-      <button class="popup__close-button" type="button">
-        <span class="visually-hidden">Закрыть окно</span>
-        <svg width="11.66" height="11.66"><use xlink:href="#icon-cross"></use></svg>
-      </button>
-      <h2>Удалить этот товар?</h2>
-      <div class="popup__content-info">
-        <img src="img/guitars/guitar-1.png" width="52" height="130" alt="Фото гитары">
-        <div class="popup__item-info">
-          <h3>Гитара Честер bass</h3>
-          <p>Артикул: SO757575</p>
-          <p>Электрогитара, 6 струнная </p>
-          <p class="popup__price">Цена: 17 500 ₽</p>
-        </div>
-        <p class="popup__buttons popup__buttons--vertical">
-          <button class="button button--to-cart" type="button">Удалить товар</button>
-          <button class="button button--shopping" type="button">Продолжить покупки</button>
-        </p>
-      </div>
-    </div>
     <div class="overlay overlay--hidden"></div>
     <script src="js/main.js"></script>
   </body>
