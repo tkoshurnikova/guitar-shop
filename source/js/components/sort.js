@@ -6,14 +6,16 @@ const createSortTemplate = (featureSortType, directionSortType) => {
     `<div class="catalog__sort-buttons">
       Сортировать:
       <button
-        class="${featureSortType === SortType.PRICE ? `catalog__sort-buttons--active` : ``}"
+        class="${featureSortType === SortType.PRICE ?
+      `catalog__sort-buttons--active` : ``}"
         data-sort-type="${SortType.PRICE}"
         type="button"
       >
         по цене
       </button>
       <button
-        class="${featureSortType === SortType.POPULARITY ? `catalog__sort-buttons--active` : ``}"
+        class="${featureSortType === SortType.POPULARITY ?
+      `catalog__sort-buttons--active` : ``}"
         data-sort-type="${SortType.POPULARITY}"
         type="button"
       >
@@ -21,14 +23,16 @@ const createSortTemplate = (featureSortType, directionSortType) => {
       </button>
       <div class="sort-arrows">
         <button
-          class="${directionSortType === SortType.ASCENDING ? `sort-arrows__active-element` : ``}"
+          class="${directionSortType === SortType.ASCENDING ?
+      `sort-arrows__active-element` : ``}"
           data-sort-type="${SortType.ASCENDING}"
           type="button"
         >
           <span class="visually-hidden">по возрастанию</span>
         </button>
         <button
-          class="${directionSortType === SortType.DESCENDING ? `sort-arrows__active-element` : ``}"
+          class="${directionSortType === SortType.DESCENDING ?
+      `sort-arrows__active-element` : ``}"
           data-sort-type="${SortType.DESCENDING}"
           type="button"
         >
@@ -48,7 +52,10 @@ export default class Sort extends AbstractComponent {
   }
 
   getTemplate() {
-    return createSortTemplate(this._currentSortFeatureType, this._currentSortDirectionType);
+    return createSortTemplate(
+        this._currentSortFeatureType,
+        this._currentSortDirectionType
+    );
   }
 
   setSortFeatureTypeChangeHandler(handler) {
@@ -61,7 +68,8 @@ export default class Sort extends AbstractComponent {
       const sortType = evt.target.dataset.sortType;
       const parentElement = evt.target.parentElement;
 
-      if (this._currentSortFeatureType === sortType || !parentElement.classList.contains(`catalog__sort-buttons`)) {
+      if (this._currentSortFeatureType === sortType ||
+        !parentElement.classList.contains(`catalog__sort-buttons`)) {
         return;
       }
 
@@ -79,7 +87,8 @@ export default class Sort extends AbstractComponent {
       const sortType = evt.target.dataset.sortType;
       const parentElement = evt.target.parentElement;
 
-      if (this._currentSorDirectionType === sortType || !parentElement.classList.contains(`sort-arrows`)) {
+      if (this._currentSortDirectionType === sortType ||
+        !parentElement.classList.contains(`sort-arrows`)) {
         return;
       }
 

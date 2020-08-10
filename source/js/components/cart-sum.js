@@ -5,7 +5,12 @@ const createCartSumComponent = (cartSum) => {
   return (
     `<div class="promo__result">
       <p>Всего: ${formatPrice(cartSum)} ₽</p>
-      <a class="button button--order" href="https://htmlacademy.ru/">Оформить заказ</a>
+      <a
+        class="button button--order"
+        href="https://htmlacademy.ru/"
+      >
+        Оформить заказ
+      </a>
     </div>`
   );
 };

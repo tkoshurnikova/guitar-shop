@@ -9,7 +9,7 @@ export default class CartItemController {
     this._removeFromCart = removeFromCart;
     this._changeItemQuantity = changeItemQuantity;
 
-    this._cariItemComponent = null;
+    this._cartItemComponent = null;
     this._card = null;
   }
 
@@ -29,10 +29,10 @@ export default class CartItemController {
       this._deleteFromCartPopup = new DeleteFromCartPopup(this._card);
       const popup = this._deleteFromCartPopup;
       render(bodyElement, popup, RenderPosition.BEFOREEND);
-      const cancelButton = popup.getElement().querySelector(`.button--shopping`);
+      const cancelButtonElement = popup.getElement().querySelector(`.button--shopping`);
       this.setPopupListeners(this._card);
       openPopup(popup);
-      cancelButton.addEventListener(`click`, () => {
+      cancelButtonElement.addEventListener(`click`, () => {
         closePopup(popup);
       });
     });

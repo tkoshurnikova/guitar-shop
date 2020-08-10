@@ -17,7 +17,12 @@ const createAddToCartPopup = ({item, title, article, strings, price, type}) => {
           <p>Электрогитара, ${strings} струнная </p>
           <p class="popup__price">Цена: ${formatPrice(price)} ₽</p>
         </div>
-        <button class="button button--to-cart" type="button">Добавить в корзину</button>
+        <button
+          class="button button--to-cart"
+          type="button"
+        >
+          Добавить в корзину
+        </button>
       </div>
     </div>
     `
@@ -35,6 +40,8 @@ export default class AddToCartPopup extends AbstractComponent {
   }
 
   setToCartButtonClickHandler(handler) {
-    this.getElement().querySelector(`.button--to-cart`).addEventListener(`click`, handler);
+    this.getElement()
+        .querySelector(`.button--to-cart`)
+        .addEventListener(`click`, handler);
   }
 }

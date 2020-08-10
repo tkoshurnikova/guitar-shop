@@ -23,7 +23,12 @@ export const createCartItemTemplate = (card, quantity) => {
         <label class="visually-hidden" for="quantity">Количество</label>
         <button type="button" id="increase-quantity" data-name="quantity">+</button>
       </div>
-      <p class="cart__price cart__price--full" data-sum="${price * quantity}">${formatPrice(price * quantity)} ₽</p>
+      <p
+        class="cart__price cart__price--full"
+        data-sum="${price * quantity}"
+      >
+        ${formatPrice(price * quantity)} ₽
+      </p>
     </li>`
   );
 };
@@ -46,7 +51,9 @@ export default class CartItem extends AbstractSmartComponent {
   }
 
   setDeleteButtonClickHandler(handler) {
-    this.getElement().querySelector(`.cart__close-button`).addEventListener(`click`, handler);
+    this.getElement()
+        .querySelector(`.cart__close-button`)
+        .addEventListener(`click`, handler);
     this._deleteButtonClickHandler = handler;
   }
 
@@ -78,7 +85,6 @@ export default class CartItem extends AbstractSmartComponent {
       this._quantity = counter;
       this.rerender();
     });
-
 
     quantity.addEventListener(`change`, () => {
       let count = Number(quantity.value);

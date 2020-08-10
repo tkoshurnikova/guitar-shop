@@ -23,7 +23,9 @@ const createCheckboxMarkup = (type, item) => {
 };
 
 const createCheckboxFieldset = (filter) => {
-  const checkboxMarkup = filter.checkboxes.map((item) => createCheckboxMarkup(filter.type, item)).join(`\n`);
+  const checkboxMarkup = filter.checkboxes.map((item) =>
+    createCheckboxMarkup(filter.type, item))
+      .join(`\n`);
 
   return (
     `<fieldset class="form__checkbox-fieldset ${filter.type}">
@@ -33,9 +35,8 @@ const createCheckboxFieldset = (filter) => {
   );
 };
 
-const createFilterTemplate = (filters, cards, minPrice, maxPrice) => {
+const createFilterTemplate = (filtersByType, filtersByStrings, cards, minPrice, maxPrice) => {
   const prices = cards.map((card) => Number(card.price));
-  const checkboxFieldsets = filters.map((filter) => createCheckboxFieldset(filter)).join(`\n`);
 
   return (
     `<form class="form" method="post">
@@ -50,7 +51,9 @@ const createFilterTemplate = (filters, cards, minPrice, maxPrice) => {
             placeholder="${formatPrice(Math.min(...prices))}"
             value=${cards.length ? minPrice : 0}
           >
-          <label class="visually-hidden" for="min-price">Цена от</label>
+          <label class="visually-hidden" for="min-price">
+            Цена от
+          </label>
           <input
             type="number"
             name="price"
@@ -58,18 +61,22 @@ const createFilterTemplate = (filters, cards, minPrice, maxPrice) => {
             placeholder="${formatPrice(Math.max(...prices))}"
             value=${cards.length ? maxPrice : 0}
           >
-          <label class="visually-hidden" for="max-price">Цена до</label>
+          <label class="visually-hidden" for="max-price">
+            Цена до
+          </label>
         </p>
       </fieldset>
-      ${checkboxFieldsets}
+      ${createCheckboxFieldset(filtersByType)}
+      ${createCheckboxFieldset(filtersByStrings)}
     </form>`
   );
 };
 
 export default class Filter extends AbstractComponent {
-  constructor(filters, cards, minPrice, maxPrice) {
+  constructor(filtersByType, filtersByStrings, cards, minPrice, maxPrice) {
     super();
-    this._filters = filters;
+    this._filtersByType = filtersByType;
+    this._filtersByStrings = filtersByStrings;
     this._cards = cards;
     this._minPrice = minPrice;
     this._maxPrice = maxPrice;
@@ -77,14 +84,22 @@ export default class Filter extends AbstractComponent {
   }
 
   getTemplate() {
-    return createFilterTemplate(this._filters, this._cards, this._minPrice, this._maxPrice);
+    return createFilterTemplate(
+        this._filtersByType,
+        this._filtersByStrings,
+        this._cards,
+        this._minPrice,
+        this._maxPrice
+    );
   }
 
   setFilterChangeHandler(handler) {
     const element = this.getElement();
 
     element.addEventListener(`change`, debounce(() => {
-      const checkedCheckboxes = Array.from(element.querySelectorAll(`input:checked`));
+      const checkedCheckboxes = Array.from(
+          element.querySelectorAll(`input:checked`)
+      );
       const checkboxNames = checkedCheckboxes.map((item) => item.dataset.label);
 
       const minPrice = element.querySelector(`#min-price`).value;
@@ -96,13 +111,17 @@ export default class Filter extends AbstractComponent {
 
   _subscribeOnEvents() {
     const element = this.getElement();
-    const filters = this._filters;
+    const filtersByType = this._filtersByType;
+    const filtersByStrings = this._filtersByStrings;
 
     element.querySelector(`.form__price-fieldset`).addEventListener(`change`, () => {
       const minPrice = element.querySelector(`#min-price`);
       const maxPrice = element.querySelector(`#max-price`);
 
-      if (maxPrice.value && minPrice.value && Number(maxPrice.value) < Number(minPrice.value)) {
+      if (maxPrice.value &&
+          minPrice.value &&
+          Number(maxPrice.value) < Number(minPrice.value)
+      ) {
         minPrice.value = maxPrice.value;
         maxPrice.value = minPrice.value;
       }
@@ -120,7 +139,7 @@ export default class Filter extends AbstractComponent {
       if (evt.target.tagName !== `INPUT`) {
         return;
       }
-      filters[0].checkboxes.forEach((checkbox) => {
+      filtersByType.checkboxes.forEach((checkbox) => {
         if (checkbox.item === evt.target.dataset.label) {
           checkbox.isChecked = evt.target.checked;
         }
@@ -131,7 +150,7 @@ export default class Filter extends AbstractComponent {
       if (evt.target.tagName !== `INPUT`) {
         return;
       }
-      filters[1].checkboxes.forEach((checkbox) => {
+      filtersByStrings.checkboxes.forEach((checkbox) => {
         if (checkbox.item === evt.target.dataset.label) {
           checkbox.isChecked = evt.target.checked;
         }

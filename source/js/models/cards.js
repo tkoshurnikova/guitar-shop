@@ -10,11 +10,21 @@ export default class Cards {
   }
 
   getCards() {
-    return getCardsByFilter(this._cards, this._checkboxNames, this._minPrice, this._maxPrice);
+    return getCardsByFilter(
+        this._cards,
+        this._checkboxNames,
+        this._minPrice,
+        this._maxPrice
+    );
   }
 
   getCardsByGuitarTypeFilter() {
-    return getSameGuitarType(this._cards, this._checkboxNames, this._minPrice, this._maxPrice);
+    return getSameGuitarType(
+        this._cards,
+        this._checkboxNames,
+        this._minPrice,
+        this._maxPrice
+    );
   }
 
   setCards(cards) {

@@ -258,7 +258,7 @@ var createAddToCartPopup = function createAddToCartPopup(_ref) {
       strings = _ref.strings,
       price = _ref.price,
       type = _ref.type;
-  return "<div class=\"popup\" id=\"add-to-cart\">\n      <button class=\"popup__close-button\" type=\"button\">\n        <span class=\"visually-hidden\">\u0417\u0430\u043A\u0440\u044B\u0442\u044C \u043E\u043A\u043D\u043E</span>\n        <svg width=\"11.66\" height=\"11.66\"><use xlink:href=\"#icon-cross\"></use></svg>\n      </button>\n      <h2>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440 \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443</h2>\n      <div class=\"popup__content-info\">\n        <img src=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["getImage"])(item, type), "\" width=\"52\" height=\"130\" alt=\"\u0424\u043E\u0442\u043E \u0433\u0438\u0442\u0430\u0440\u044B\">\n        <div class=\"popup__item-info\">\n          <h3>\u0413\u0438\u0442\u0430\u0440\u0430 ").concat(title, "</h3>\n          <p>\u0410\u0440\u0442\u0438\u043A\u0443\u043B: ").concat(article, "</p>\n          <p>\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u0433\u0438\u0442\u0430\u0440\u0430, ").concat(strings, " \u0441\u0442\u0440\u0443\u043D\u043D\u0430\u044F </p>\n          <p class=\"popup__price\">\u0426\u0435\u043D\u0430: ").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price), " \u20BD</p>\n        </div>\n        <button class=\"button button--to-cart\" type=\"button\">\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443</button>\n      </div>\n    </div>\n    ");
+  return "<div class=\"popup\" id=\"add-to-cart\">\n      <button class=\"popup__close-button\" type=\"button\">\n        <span class=\"visually-hidden\">\u0417\u0430\u043A\u0440\u044B\u0442\u044C \u043E\u043A\u043D\u043E</span>\n        <svg width=\"11.66\" height=\"11.66\"><use xlink:href=\"#icon-cross\"></use></svg>\n      </button>\n      <h2>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440 \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443</h2>\n      <div class=\"popup__content-info\">\n        <img src=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["getImage"])(item, type), "\" width=\"52\" height=\"130\" alt=\"\u0424\u043E\u0442\u043E \u0433\u0438\u0442\u0430\u0440\u044B\">\n        <div class=\"popup__item-info\">\n          <h3>\u0413\u0438\u0442\u0430\u0440\u0430 ").concat(title, "</h3>\n          <p>\u0410\u0440\u0442\u0438\u043A\u0443\u043B: ").concat(article, "</p>\n          <p>\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u0433\u0438\u0442\u0430\u0440\u0430, ").concat(strings, " \u0441\u0442\u0440\u0443\u043D\u043D\u0430\u044F </p>\n          <p class=\"popup__price\">\u0426\u0435\u043D\u0430: ").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price), " \u20BD</p>\n        </div>\n        <button\n          class=\"button button--to-cart\"\n          type=\"button\"\n        >\n          \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443\n        </button>\n      </div>\n    </div>\n    ");
 };
 
 var AddToCartPopup = /*#__PURE__*/function (_AbstractComponent) {
@@ -331,7 +331,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 var createAddToCartSuccessPopup = function createAddToCartSuccessPopup() {
-  return "<div class=\"popup\" id=\"add-to-cart-success\">\n      <button class=\"popup__close-button\" type=\"button\">\n        <span class=\"visually-hidden\">\u0417\u0430\u043A\u0440\u044B\u0442\u044C \u043E\u043A\u043D\u043E</span>\n        <svg width=\"11.66\" height=\"11.66\"><use xlink:href=\"#icon-cross\"></use></svg>\n      </button>\n      <h2>\u0422\u043E\u0432\u0430\u0440 \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443</h2>\n      <p class=\"popup__buttons\">\n        <a class=\"button button--to-cart\" href=\"cart.html\">\u041F\u0435\u0440\u0435\u0439\u0442\u0438 \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443</a>\n        <button class=\"button button--shopping\" type=\"button\">\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C \u043F\u043E\u043A\u0443\u043F\u043A\u0438</button>\n      </p>\n    </div>";
+  return "<div class=\"popup\" id=\"add-to-cart-success\">\n      <button class=\"popup__close-button\" type=\"button\">\n        <span class=\"visually-hidden\">\u0417\u0430\u043A\u0440\u044B\u0442\u044C \u043E\u043A\u043D\u043E</span>\n        <svg width=\"11.66\" height=\"11.66\"><use xlink:href=\"#icon-cross\"></use></svg>\n      </button>\n      <h2>\u0422\u043E\u0432\u0430\u0440 \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443</h2>\n      <p class=\"popup__buttons\">\n        <a class=\"button button--to-cart\" href=\"cart.html\">\u041F\u0435\u0440\u0435\u0439\u0442\u0438 \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443</a>\n        <button\n          class=\"button button--shopping\"\n          type=\"button\"\n        >\n          \u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C \u043F\u043E\u043A\u0443\u043F\u043A\u0438\n        </button>\n      </p>\n    </div>";
 };
 
 var AddToCartSuccessPopup = /*#__PURE__*/function (_AbstractComponent) {
@@ -402,7 +402,7 @@ var createCardTemplate = function createCardTemplate(_ref) {
       type = _ref.type,
       popularity = _ref.popularity,
       price = _ref.price;
-  return "<li>\n      <img width=\"68\" height=\"190\" src=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["getImage"])(item, type), "\" alt=\"\u0424\u043E\u0442\u043E \u0433\u0438\u0442\u0430\u0440\u044B\">\n      <p>\n        <span class=\"catalog__rating-overlay\">\n          <span class=\"catalog__stars\">\n            <svg width=\"9.93\" height=\"9.48\"><use xlink:href=\"#icon-star\"></use></svg>\n            <svg width=\"9.93\" height=\"9.48\"><use xlink:href=\"#icon-star\"></use></svg>\n            <svg width=\"9.93\" height=\"9.48\"><use xlink:href=\"#icon-star\"></use></svg>\n            <svg width=\"9.93\" height=\"9.48\"><use xlink:href=\"#icon-star\"></use></svg>\n            <svg width=\"9.93\" height=\"9.48\"><use xlink:href=\"#icon-star\"></use></svg>\n          </span>\n          <span class=\"catalog__stars--full\">\n            <svg width=\"9.93\" height=\"9.48\"><use xlink:href=\"#icon-star-full\"></use></svg>\n            <svg width=\"9.93\" height=\"9.48\"><use xlink:href=\"#icon-star-full\"></use></svg>\n            <svg width=\"9.93\" height=\"9.48\"><use xlink:href=\"#icon-star-full\"></use></svg>\n            <svg width=\"9.93\" height=\"9.48\"><use xlink:href=\"#icon-star-full\"></use></svg>\n            <svg width=\"9.93\" height=\"9.48\"><use xlink:href=\"#icon-star-full\"></use></svg>\n          </span>\n        </span>\n        <span>").concat(popularity, "</span>\n      </p>\n      <p>\n        <span>").concat(title, "</span>\n        <span>").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price), " \u20BD</span>\n      </p>\n      <p>\n        <a class=\"button\" href=\"https://htmlacademy.ru/\">\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435</a>\n        <button class=\"button button--buy\" type=\"button\">\n          <svg width=\"10.36\" height=\"10.5\"><use xlink:href=\"#icon-buy\"></use></svg>\n          \u041A\u0443\u043F\u0438\u0442\u044C\n        </button>\n      </p>\n    </li>");
+  return "<li>\n      <img\n        width=\"68\"\n        height=\"190\"\n        src=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["getImage"])(item, type), "\"\n        alt=\"\u0424\u043E\u0442\u043E \u0433\u0438\u0442\u0430\u0440\u044B\"\n      >\n      <p>\n        <span class=\"catalog__rating-overlay\">\n          <span class=\"catalog__stars\">\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n          </span>\n          <span class=\"catalog__stars--full\">\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n          </span>\n        </span>\n        <span>").concat(popularity, "</span>\n      </p>\n      <p>\n        <span>").concat(title, "</span>\n        <span>").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price), " \u20BD</span>\n      </p>\n      <p>\n        <a class=\"button\" href=\"https://htmlacademy.ru/\">\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435</a>\n        <button class=\"button button--buy\" type=\"button\">\n          <svg width=\"10.36\" height=\"10.5\">\n            <use xlink:href=\"#icon-buy\"></use>\n          </svg>\n          \u041A\u0443\u043F\u0438\u0442\u044C\n        </button>\n      </p>\n    </li>");
 };
 
 var Card = /*#__PURE__*/function (_AbstractComponent) {
@@ -551,7 +551,7 @@ var createCartItemTemplate = function createCartItemTemplate(card, quantity) {
       type = card.type,
       strings = card.strings,
       price = card.price;
-  return "<li>\n      <button class=\"cart__close-button\" type=\"button\">\n        <span class=\"visually-hidden\">\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0438\u0437 \u043A\u043E\u0440\u0437\u0438\u043D\u044B</span>\n        <svg width=\"11.66\" height=\"11.66\"><use xlink:href=\"#icon-cross\"></use></svg>\n      </button>\n      <img src=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["getImage"])(item, type), "\" width=\"52\" height=\"130\" alt=\"\u0424\u043E\u0442\u043E \u0433\u0438\u0442\u0430\u0440\u044B\">\n      <div class=\"cart__item-info\">\n        <h3>\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u0433\u0438\u0442\u0430\u0440\u0430 ").concat(title, "</h3>\n        <p>\u0410\u0440\u0442\u0438\u043A\u0443\u043B: ").concat(article, "</p>\n        <p>\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u0433\u0438\u0442\u0430\u0440\u0430, ").concat(strings, " \u0441\u0442\u0440\u0443\u043D\u043D\u0430\u044F </p>\n      </div>\n      <p class=\"cart__price\">").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price), " \u20BD</p>\n      <div class=\"cart__quantity\">\n        <button type=\"button\" id=\"decrease-quantity\" data-name=\"quantity\">-</button>\n        <input type=\"number\" name=\"quantity\" id=\"quantity\" value=\"").concat(quantity, "\">\n        <label class=\"visually-hidden\" for=\"quantity\">\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E</label>\n        <button type=\"button\" id=\"increase-quantity\" data-name=\"quantity\">+</button>\n      </div>\n      <p class=\"cart__price cart__price--full\" data-sum=\"").concat(price * quantity, "\">").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price * quantity), " \u20BD</p>\n    </li>");
+  return "<li>\n      <button class=\"cart__close-button\" type=\"button\">\n        <span class=\"visually-hidden\">\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0438\u0437 \u043A\u043E\u0440\u0437\u0438\u043D\u044B</span>\n        <svg width=\"11.66\" height=\"11.66\"><use xlink:href=\"#icon-cross\"></use></svg>\n      </button>\n      <img src=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["getImage"])(item, type), "\" width=\"52\" height=\"130\" alt=\"\u0424\u043E\u0442\u043E \u0433\u0438\u0442\u0430\u0440\u044B\">\n      <div class=\"cart__item-info\">\n        <h3>\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u0433\u0438\u0442\u0430\u0440\u0430 ").concat(title, "</h3>\n        <p>\u0410\u0440\u0442\u0438\u043A\u0443\u043B: ").concat(article, "</p>\n        <p>\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u0433\u0438\u0442\u0430\u0440\u0430, ").concat(strings, " \u0441\u0442\u0440\u0443\u043D\u043D\u0430\u044F </p>\n      </div>\n      <p class=\"cart__price\">").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price), " \u20BD</p>\n      <div class=\"cart__quantity\">\n        <button type=\"button\" id=\"decrease-quantity\" data-name=\"quantity\">-</button>\n        <input type=\"number\" name=\"quantity\" id=\"quantity\" value=\"").concat(quantity, "\">\n        <label class=\"visually-hidden\" for=\"quantity\">\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E</label>\n        <button type=\"button\" id=\"increase-quantity\" data-name=\"quantity\">+</button>\n      </div>\n      <p\n        class=\"cart__price cart__price--full\"\n        data-sum=\"").concat(price * quantity, "\"\n      >\n        ").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price * quantity), " \u20BD\n      </p>\n    </li>");
 };
 
 var CartItem = /*#__PURE__*/function (_AbstractSmartCompone) {
@@ -688,7 +688,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 var createCartSumComponent = function createCartSumComponent(cartSum) {
-  return "<div class=\"promo__result\">\n      <p>\u0412\u0441\u0435\u0433\u043E: ".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(cartSum), " \u20BD</p>\n      <a class=\"button button--order\" href=\"https://htmlacademy.ru/\">\u041E\u0444\u043E\u0440\u043C\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437</a>\n    </div>");
+  return "<div class=\"promo__result\">\n      <p>\u0412\u0441\u0435\u0433\u043E: ".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(cartSum), " \u20BD</p>\n      <a\n        class=\"button button--order\"\n        href=\"https://htmlacademy.ru/\"\n      >\n        \u041E\u0444\u043E\u0440\u043C\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437\n      </a>\n    </div>");
 };
 
 var CartSumComponent = /*#__PURE__*/function (_AbstractComponent) {
@@ -892,7 +892,7 @@ var createDeleteFromCartPopup = function createDeleteFromCartPopup(_ref) {
       strings = _ref.strings,
       price = _ref.price,
       type = _ref.type;
-  return "<div class=\"popup\">\n      <button class=\"popup__close-button\" type=\"button\">\n        <span class=\"visually-hidden\">\u0417\u0430\u043A\u0440\u044B\u0442\u044C \u043E\u043A\u043D\u043E</span>\n        <svg width=\"11.66\" height=\"11.66\"><use xlink:href=\"#icon-cross\"></use></svg>\n      </button>\n      <h2>\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u044D\u0442\u043E\u0442 \u0442\u043E\u0432\u0430\u0440?</h2>\n      <div class=\"popup__content-info\">\n        <img src=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["getImage"])(item, type), "\" width=\"52\" height=\"130\" alt=\"\u0424\u043E\u0442\u043E \u0433\u0438\u0442\u0430\u0440\u044B\">\n        <div class=\"popup__item-info\">\n          <h3>\u0413\u0438\u0442\u0430\u0440\u0430 ").concat(title, "</h3>\n          <p>\u0410\u0440\u0442\u0438\u043A\u0443\u043B: ").concat(article, "</p>\n          <p>\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u0433\u0438\u0442\u0430\u0440\u0430, ").concat(strings, " \u0441\u0442\u0440\u0443\u043D\u043D\u0430\u044F </p>\n          <p class=\"popup__price\">\u0426\u0435\u043D\u0430: ").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price), " \u20BD</p>\n        </div>\n        <p class=\"popup__buttons popup__buttons--vertical\">\n          <button class=\"button button--delete\" type=\"button\">\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440</button>\n          <button class=\"button button--shopping\" type=\"button\">\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C \u043F\u043E\u043A\u0443\u043F\u043A\u0438</button>\n        </p>\n      </div>\n    </div>");
+  return "<div class=\"popup\">\n      <button class=\"popup__close-button\" type=\"button\">\n        <span class=\"visually-hidden\">\u0417\u0430\u043A\u0440\u044B\u0442\u044C \u043E\u043A\u043D\u043E</span>\n        <svg width=\"11.66\" height=\"11.66\">\n          <use xlink:href=\"#icon-cross\"></use>\n        </svg>\n      </button>\n      <h2>\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u044D\u0442\u043E\u0442 \u0442\u043E\u0432\u0430\u0440?</h2>\n      <div class=\"popup__content-info\">\n        <img\n          src=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["getImage"])(item, type), "\"\n          width=\"52\"\n          height=\"130\"\n          alt=\"\u0424\u043E\u0442\u043E \u0433\u0438\u0442\u0430\u0440\u044B\"\n        >\n        <div class=\"popup__item-info\">\n          <h3>\u0413\u0438\u0442\u0430\u0440\u0430 ").concat(title, "</h3>\n          <p>\u0410\u0440\u0442\u0438\u043A\u0443\u043B: ").concat(article, "</p>\n          <p>\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u0433\u0438\u0442\u0430\u0440\u0430, ").concat(strings, " \u0441\u0442\u0440\u0443\u043D\u043D\u0430\u044F </p>\n          <p class=\"popup__price\">\u0426\u0435\u043D\u0430: ").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price), " \u20BD</p>\n        </div>\n        <p class=\"popup__buttons popup__buttons--vertical\">\n          <button\n            class=\"button button--delete\"\n            type=\"button\"\n          >\n            \u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440\n          </button>\n          <button\n            class=\"button button--shopping\"\n            type=\"button\"\n          >\n            \u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C \u043F\u043E\u043A\u0443\u043F\u043A\u0438\n          </button>\n        </p>\n      </div>\n    </div>");
 };
 
 var DeleteFromCartPopup = /*#__PURE__*/function (_AbstractComponent) {
@@ -991,14 +991,11 @@ var createCheckboxFieldset = function createCheckboxFieldset(filter) {
   return "<fieldset class=\"form__checkbox-fieldset ".concat(filter.type, "\">\n      <legend>").concat(filter.title, "</legend>\n      ").concat(checkboxMarkup, "\n    </fieldset>");
 };
 
-var createFilterTemplate = function createFilterTemplate(filters, cards, minPrice, maxPrice) {
+var createFilterTemplate = function createFilterTemplate(filtersByType, filtersByStrings, cards, minPrice, maxPrice) {
   var prices = cards.map(function (card) {
     return Number(card.price);
   });
-  var checkboxFieldsets = filters.map(function (filter) {
-    return createCheckboxFieldset(filter);
-  }).join("\n");
-  return "<form class=\"form\" method=\"post\">\n      <h3>\u0424\u0438\u043B\u044C\u0442\u0440</h3>\n      <fieldset class=\"form__price-fieldset\">\n        <legend>\u0426\u0435\u043D\u0430, <span>\u20BD</span></legend>\n        <p>\n          <input\n            type=\"number\"\n            name=\"price\"\n            id=\"min-price\"\n            placeholder=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.min.apply(Math, _toConsumableArray(prices))), "\"\n            value=").concat(cards.length ? minPrice : 0, "\n          >\n          <label class=\"visually-hidden\" for=\"min-price\">\u0426\u0435\u043D\u0430 \u043E\u0442</label>\n          <input\n            type=\"number\"\n            name=\"price\"\n            id=\"max-price\"\n            placeholder=\"").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.max.apply(Math, _toConsumableArray(prices))), "\"\n            value=").concat(cards.length ? maxPrice : 0, "\n          >\n          <label class=\"visually-hidden\" for=\"max-price\">\u0426\u0435\u043D\u0430 \u0434\u043E</label>\n        </p>\n      </fieldset>\n      ").concat(checkboxFieldsets, "\n    </form>");
+  return "<form class=\"form\" method=\"post\">\n      <h3>\u0424\u0438\u043B\u044C\u0442\u0440</h3>\n      <fieldset class=\"form__price-fieldset\">\n        <legend>\u0426\u0435\u043D\u0430, <span>\u20BD</span></legend>\n        <p>\n          <input\n            type=\"number\"\n            name=\"price\"\n            id=\"min-price\"\n            placeholder=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.min.apply(Math, _toConsumableArray(prices))), "\"\n            value=").concat(cards.length ? minPrice : 0, "\n          >\n          <label class=\"visually-hidden\" for=\"min-price\">\n            \u0426\u0435\u043D\u0430 \u043E\u0442\n          </label>\n          <input\n            type=\"number\"\n            name=\"price\"\n            id=\"max-price\"\n            placeholder=\"").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.max.apply(Math, _toConsumableArray(prices))), "\"\n            value=").concat(cards.length ? maxPrice : 0, "\n          >\n          <label class=\"visually-hidden\" for=\"max-price\">\n            \u0426\u0435\u043D\u0430 \u0434\u043E\n          </label>\n        </p>\n      </fieldset>\n      ").concat(createCheckboxFieldset(filtersByType), "\n      ").concat(createCheckboxFieldset(filtersByStrings), "\n    </form>");
 };
 
 var Filter = /*#__PURE__*/function (_AbstractComponent) {
@@ -1006,13 +1003,14 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
 
   var _super = _createSuper(Filter);
 
-  function Filter(filters, cards, minPrice, maxPrice) {
+  function Filter(filtersByType, filtersByStrings, cards, minPrice, maxPrice) {
     var _this;
 
     _classCallCheck(this, Filter);
 
     _this = _super.call(this);
-    _this._filters = filters;
+    _this._filtersByType = filtersByType;
+    _this._filtersByStrings = filtersByStrings;
     _this._cards = cards;
     _this._minPrice = minPrice;
     _this._maxPrice = maxPrice;
@@ -1025,7 +1023,7 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
   _createClass(Filter, [{
     key: "getTemplate",
     value: function getTemplate() {
-      return createFilterTemplate(this._filters, this._cards, this._minPrice, this._maxPrice);
+      return createFilterTemplate(this._filtersByType, this._filtersByStrings, this._cards, this._minPrice, this._maxPrice);
     }
   }, {
     key: "setFilterChangeHandler",
@@ -1045,7 +1043,8 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
     key: "_subscribeOnEvents",
     value: function _subscribeOnEvents() {
       var element = this.getElement();
-      var filters = this._filters;
+      var filtersByType = this._filtersByType;
+      var filtersByStrings = this._filtersByStrings;
       element.querySelector(".form__price-fieldset").addEventListener("change", function () {
         var minPrice = element.querySelector("#min-price");
         var maxPrice = element.querySelector("#max-price");
@@ -1068,7 +1067,7 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
           return;
         }
 
-        filters[0].checkboxes.forEach(function (checkbox) {
+        filtersByType.checkboxes.forEach(function (checkbox) {
           if (checkbox.item === evt.target.dataset.label) {
             checkbox.isChecked = evt.target.checked;
           }
@@ -1079,7 +1078,7 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
           return;
         }
 
-        filters[1].checkboxes.forEach(function (checkbox) {
+        filtersByStrings.checkboxes.forEach(function (checkbox) {
           if (checkbox.item === evt.target.dataset.label) {
             checkbox.isChecked = evt.target.checked;
           }
@@ -1136,11 +1135,12 @@ var createPageElement = function createPageElement(page, activePage) {
   return "<li class=\"pagination__item ".concat(page === activePage ? "pagination__item--active" : "", "\">\n      ").concat(page === "..." ? page : "<a>".concat(page, "</a>"), "\n    </li>");
 };
 
-var createPaginationTemplate = function createPaginationTemplate(cards, pagesNumber, activePage) {
+var createPaginationTemplate = function createPaginationTemplate(pagesNumber, activePage) {
   var pages = Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["createArray"])(pagesNumber);
-  pages.push(4, 5, 6, 7); // чтобы было как в макете
 
-  if (pages.length > 3) {
+  if (pages.length > 2) {
+    pages.push(4, 5, 6, 7); // чтобы было как в макете
+
     pages = [].concat(pages.slice(0, 2), "...", pages[pages.length - 1]);
   }
 
@@ -1155,13 +1155,12 @@ var Pagination = /*#__PURE__*/function (_AbstractComponent) {
 
   var _super = _createSuper(Pagination);
 
-  function Pagination(cards, pagesNumber, activePage) {
+  function Pagination(pagesNumber, activePage) {
     var _this;
 
     _classCallCheck(this, Pagination);
 
     _this = _super.call(this);
-    _this._cards = cards;
     _this._pagesNumber = pagesNumber;
     _this._activePage = activePage;
     return _this;
@@ -1170,7 +1169,7 @@ var Pagination = /*#__PURE__*/function (_AbstractComponent) {
   _createClass(Pagination, [{
     key: "getTemplate",
     value: function getTemplate() {
-      return createPaginationTemplate(this._cards, this._pagesNumber, this._activePage);
+      return createPaginationTemplate(this._pagesNumber, this._activePage);
     }
   }]);
 
@@ -1272,7 +1271,7 @@ var PromoForm = /*#__PURE__*/function (_AbstractSmartCompone) {
     value: function isValidPromocode() {
       var promocodes = Object.values(_const_js__WEBPACK_IMPORTED_MODULE_1__["PromoCodes"]);
       var index = promocodes.indexOf(this._promocode);
-      return index > 0 ? true : false;
+      return index > 0;
     }
   }, {
     key: "_subscribeOnEvents",
@@ -1387,7 +1386,7 @@ var Sort = /*#__PURE__*/function (_AbstractComponent) {
         var sortType = evt.target.dataset.sortType;
         var parentElement = evt.target.parentElement;
 
-        if (_this3._currentSorDirectionType === sortType || !parentElement.classList.contains("sort-arrows")) {
+        if (_this3._currentSortDirectionType === sortType || !parentElement.classList.contains("sort-arrows")) {
           return;
         }
 
@@ -1407,18 +1406,19 @@ var Sort = /*#__PURE__*/function (_AbstractComponent) {
 /*!****************************!*\
   !*** ./source/js/const.js ***!
   \****************************/
-/*! exports provided: CARDS_PER_PAGE, Filters, IMAGES, SortType, PromoCodes */
+/*! exports provided: CARDS_PER_PAGE, FILTERS_BY_TYPE, FILTERS_BY_STRINGS, IMAGES, SortType, PromoCodes */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CARDS_PER_PAGE", function() { return CARDS_PER_PAGE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Filters", function() { return Filters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FILTERS_BY_TYPE", function() { return FILTERS_BY_TYPE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FILTERS_BY_STRINGS", function() { return FILTERS_BY_STRINGS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IMAGES", function() { return IMAGES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SortType", function() { return SortType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PromoCodes", function() { return PromoCodes; });
 var CARDS_PER_PAGE = 9;
-var Filters = [{
+var FILTERS_BY_TYPE = {
   'title': "\u0422\u0438\u043F \u0433\u0438\u0442\u0430\u0440",
   'type': "guitar-type",
   'checkboxes': [{
@@ -1440,7 +1440,8 @@ var Filters = [{
     'isChecked': false,
     'isDisabled': false
   }]
-}, {
+};
+var FILTERS_BY_STRINGS = {
   'title': "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0441\u0442\u0440\u0443\u043D",
   'type': "strings-number",
   'checkboxes': [{
@@ -1468,7 +1469,7 @@ var Filters = [{
     'isChecked': false,
     'isDisabled': false
   }]
-}];
+};
 var IMAGES = {
   'акустическая гитара': "img/guitars/guitar-5.png",
   'электрогитара': "img/guitars/guitar-1.png",
@@ -1550,15 +1551,15 @@ var CardControlled = /*#__PURE__*/function () {
 
         Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_3__["render"])(bodyElement, popup, _utils_render_js__WEBPACK_IMPORTED_MODULE_3__["RenderPosition"].BEFOREEND);
 
-        var addToCartButton = popup.getElement().querySelector(".button--to-cart");
+        var addToCartButtonElement = popup.getElement().querySelector(".button--to-cart");
 
         _this.setPopupListeners(_this._card);
 
         Object(_utils_popup_js__WEBPACK_IMPORTED_MODULE_4__["openPopup"])(popup);
-        addToCartButton.addEventListener("click", function () {
+        addToCartButtonElement.addEventListener("click", function () {
           Object(_utils_popup_js__WEBPACK_IMPORTED_MODULE_4__["closePopup"])(popup);
-          var overlay = document.querySelector(".overlay");
-          overlay.classList.remove("overlay--hidden");
+          var overlayElement = document.querySelector(".overlay");
+          overlayElement.classList.remove("overlay--hidden");
           bodyElement.classList.add("no-scroll");
         });
       });
@@ -1577,9 +1578,9 @@ var CardControlled = /*#__PURE__*/function () {
 
         Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_3__["render"])(bodyElement, popup, _utils_render_js__WEBPACK_IMPORTED_MODULE_3__["RenderPosition"].BEFOREEND);
 
-        var continueShoppingButton = popup.getElement().querySelector(".button--shopping");
+        var continueShoppingButtonElement = popup.getElement().querySelector(".button--shopping");
         Object(_utils_popup_js__WEBPACK_IMPORTED_MODULE_4__["openPopup"])(popup);
-        continueShoppingButton.addEventListener("click", function () {
+        continueShoppingButtonElement.addEventListener("click", function () {
           Object(_utils_popup_js__WEBPACK_IMPORTED_MODULE_4__["closePopup"])(popup);
         });
       });
@@ -1668,12 +1669,12 @@ var CardsController = /*#__PURE__*/function () {
     value: function _renderCards(cards) {
       var _this = this;
 
-      var catalogList = document.querySelector(".catalog__list");
+      var catalogListElement = document.querySelector(".catalog__list");
 
       var renderCardControllers = function renderCardControllers() {
         var cardControllers = [];
         cards.slice(0, _const_js__WEBPACK_IMPORTED_MODULE_5__["CARDS_PER_PAGE"]).forEach(function (card) {
-          var cardController = new _card_js__WEBPACK_IMPORTED_MODULE_3__["default"](catalogList, _this._addToCart);
+          var cardController = new _card_js__WEBPACK_IMPORTED_MODULE_3__["default"](catalogListElement, _this._addToCart);
           cardController.render(card);
           cardControllers.push(cardController);
         });
@@ -1689,7 +1690,7 @@ var CardsController = /*#__PURE__*/function () {
       var activePage = this._activePage;
 
       if (pagesNumber !== 1) {
-        this._paginationComponent = new _components_pagination_js__WEBPACK_IMPORTED_MODULE_1__["default"](cards, pagesNumber, activePage);
+        this._paginationComponent = new _components_pagination_js__WEBPACK_IMPORTED_MODULE_1__["default"](pagesNumber, activePage);
 
         Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["render"])(this._container, this._paginationComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_4__["RenderPosition"].BEFOREEND);
       }
@@ -1708,9 +1709,9 @@ var CardsController = /*#__PURE__*/function () {
   }, {
     key: "_removeCards",
     value: function _removeCards() {
-      var catalogList = this._cardsListComponent.getElement();
+      var catalogListElement = this._cardsListComponent.getElement();
 
-      catalogList.innerHTML = "";
+      catalogListElement.innerHTML = "";
       this._cardContollers = [];
     }
   }, {
@@ -1823,17 +1824,17 @@ var CardsController = /*#__PURE__*/function () {
   }, {
     key: "_setCartItemCount",
     value: function _setCartItemCount() {
-      var cartItems = document.querySelector(".page-header__cart-items sup");
-      var cartItemsCounter = Number(cartItems.textContent);
+      var cartItemsElement = document.querySelector(".page-header__cart-items sup");
+      var cartItemsCounter = Number(cartItemsElement.textContent);
       cartItemsCounter = JSON.parse(localStorage.getItem("session")).length;
 
       if (cartItemsCounter > 0) {
-        cartItems.parentElement.classList.remove("visually-hidden");
+        cartItemsElement.parentElement.classList.remove("visually-hidden");
       } else {
-        cartItems.parentElement.classList.add("visually-hidden");
+        cartItemsElement.parentElement.classList.add("visually-hidden");
       }
 
-      cartItems.innerHTML = cartItemsCounter;
+      cartItemsElement.innerHTML = cartItemsCounter;
     }
   }, {
     key: "_addToCart",
@@ -1883,7 +1884,7 @@ var CartItemController = /*#__PURE__*/function () {
     this._container = container;
     this._removeFromCart = removeFromCart;
     this._changeItemQuantity = changeItemQuantity;
-    this._cariItemComponent = null;
+    this._cartItemComponent = null;
     this._card = null;
   }
 
@@ -1911,12 +1912,12 @@ var CartItemController = /*#__PURE__*/function () {
 
         Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_2__["render"])(bodyElement, popup, _utils_render_js__WEBPACK_IMPORTED_MODULE_2__["RenderPosition"].BEFOREEND);
 
-        var cancelButton = popup.getElement().querySelector(".button--shopping");
+        var cancelButtonElement = popup.getElement().querySelector(".button--shopping");
 
         _this.setPopupListeners(_this._card);
 
         Object(_utils_popup_js__WEBPACK_IMPORTED_MODULE_3__["openPopup"])(popup);
-        cancelButton.addEventListener("click", function () {
+        cancelButtonElement.addEventListener("click", function () {
           Object(_utils_popup_js__WEBPACK_IMPORTED_MODULE_3__["closePopup"])(popup);
         });
       });
@@ -2022,60 +2023,59 @@ var CartController = /*#__PURE__*/function () {
         return cartItemControllers;
       };
 
-      this._cartItemContollers = renderCartItemControllers();
+      this._cartItemControllers = renderCartItemControllers();
     }
   }, {
     key: "_renderPromoForm",
     value: function _renderPromoForm() {
-      var container = this._cartComponent.getElement().querySelector(".promo");
+      var containerElement = this._cartComponent.getElement().querySelector(".promo");
 
       this._promoForm = new _components_promo_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
 
-      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["render"])(container, this._promoForm, _utils_render_js__WEBPACK_IMPORTED_MODULE_4__["RenderPosition"].AFTERBEGIN);
+      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["render"])(containerElement, this._promoForm, _utils_render_js__WEBPACK_IMPORTED_MODULE_4__["RenderPosition"].AFTERBEGIN);
 
       this._promoForm.setSubmitHandler(this._checkPromocode);
     }
   }, {
     key: "_getCartSum",
     value: function _getCartSum() {
-      var itemSumBlocks = Array.from(this._cartComponent.getElement().querySelectorAll(".cart__price--full"));
-      var itemSums = itemSumBlocks.map(function (itemSumBlock) {
+      var itemSumBlocksElements = Array.from(this._cartComponent.getElement().querySelectorAll(".cart__price--full"));
+      var itemSums = itemSumBlocksElements.map(function (itemSumBlock) {
         return Number(itemSumBlock.dataset.sum);
       });
-      var cartSum = itemSums.reduce(function (sum, value) {
+      this._cartSum = itemSums.reduce(function (sum, value) {
         return sum + value;
       }, 0);
-      this._cartSum = cartSum;
     }
   }, {
     key: "_renderCartSum",
     value: function _renderCartSum() {
-      var container = this._cartComponent.getElement().querySelector(".promo");
+      var containerElement = this._cartComponent.getElement().querySelector(".promo");
 
       this._cartSumComponent = new _components_cart_sum_js__WEBPACK_IMPORTED_MODULE_2__["default"](this._cartSum);
 
-      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["render"])(container, this._cartSumComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_4__["RenderPosition"].BEFOREEND);
+      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["render"])(containerElement, this._cartSumComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_4__["RenderPosition"].BEFOREEND);
     }
   }, {
     key: "_setCartItemCount",
     value: function _setCartItemCount() {
-      var cartItems = document.querySelector(".page-header__cart-items sup");
-      var cartItemsCounter = Number(cartItems.textContent);
+      var cartItemsElement = document.querySelector(".page-header__cart-items sup");
+      var cartItemsCounter = Number(cartItemsElement.textContent);
       cartItemsCounter = JSON.parse(localStorage.getItem("session")).length;
 
       if (cartItemsCounter > 0) {
-        cartItems.parentElement.classList.remove("visually-hidden");
+        cartItemsElement.parentElement.classList.remove("visually-hidden");
       } else {
-        cartItems.parentElement.classList.add("visually-hidden");
+        cartItemsElement.parentElement.classList.add("visually-hidden");
       }
 
-      cartItems.innerHTML = cartItemsCounter;
+      cartItemsElement.innerHTML = cartItemsCounter;
     }
   }, {
     key: "_removeCartItems",
     value: function _removeCartItems() {
-      var cartList = document.querySelector(".cart ul");
-      cartList.innerHTML = "";
+      var cartListElement = document.querySelector(".cart ul");
+      cartListElement.innerHTML = "";
       this._cartItemContollers = [];
     }
   }, {
@@ -2096,7 +2096,7 @@ var CartController = /*#__PURE__*/function () {
           break;
 
         default:
-          this._cartSum = this._cartSum;
+          return;
       }
 
       Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["remove"])(this._cartSumComponent);
@@ -2197,7 +2197,7 @@ var FilterController = /*#__PURE__*/function () {
 
       var minPrice = this._minPrice;
       var maxPrice = this._maxPrice;
-      var guitarTypeCheckboxes = _const_js__WEBPACK_IMPORTED_MODULE_2__["Filters"][0].checkboxes.map(function (checkbox) {
+      var guitarTypeCheckboxes = _const_js__WEBPACK_IMPORTED_MODULE_2__["FILTERS_BY_TYPE"].checkboxes.map(function (checkbox) {
         return checkbox.item;
       });
 
@@ -2205,11 +2205,11 @@ var FilterController = /*#__PURE__*/function () {
         return guitarTypeCheckboxes.includes(filter);
       });
 
-      _const_js__WEBPACK_IMPORTED_MODULE_2__["Filters"][1].checkboxes.forEach(function (checkbox) {
+      _const_js__WEBPACK_IMPORTED_MODULE_2__["FILTERS_BY_STRINGS"].checkboxes.forEach(function (checkbox) {
         var arrayLength = Object(_utils_filter_js__WEBPACK_IMPORTED_MODULE_3__["getSameStringsType"])(_this._cardsModel.getCardsByGuitarTypeFilter(), checkbox.item).length;
-        checkbox.isDisabled = arrayLength === 0 && guitarTypeCheckedCheckboxes.length ? true : false;
+        checkbox.isDisabled = arrayLength === 0 && guitarTypeCheckedCheckboxes.length;
       });
-      this._filterComponent = new _components_filter_js__WEBPACK_IMPORTED_MODULE_0__["default"](_const_js__WEBPACK_IMPORTED_MODULE_2__["Filters"], cards, minPrice, maxPrice);
+      this._filterComponent = new _components_filter_js__WEBPACK_IMPORTED_MODULE_0__["default"](_const_js__WEBPACK_IMPORTED_MODULE_2__["FILTERS_BY_TYPE"], _const_js__WEBPACK_IMPORTED_MODULE_2__["FILTERS_BY_STRINGS"], cards, minPrice, maxPrice);
 
       this._filterComponent.setFilterChangeHandler(this._onFilterChange);
 
@@ -2661,25 +2661,25 @@ var getSameFilters = function getSameFilters(cards, checkboxNames, minPrice, max
   });
 };
 
-var guitarTypeCheckboxes = _const_js__WEBPACK_IMPORTED_MODULE_0__["Filters"][0].checkboxes.map(function (checkbox) {
+var guitarTypeCheckboxes = _const_js__WEBPACK_IMPORTED_MODULE_0__["FILTERS_BY_TYPE"].checkboxes.map(function (checkbox) {
   return checkbox.item;
 });
-var stringsNumberCheckboxes = _const_js__WEBPACK_IMPORTED_MODULE_0__["Filters"][1].checkboxes.map(function (checkbox) {
+var stringsNumberCheckboxes = _const_js__WEBPACK_IMPORTED_MODULE_0__["FILTERS_BY_STRINGS"].checkboxes.map(function (checkbox) {
   return checkbox.item;
 });
 var getCardsByFilter = function getCardsByFilter(cards, checkboxNames, minPrice, maxPrice) {
   var guitarTypeCheckedCheckboxes = checkboxNames.filter(function (filter) {
     return guitarTypeCheckboxes.includes(filter);
   });
-  var stirngsNumberCheckedCheckboxes = checkboxNames.filter(function (filter) {
+  var stringsNumberCheckedCheckboxes = checkboxNames.filter(function (filter) {
     return stringsNumberCheckboxes.includes(filter);
   });
 
   if (checkboxNames.length) {
-    if (guitarTypeCheckedCheckboxes.length && !stirngsNumberCheckedCheckboxes.length) {
+    if (guitarTypeCheckedCheckboxes.length && !stringsNumberCheckedCheckboxes.length) {
       return getSameGuitarType(cards, guitarTypeCheckedCheckboxes, minPrice, maxPrice);
-    } else if (!guitarTypeCheckedCheckboxes.length && stirngsNumberCheckedCheckboxes.length) {
-      return getSameStringsType(cards, stirngsNumberCheckedCheckboxes, minPrice, maxPrice);
+    } else if (!guitarTypeCheckedCheckboxes.length && stringsNumberCheckedCheckboxes.length) {
+      return getSameStringsType(cards, stringsNumberCheckedCheckboxes, minPrice, maxPrice);
     } else {
       return getSameFilters(cards, checkboxNames, minPrice, maxPrice);
     }
@@ -2777,18 +2777,18 @@ __webpack_require__.r(__webpack_exports__);
 var openPopup = function openPopup(popup) {
   var popupElement = popup.getElement();
   var closePopupButton = popupElement.querySelector(".popup__close-button");
-  var overlay = document.querySelector(".overlay");
-  var body = document.querySelector("body");
+  var overlayElement = document.querySelector(".overlay");
+  var bodyElement = document.querySelector("body");
 
   var onOpenButtonClick = function onOpenButtonClick() {
-    overlay.classList.remove("overlay--hidden");
-    body.classList.add("no-scroll");
+    overlayElement.classList.remove("overlay--hidden");
+    bodyElement.classList.add("no-scroll");
     window.addEventListener("keydown", onEscPress);
   };
 
   var onCloseButtonClick = function onCloseButtonClick() {
-    overlay.classList.add("overlay--hidden");
-    body.classList.remove("no-scroll");
+    overlayElement.classList.add("overlay--hidden");
+    bodyElement.classList.remove("no-scroll");
     Object(_render_js__WEBPACK_IMPORTED_MODULE_0__["remove"])(popup);
     window.removeEventListener("keydown", onEscPress);
   };
@@ -2803,18 +2803,18 @@ var openPopup = function openPopup(popup) {
   closePopupButton.addEventListener("click", function () {
     closePopup(popup);
   });
-  overlay.addEventListener("click", function () {
+  overlayElement.addEventListener("click", function () {
     closePopup(popup);
   });
 };
 var closePopup = function closePopup(popup) {
   var popupElement = popup.getElement();
-  var overlay = document.querySelector(".overlay");
-  var body = document.querySelector("body");
+  var overlayElement = document.querySelector(".overlay");
+  var bodyElement = document.querySelector("body");
 
   var onCloseButtonClick = function onCloseButtonClick() {
-    overlay.classList.add("overlay--hidden");
-    body.classList.remove("no-scroll");
+    overlayElement.classList.add("overlay--hidden");
+    bodyElement.classList.remove("no-scroll");
     Object(_render_js__WEBPACK_IMPORTED_MODULE_0__["remove"])(popup);
     window.removeEventListener("keydown", onEscPress);
   };
@@ -2825,8 +2825,8 @@ var closePopup = function closePopup(popup) {
     }
   };
 
-  overlay.classList.add("overlay--hidden");
-  body.classList.remove("no-scroll");
+  overlayElement.classList.add("overlay--hidden");
+  bodyElement.classList.remove("no-scroll");
   Object(_render_js__WEBPACK_IMPORTED_MODULE_0__["remove"])(popup);
   window.removeEventListener("keydown", onEscPress);
 };

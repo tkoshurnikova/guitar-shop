@@ -37,9 +37,13 @@ export default class PromoForm extends AbstractSmartComponent {
 
       if (this.isValidPromocode()) {
         this._promocodeUsage += 1;
-        this.getElement().querySelector(`#not-valid-promocode`).classList.add(`visually-hidden`);
+        this.getElement()
+            .querySelector(`#not-valid-promocode`)
+            .classList.add(`visually-hidden`);
       } else {
-        this.getElement().querySelector(`#not-valid-promocode`).classList.remove(`visually-hidden`);
+        this.getElement()
+            .querySelector(`#not-valid-promocode`)
+            .classList.remove(`visually-hidden`);
       }
     });
   }
@@ -47,12 +51,14 @@ export default class PromoForm extends AbstractSmartComponent {
   isValidPromocode() {
     const promocodes = Object.values(PromoCodes);
     const index = promocodes.indexOf(this._promocode);
-    return index > 0 ? true : false;
+    return index > 0;
   }
 
   _subscribeOnEvents() {
-    this.getElement().querySelector(`input`).addEventListener(`change`, () => {
-      this._promocode = this.getElement().querySelector(`input`).value;
-    });
+    this.getElement()
+        .querySelector(`input`)
+        .addEventListener(`change`, () => {
+          this._promocode = this.getElement().querySelector(`input`).value;
+        });
   }
 }

@@ -35,55 +35,62 @@ export default class CartController {
     const renderCartItemControllers = () => {
       const cartItemControllers = [];
       cards.forEach((card) => {
-        const cartItemController = new CartItemController(cartList, this._removeFromCart, this._changeItemQuantity);
+        const cartItemController = new CartItemController(
+            cartList,
+            this._removeFromCart,
+            this._changeItemQuantity
+        );
         cartItemController.render(card);
         cartItemControllers.push(cartItemController);
       });
       return cartItemControllers;
     };
 
-    this._cartItemContollers = renderCartItemControllers();
+    this._cartItemControllers = renderCartItemControllers();
   }
 
   _renderPromoForm() {
-    const container = this._cartComponent.getElement().querySelector(`.promo`);
+    const containerElement = this._cartComponent.getElement().querySelector(`.promo`);
     this._promoForm = new PromoForm();
-    render(container, this._promoForm, RenderPosition.AFTERBEGIN);
+    render(containerElement, this._promoForm, RenderPosition.AFTERBEGIN);
     this._promoForm.setSubmitHandler(this._checkPromocode);
   }
 
   _getCartSum() {
-    const itemSumBlocks = Array.from(this._cartComponent.getElement().querySelectorAll(`.cart__price--full`));
-    const itemSums = itemSumBlocks.map((itemSumBlock) => Number(itemSumBlock.dataset.sum));
-    const cartSum = itemSums.reduce((sum, value) => {
+    const itemSumBlocksElements = Array.from(
+        this._cartComponent.getElement().querySelectorAll(`.cart__price--full`)
+    );
+    const itemSums = itemSumBlocksElements.map((itemSumBlock) =>
+      Number(itemSumBlock.dataset.sum)
+    );
+    this._cartSum = itemSums.reduce((sum, value) => {
       return sum + value;
     }, 0);
-    this._cartSum = cartSum;
   }
 
   _renderCartSum() {
-    const container = this._cartComponent.getElement().querySelector(`.promo`);
+    const containerElement = this._cartComponent.getElement().querySelector(`.promo`);
     this._cartSumComponent = new CartSumComponent(this._cartSum);
-    render(container, this._cartSumComponent, RenderPosition.BEFOREEND);
+    render(containerElement, this._cartSumComponent, RenderPosition.BEFOREEND);
   }
 
   _setCartItemCount() {
-    const cartItems = document.querySelector(`.page-header__cart-items sup`);
-    let cartItemsCounter = Number(cartItems.textContent);
+    const cartItemsElement = document.querySelector(`.page-header__cart-items sup`);
+    let cartItemsCounter = Number(cartItemsElement.textContent);
     cartItemsCounter = JSON.parse(localStorage.getItem(`session`)).length;
 
     if (cartItemsCounter > 0) {
-      cartItems.parentElement.classList.remove(`visually-hidden`);
+      cartItemsElement.parentElement.classList.remove(`visually-hidden`);
     } else {
-      cartItems.parentElement.classList.add(`visually-hidden`);
+      cartItemsElement.parentElement.classList.add(`visually-hidden`);
     }
 
-    cartItems.innerHTML = cartItemsCounter;
+    cartItemsElement.innerHTML = cartItemsCounter;
   }
 
   _removeCartItems() {
-    const cartList = document.querySelector(`.cart ul`);
-    cartList.innerHTML = ``;
+    const cartListElement = document.querySelector(`.cart ul`);
+    cartListElement.innerHTML = ``;
     this._cartItemContollers = [];
   }
 
@@ -104,7 +111,7 @@ export default class CartController {
         break;
 
       default:
-        this._cartSum = this._cartSum;
+        return;
     }
 
     remove(this._cartSumComponent);

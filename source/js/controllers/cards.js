@@ -42,11 +42,11 @@ export default class CardsController {
   }
 
   _renderCards(cards) {
-    const catalogList = document.querySelector(`.catalog__list`);
+    const catalogListElement = document.querySelector(`.catalog__list`);
     const renderCardControllers = () => {
       const cardControllers = [];
       cards.slice(0, CARDS_PER_PAGE).forEach((card) => {
-        const cardController = new CardController(catalogList, this._addToCart);
+        const cardController = new CardController(catalogListElement, this._addToCart);
         cardController.render(card);
         cardControllers.push(cardController);
       });
@@ -60,21 +60,26 @@ export default class CardsController {
     const pagesNumber = Math.ceil(cards.length / CARDS_PER_PAGE);
     const activePage = this._activePage;
     if (pagesNumber !== 1) {
-      this._paginationComponent = new PaginationComponent(cards, pagesNumber, activePage);
+      this._paginationComponent = new PaginationComponent(pagesNumber, activePage);
       render(this._container, this._paginationComponent, RenderPosition.BEFOREEND);
     }
   }
 
   _renderSortComponents() {
-    this._sortComponent = new SortComponent(this._currentSortFeatureType, this._currentSortDirectionType);
+    this._sortComponent = new SortComponent(
+        this._currentSortFeatureType,
+        this._currentSortDirectionType
+    );
     render(this._container, this._sortComponent, RenderPosition.AFTERBEGIN);
-    this._sortComponent.setSortFeatureTypeChangeHandler(this._onSortFeatureTypeChange);
-    this._sortComponent.setSortDirectionTypeChangeHandler(this._onSortDirectionTypeChange);
+    this._sortComponent
+        .setSortFeatureTypeChangeHandler(this._onSortFeatureTypeChange);
+    this._sortComponent
+        .setSortDirectionTypeChangeHandler(this._onSortDirectionTypeChange);
   }
 
   _removeCards() {
-    const catalogList = this._cardsListComponent.getElement();
-    catalogList.innerHTML = ``;
+    const catalogListElement = this._cardsListComponent.getElement();
+    catalogListElement.innerHTML = ``;
     this._cardContollers = [];
   }
 
@@ -110,13 +115,15 @@ export default class CardsController {
 
       case SortType.PRICE:
         sortedCards = cards.slice().sort((a, b) => {
-          return this._currentSortDirectionType === SortType.ASCENDING ? a.price - b.price : b.price - a.price;
+          return this._currentSortDirectionType === SortType.ASCENDING ?
+            a.price - b.price : b.price - a.price;
         });
         break;
 
       case SortType.POPULARITY:
         sortedCards = cards.slice().sort((a, b) => {
-          return this._currentSortDirectionType === SortType.ASCENDING ? a.popularity - b.popularity : b.popularity - a.popularity;
+          return this._currentSortDirectionType === SortType.ASCENDING ?
+            a.popularity - b.popularity : b.popularity - a.popularity;
         });
         break;
 
@@ -144,13 +151,15 @@ export default class CardsController {
 
       case SortType.ASCENDING:
         sortedCards = cards.slice().sort((a, b) => {
-          return this._currentSortFeatureType === SortType.PRICE ? a.price - b.price : a.popularity - b.popularity;
+          return this._currentSortFeatureType === SortType.PRICE ?
+            a.price - b.price : a.popularity - b.popularity;
         });
         break;
 
       case SortType.DESCENDING:
         sortedCards = cards.slice().sort((a, b) => {
-          return this._currentSortFeatureType === SortType.PRICE ? b.price - a.price : b.popularity - a.popularity;
+          return this._currentSortFeatureType === SortType.PRICE ?
+            b.price - a.price : b.popularity - a.popularity;
         });
         break;
 
@@ -166,17 +175,17 @@ export default class CardsController {
   }
 
   _setCartItemCount() {
-    const cartItems = document.querySelector(`.page-header__cart-items sup`);
-    let cartItemsCounter = Number(cartItems.textContent);
+    const cartItemsElement = document.querySelector(`.page-header__cart-items sup`);
+    let cartItemsCounter = Number(cartItemsElement.textContent);
     cartItemsCounter = JSON.parse(localStorage.getItem(`session`)).length;
 
     if (cartItemsCounter > 0) {
-      cartItems.parentElement.classList.remove(`visually-hidden`);
+      cartItemsElement.parentElement.classList.remove(`visually-hidden`);
     } else {
-      cartItems.parentElement.classList.add(`visually-hidden`);
+      cartItemsElement.parentElement.classList.add(`visually-hidden`);
     }
 
-    cartItems.innerHTML = cartItemsCounter;
+    cartItemsElement.innerHTML = cartItemsCounter;
   }
 
 

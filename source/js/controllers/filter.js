@@ -1,6 +1,6 @@
 import FilterComponent from '../components/filter.js';
 import {render, replace, RenderPosition} from '../utils/render.js';
-import {Filters} from '../const.js';
+import {FILTERS_BY_TYPE, FILTERS_BY_STRINGS} from '../const.js';
 import {getSameStringsType} from '../utils/filter.js';
 
 export default class FilterController {
@@ -23,15 +23,26 @@ export default class FilterController {
     const minPrice = this._minPrice;
     const maxPrice = this._maxPrice;
 
-    const guitarTypeCheckboxes = Filters[0].checkboxes.map((checkbox) => checkbox.item);
-    const guitarTypeCheckedCheckboxes = this._checkedCheckboxes.filter((filter) => guitarTypeCheckboxes.includes(filter));
+    const guitarTypeCheckboxes = FILTERS_BY_TYPE.checkboxes.map((checkbox) => checkbox.item);
+    const guitarTypeCheckedCheckboxes = this._checkedCheckboxes.filter(
+        (filter) => guitarTypeCheckboxes.includes(filter)
+    );
 
-    Filters[1].checkboxes.forEach((checkbox) => {
-      const arrayLength = getSameStringsType(this._cardsModel.getCardsByGuitarTypeFilter(), checkbox.item).length;
-      checkbox.isDisabled = (arrayLength === 0 && guitarTypeCheckedCheckboxes.length) ? true : false;
+    FILTERS_BY_STRINGS.checkboxes.forEach((checkbox) => {
+      const arrayLength = getSameStringsType(
+          this._cardsModel.getCardsByGuitarTypeFilter(),
+          checkbox.item
+      ).length;
+      checkbox.isDisabled = (arrayLength === 0 && guitarTypeCheckedCheckboxes.length);
     });
 
-    this._filterComponent = new FilterComponent(Filters, cards, minPrice, maxPrice);
+    this._filterComponent = new FilterComponent(
+        FILTERS_BY_TYPE,
+        FILTERS_BY_STRINGS,
+        cards,
+        minPrice,
+        maxPrice
+    );
     this._filterComponent.setFilterChangeHandler(this._onFilterChange);
 
     if (oldComponent) {

@@ -10,7 +10,12 @@ const createAddToCartSuccessPopup = () => {
       <h2>Товар успешно добавлен в корзину</h2>
       <p class="popup__buttons">
         <a class="button button--to-cart" href="cart.html">Перейти в корзину</a>
-        <button class="button button--shopping" type="button">Продолжить покупки</button>
+        <button
+          class="button button--shopping"
+          type="button"
+        >
+          Продолжить покупки
+        </button>
       </p>
     </div>`
   );

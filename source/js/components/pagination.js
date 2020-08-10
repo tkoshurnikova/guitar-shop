@@ -9,13 +9,15 @@ const createPageElement = (page, activePage) => {
   );
 };
 
-const createPaginationTemplate = (cards, pagesNumber, activePage) => {
+const createPaginationTemplate = (pagesNumber, activePage) => {
   let pages = createArray(pagesNumber);
-  pages.push(4, 5, 6, 7); // чтобы было как в макете
-  if (pages.length > 3) {
+  if (pages.length > 2) {
+    pages.push(4, 5, 6, 7); // чтобы было как в макете
     pages = [].concat(pages.slice(0, 2), `...`, pages[pages.length - 1]);
   }
-  const pagesTemplate = pages.map((pageNumber) => createPageElement(pageNumber, activePage)).join(`\n`);
+  const pagesTemplate = pages.map((pageNumber) =>
+    createPageElement(pageNumber, activePage))
+      .join(`\n`);
 
   return (
     `<ul class="pagination">
@@ -28,14 +30,13 @@ const createPaginationTemplate = (cards, pagesNumber, activePage) => {
 };
 
 export default class Pagination extends AbstractComponent {
-  constructor(cards, pagesNumber, activePage) {
+  constructor(pagesNumber, activePage) {
     super();
-    this._cards = cards;
     this._pagesNumber = pagesNumber;
     this._activePage = activePage;
   }
 
   getTemplate() {
-    return createPaginationTemplate(this._cards, this._pagesNumber, this._activePage);
+    return createPaginationTemplate(this._pagesNumber, this._activePage);
   }
 }

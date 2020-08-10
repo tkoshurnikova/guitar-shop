@@ -28,13 +28,13 @@ export default class CardControlled {
       this._addToCartPopup = new AddToCartPopup(this._card);
       const popup = this._addToCartPopup;
       render(bodyElement, popup, RenderPosition.BEFOREEND);
-      const addToCartButton = popup.getElement().querySelector(`.button--to-cart`);
+      const addToCartButtonElement = popup.getElement().querySelector(`.button--to-cart`);
       this.setPopupListeners(this._card);
       openPopup(popup);
-      addToCartButton.addEventListener(`click`, () => {
+      addToCartButtonElement.addEventListener(`click`, () => {
         closePopup(popup);
-        const overlay = document.querySelector(`.overlay`);
-        overlay.classList.remove(`overlay--hidden`);
+        const overlayElement = document.querySelector(`.overlay`);
+        overlayElement.classList.remove(`overlay--hidden`);
         bodyElement.classList.add(`no-scroll`);
       });
     });
@@ -47,9 +47,9 @@ export default class CardControlled {
       this._addToCartSuccessPopup = new AddToCartSuccessPopup();
       const popup = this._addToCartSuccessPopup;
       render(bodyElement, popup, RenderPosition.BEFOREEND);
-      const continueShoppingButton = popup.getElement().querySelector(`.button--shopping`);
+      const continueShoppingButtonElement = popup.getElement().querySelector(`.button--shopping`);
       openPopup(popup);
-      continueShoppingButton.addEventListener(`click`, () => {
+      continueShoppingButtonElement.addEventListener(`click`, () => {
         closePopup(popup);
       });
     });
