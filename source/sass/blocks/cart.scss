@@ -22,6 +22,7 @@
   justify-content: space-between;
   align-items: center;
   padding-left: 42px;
+  padding-right: 179px;
   border-bottom: 0.7px solid $light-gray;
   padding-bottom: 13px;
   padding-top: 21px;
@@ -80,10 +81,13 @@
 }
 
 .cart__price--full {
+  position: absolute;
+  right: 0;
   font-weight: bold;
 }
 
 .cart__quantity {
+  position: relative;
   margin-top: -62px;
   margin-right: -5px;
 }

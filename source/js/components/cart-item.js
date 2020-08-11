@@ -82,6 +82,7 @@ export default class CartItem extends AbstractSmartComponent {
       }
 
       counter = counter < 1 ? 1 : counter;
+      counter = counter > 99 ? 99 : counter;
       this._quantity = counter;
       this.rerender();
     });
@@ -94,6 +95,7 @@ export default class CartItem extends AbstractSmartComponent {
       }
 
       count = count < 1 ? 1 : count;
+      count = count > 99 ? 99 : count;
       count = Math.ceil(count);
       this._quantity = count;
       this.rerender();

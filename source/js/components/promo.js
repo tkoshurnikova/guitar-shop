@@ -51,7 +51,7 @@ export default class PromoForm extends AbstractSmartComponent {
   isValidPromocode() {
     const promocodes = Object.values(PromoCodes);
     const index = promocodes.indexOf(this._promocode);
-    return index > 0;
+    return index >= 0;
   }
 
   _subscribeOnEvents() {

@@ -1,6 +1,5 @@
 export const saveDataToLocalStorage = (data) => {
-  let array = [];
-  array = JSON.parse(localStorage.getItem(`session`)) || [];
+  let array = JSON.parse(localStorage.getItem(`session`)) || [];
   const item = data.item;
   const index = array.findIndex((element) => element.item === item);
   if (index === -1) {

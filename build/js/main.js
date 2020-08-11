@@ -615,6 +615,7 @@ var CartItem = /*#__PURE__*/function (_AbstractSmartCompone) {
         }
 
         counter = counter < 1 ? 1 : counter;
+        counter = counter > 99 ? 99 : counter;
         _this2._quantity = counter;
 
         _this2.rerender();
@@ -627,6 +628,7 @@ var CartItem = /*#__PURE__*/function (_AbstractSmartCompone) {
         }
 
         count = count < 1 ? 1 : count;
+        count = count > 99 ? 99 : count;
         count = Math.ceil(count);
         _this2._quantity = count;
 
@@ -1271,7 +1273,7 @@ var PromoForm = /*#__PURE__*/function (_AbstractSmartCompone) {
     value: function isValidPromocode() {
       var promocodes = Object.values(_const_js__WEBPACK_IMPORTED_MODULE_1__["PromoCodes"]);
       var index = promocodes.indexOf(this._promocode);
-      return index > 0;
+      return index >= 0;
     }
   }, {
     key: "_subscribeOnEvents",
@@ -1824,8 +1826,7 @@ var CardsController = /*#__PURE__*/function () {
     key: "_setCartItemCount",
     value: function _setCartItemCount() {
       var cartItemsElement = document.querySelector(".page-header__cart-items sup");
-      var cartItemsCounter = Number(cartItemsElement.textContent);
-      cartItemsCounter = JSON.parse(localStorage.getItem("session")).length;
+      var cartItemsCounter = JSON.parse(localStorage.getItem("session")).length;
 
       if (cartItemsCounter > 0) {
         cartItemsElement.parentElement.classList.remove("visually-hidden");
@@ -2735,8 +2736,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "saveDataToLocalStorage", function() { return saveDataToLocalStorage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteDataFromLocalStorage", function() { return deleteDataFromLocalStorage; });
 var saveDataToLocalStorage = function saveDataToLocalStorage(data) {
-  var array = [];
-  array = JSON.parse(localStorage.getItem("session")) || [];
+  var array = JSON.parse(localStorage.getItem("session")) || [];
   var item = data.item;
   var index = array.findIndex(function (element) {
     return element.item === item;

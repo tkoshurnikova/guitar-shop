@@ -176,8 +176,7 @@ export default class CardsController {
 
   _setCartItemCount() {
     const cartItemsElement = document.querySelector(`.page-header__cart-items sup`);
-    let cartItemsCounter = Number(cartItemsElement.textContent);
-    cartItemsCounter = JSON.parse(localStorage.getItem(`session`)).length;
+    let cartItemsCounter = JSON.parse(localStorage.getItem(`session`)).length;
 
     if (cartItemsCounter > 0) {
       cartItemsElement.parentElement.classList.remove(`visually-hidden`);
