@@ -43,7 +43,7 @@ const createFilterTemplate = (filtersByType, filtersByStrings) => {
   );
 };
 
-export default class CheckboxFieldsets extends AbstractComponent {
+export default class CheckboxFiedlsets extends AbstractComponent {
   constructor(filtersByType, filtersByStrings) {
     super();
     this._filtersByType = filtersByType;

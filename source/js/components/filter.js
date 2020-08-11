@@ -70,16 +70,15 @@ export default class Filter extends AbstractComponent {
       if (maxPriceElement.value && minPriceElement.value && Number(maxPriceElement.value) < Number(minPriceElement.value)) {
 
         const min = maxPriceElement.value < Math.min(...prices) ? Math.min(...prices) : maxPriceElement.value;
-        const max = minPriceElement.value > Math.max(...prices) ? Math.max(...prices) : minPriceElement.value;
         minPriceElement.value = min;
-        maxPriceElement.value = max;
+        maxPriceElement.value = min;
       }
 
-      if (minPriceElement.value < Math.min(...prices)) {
+      if (minPriceElement.value && minPriceElement.value < Math.min(...prices)) {
         minPriceElement.value = Math.min(...prices);
       }
 
-      if (maxPriceElement.value > Math.max(...prices)) {
+      if (maxPriceElement.value && maxPriceElement.value > Math.max(...prices)) {
         maxPriceElement.value = Math.max(...prices);
       }
     });

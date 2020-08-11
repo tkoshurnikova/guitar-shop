@@ -859,7 +859,7 @@ var CatalogContent = /*#__PURE__*/function (_AbstractComponent) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CheckboxFieldsets; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CheckboxFiedlsets; });
 /* harmony import */ var _abstract_component_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract-component.js */ "./source/js/components/abstract-component.js");
 /* harmony import */ var _utils_debounce_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/debounce.js */ "./source/js/utils/debounce.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -902,15 +902,15 @@ var createFilterTemplate = function createFilterTemplate(filtersByType, filtersB
   return "<div>\n      ".concat(createCheckboxFieldset(filtersByType), "\n      ").concat(createCheckboxFieldset(filtersByStrings), "\n    </div>");
 };
 
-var CheckboxFieldsets = /*#__PURE__*/function (_AbstractComponent) {
-  _inherits(CheckboxFieldsets, _AbstractComponent);
+var CheckboxFiedlsets = /*#__PURE__*/function (_AbstractComponent) {
+  _inherits(CheckboxFiedlsets, _AbstractComponent);
 
-  var _super = _createSuper(CheckboxFieldsets);
+  var _super = _createSuper(CheckboxFiedlsets);
 
-  function CheckboxFieldsets(filtersByType, filtersByStrings) {
+  function CheckboxFiedlsets(filtersByType, filtersByStrings) {
     var _this;
 
-    _classCallCheck(this, CheckboxFieldsets);
+    _classCallCheck(this, CheckboxFiedlsets);
 
     _this = _super.call(this);
     _this._filtersByType = filtersByType;
@@ -921,7 +921,7 @@ var CheckboxFieldsets = /*#__PURE__*/function (_AbstractComponent) {
     return _this;
   }
 
-  _createClass(CheckboxFieldsets, [{
+  _createClass(CheckboxFiedlsets, [{
     key: "getTemplate",
     value: function getTemplate() {
       return createFilterTemplate(this._filtersByType, this._filtersByStrings);
@@ -970,7 +970,7 @@ var CheckboxFieldsets = /*#__PURE__*/function (_AbstractComponent) {
     }
   }]);
 
-  return CheckboxFieldsets;
+  return CheckboxFiedlsets;
 }(_abstract_component_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
@@ -1165,16 +1165,15 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
 
         if (maxPriceElement.value && minPriceElement.value && Number(maxPriceElement.value) < Number(minPriceElement.value)) {
           var min = maxPriceElement.value < Math.min.apply(Math, _toConsumableArray(prices)) ? Math.min.apply(Math, _toConsumableArray(prices)) : maxPriceElement.value;
-          var max = minPriceElement.value > Math.max.apply(Math, _toConsumableArray(prices)) ? Math.max.apply(Math, _toConsumableArray(prices)) : minPriceElement.value;
           minPriceElement.value = min;
-          maxPriceElement.value = max;
+          maxPriceElement.value = min;
         }
 
-        if (minPriceElement.value < Math.min.apply(Math, _toConsumableArray(prices))) {
+        if (minPriceElement.value && minPriceElement.value < Math.min.apply(Math, _toConsumableArray(prices))) {
           minPriceElement.value = Math.min.apply(Math, _toConsumableArray(prices));
         }
 
-        if (maxPriceElement.value > Math.max.apply(Math, _toConsumableArray(prices))) {
+        if (maxPriceElement.value && maxPriceElement.value > Math.max.apply(Math, _toConsumableArray(prices))) {
           maxPriceElement.value = Math.max.apply(Math, _toConsumableArray(prices));
         }
       });
@@ -1182,6 +1181,75 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
   }]);
 
   return Filter;
+}(_abstract_component_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+
+/***/ }),
+
+/***/ "./source/js/components/no-cards.js":
+/*!******************************************!*\
+  !*** ./source/js/components/no-cards.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return NoCards; });
+/* harmony import */ var _abstract_component_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract-component.js */ "./source/js/components/abstract-component.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var createNoCardsComponent = function createNoCardsComponent() {
+  return "<div class=\"no-cards\">\n      \u041A \u0441\u043E\u0436\u0430\u043B\u0435\u043D\u0438\u044E,  \u0443 \u043D\u0430\u0441 \u043D\u0435\u0442 \u0442\u043E\u0432\u0430\u0440\u043E\u0432 \u043F\u043E \u0437\u0430\u0434\u0430\u043D\u043D\u044B\u043C \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u0430\u043C\n      <button class=\"button button--reset-filters\" type=\"button\">\u0421\u0431\u0440\u043E\u0441\u0438\u0442\u044C \u0444\u0438\u043B\u044C\u0442\u0440\u044B</button>\n    </div>";
+};
+
+var NoCards = /*#__PURE__*/function (_AbstractComponent) {
+  _inherits(NoCards, _AbstractComponent);
+
+  var _super = _createSuper(NoCards);
+
+  function NoCards() {
+    _classCallCheck(this, NoCards);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(NoCards, [{
+    key: "getTemplate",
+    value: function getTemplate() {
+      return createNoCardsComponent();
+    }
+  }, {
+    key: "setToResetFiltersButtonClickHandler",
+    value: function setToResetFiltersButtonClickHandler(handler) {
+      this.getElement().querySelector(".button--reset-filters").addEventListener("click", handler);
+    }
+  }]);
+
+  return NoCards;
 }(_abstract_component_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
@@ -1699,16 +1767,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CardsController; });
 /* harmony import */ var _components_cards_list_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/cards-list.js */ "./source/js/components/cards-list.js");
 /* harmony import */ var _components_pagination_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/pagination.js */ "./source/js/components/pagination.js");
-/* harmony import */ var _components_sort_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/sort.js */ "./source/js/components/sort.js");
-/* harmony import */ var _card_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./card.js */ "./source/js/controllers/card.js");
-/* harmony import */ var _utils_render_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/render.js */ "./source/js/utils/render.js");
-/* harmony import */ var _const_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../const.js */ "./source/js/const.js");
-/* harmony import */ var _utils_local_storage_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/local-storage.js */ "./source/js/utils/local-storage.js");
+/* harmony import */ var _components_no_cards_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/no-cards.js */ "./source/js/components/no-cards.js");
+/* harmony import */ var _components_sort_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/sort.js */ "./source/js/components/sort.js");
+/* harmony import */ var _card_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./card.js */ "./source/js/controllers/card.js");
+/* harmony import */ var _filter_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./filter.js */ "./source/js/controllers/filter.js");
+/* harmony import */ var _utils_render_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/render.js */ "./source/js/utils/render.js");
+/* harmony import */ var _const_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../const.js */ "./source/js/const.js");
+/* harmony import */ var _utils_local_storage_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../utils/local-storage.js */ "./source/js/utils/local-storage.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
 
 
 
@@ -1724,15 +1796,18 @@ var CardsController = /*#__PURE__*/function () {
 
     this._container = container;
     this._cardsModel = cardsModel;
-    this._currentSortFeatureType = _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DEFAULT;
-    this._currentSortDirectionType = _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DEFAULT;
+    this._currentSortFeatureType = _const_js__WEBPACK_IMPORTED_MODULE_7__["SortType"].DEFAULT;
+    this._currentSortDirectionType = _const_js__WEBPACK_IMPORTED_MODULE_7__["SortType"].DEFAULT;
     this._cardsListComponent = new _components_cards_list_js__WEBPACK_IMPORTED_MODULE_0__["default"]();
+    this._noCardsComponent = new _components_no_cards_js__WEBPACK_IMPORTED_MODULE_2__["default"]();
+    this._filterController = null;
     this._paginationComponent = null;
     this._activePage = 1;
     this._onFilterChange = this._onFilterChange.bind(this);
     this._onSortFeatureTypeChange = this._onSortFeatureTypeChange.bind(this);
     this._onSortDirectionTypeChange = this._onSortDirectionTypeChange.bind(this);
     this._addToCart = this._addToCart.bind(this);
+    this._resetFilters = this._resetFilters.bind(this);
 
     this._cardsModel.setFilterChangeHandler(this._onFilterChange);
 
@@ -1748,13 +1823,15 @@ var CardsController = /*#__PURE__*/function () {
 
       this._renderSortComponents();
 
-      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["render"])(container, this._cardsListComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_4__["RenderPosition"].BEFOREEND);
+      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_6__["render"])(container, this._cardsListComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_6__["RenderPosition"].BEFOREEND);
 
       this._renderCards(cards);
 
       this._renderPagination(cards);
 
       this._setCartItemCount();
+
+      this._renderFilterContoller();
     }
   }, {
     key: "_renderCards",
@@ -1765,8 +1842,8 @@ var CardsController = /*#__PURE__*/function () {
 
       var renderCardControllers = function renderCardControllers() {
         var cardControllers = [];
-        cards.slice(0, _const_js__WEBPACK_IMPORTED_MODULE_5__["CARDS_PER_PAGE"]).forEach(function (card) {
-          var cardController = new _card_js__WEBPACK_IMPORTED_MODULE_3__["default"](catalogListElement, _this._addToCart);
+        cards.slice(0, _const_js__WEBPACK_IMPORTED_MODULE_7__["CARDS_PER_PAGE"]).forEach(function (card) {
+          var cardController = new _card_js__WEBPACK_IMPORTED_MODULE_4__["default"](catalogListElement, _this._addToCart);
           cardController.render(card);
           cardControllers.push(cardController);
         });
@@ -1776,23 +1853,31 @@ var CardsController = /*#__PURE__*/function () {
       this._cardControllers = renderCardControllers();
     }
   }, {
+    key: "_renderFilterContoller",
+    value: function _renderFilterContoller() {
+      var catalogSectionElement = document.querySelector(".catalog");
+      this._filterController = new _filter_js__WEBPACK_IMPORTED_MODULE_5__["default"](catalogSectionElement, this._cardsModel);
+
+      this._filterController.render();
+    }
+  }, {
     key: "_renderPagination",
     value: function _renderPagination(cards) {
-      var pagesNumber = Math.ceil(cards.length / _const_js__WEBPACK_IMPORTED_MODULE_5__["CARDS_PER_PAGE"]);
+      var pagesNumber = Math.ceil(cards.length / _const_js__WEBPACK_IMPORTED_MODULE_7__["CARDS_PER_PAGE"]);
       var activePage = this._activePage;
 
       if (pagesNumber !== 1) {
         this._paginationComponent = new _components_pagination_js__WEBPACK_IMPORTED_MODULE_1__["default"](pagesNumber, activePage);
 
-        Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["render"])(this._container, this._paginationComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_4__["RenderPosition"].BEFOREEND);
+        Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_6__["render"])(this._container, this._paginationComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_6__["RenderPosition"].BEFOREEND);
       }
     }
   }, {
     key: "_renderSortComponents",
     value: function _renderSortComponents() {
-      this._sortComponent = new _components_sort_js__WEBPACK_IMPORTED_MODULE_2__["default"](this._currentSortFeatureType, this._currentSortDirectionType);
+      this._sortComponent = new _components_sort_js__WEBPACK_IMPORTED_MODULE_3__["default"](this._currentSortFeatureType, this._currentSortDirectionType);
 
-      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["render"])(this._container, this._sortComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_4__["RenderPosition"].AFTERBEGIN);
+      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_6__["render"])(this._container, this._sortComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_6__["RenderPosition"].AFTERBEGIN);
 
       this._sortComponent.setSortFeatureTypeChangeHandler(this._onSortFeatureTypeChange);
 
@@ -1809,7 +1894,7 @@ var CardsController = /*#__PURE__*/function () {
   }, {
     key: "_removePagination",
     value: function _removePagination() {
-      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["remove"])(this._paginationComponent);
+      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_6__["remove"])(this._paginationComponent);
     }
   }, {
     key: "_update",
@@ -1820,15 +1905,38 @@ var CardsController = /*#__PURE__*/function () {
 
       this._renderCards(this._cardsModel.getCards());
 
-      this._renderPagination(this._cardsModel.getCards());
+      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_6__["remove"])(this._sortComponent);
 
-      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["remove"])(this._sortComponent);
+      if (this._cardsModel.getCards().length > 0) {
+        this._renderPagination(this._cardsModel.getCards());
 
-      this._renderSortComponents();
+        this._renderSortComponents();
 
-      this._onSortFeatureTypeChange(this._currentSortFeatureType);
+        this._onSortFeatureTypeChange(this._currentSortFeatureType);
 
-      this._onSortDirectionTypeChange(this._currentSortDirectionType);
+        this._onSortDirectionTypeChange(this._currentSortDirectionType);
+      } else {
+        var catalogListElement = document.querySelector(".catalog__list");
+
+        Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_6__["render"])(catalogListElement, this._noCardsComponent, _utils_render_js__WEBPACK_IMPORTED_MODULE_6__["RenderPosition"].AFTERBEGIN);
+
+        this._noCardsComponent.setToResetFiltersButtonClickHandler(this._resetFilters);
+      }
+    }
+  }, {
+    key: "_resetFilters",
+    value: function _resetFilters() {
+      var checkboxFilters = [];
+      var minPrice = null;
+      var maxPrice = null;
+
+      this._cardsModel.setFilter(checkboxFilters, minPrice, maxPrice);
+
+      this._onFilterChange();
+
+      this._filterController.remove();
+
+      this._filterController.render();
     }
   }, {
     key: "_onFilterChange",
@@ -1845,28 +1953,28 @@ var CardsController = /*#__PURE__*/function () {
 
       var cards = this._cardsModel.getCards();
 
-      if (sortType === _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DEFAULT) {
+      if (sortType === _const_js__WEBPACK_IMPORTED_MODULE_7__["SortType"].DEFAULT) {
         return;
       }
 
-      if (this._currentSortDirectionType === _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DEFAULT) {
-        this._currentSortDirectionType = _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].ASCENDING;
+      if (this._currentSortDirectionType === _const_js__WEBPACK_IMPORTED_MODULE_7__["SortType"].DEFAULT) {
+        this._currentSortDirectionType = _const_js__WEBPACK_IMPORTED_MODULE_7__["SortType"].ASCENDING;
       }
 
       switch (sortType) {
-        case _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].PRICE:
+        case _const_js__WEBPACK_IMPORTED_MODULE_7__["SortType"].PRICE:
           sortedCards = cards.slice().sort(function (a, b) {
-            return _this2._currentSortDirectionType === _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].ASCENDING ? a.price - b.price : b.price - a.price;
+            return _this2._currentSortDirectionType === _const_js__WEBPACK_IMPORTED_MODULE_7__["SortType"].ASCENDING ? a.price - b.price : b.price - a.price;
           });
           break;
 
-        case _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].POPULARITY:
+        case _const_js__WEBPACK_IMPORTED_MODULE_7__["SortType"].POPULARITY:
           sortedCards = cards.slice().sort(function (a, b) {
-            return _this2._currentSortDirectionType === _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].ASCENDING ? a.popularity - b.popularity : b.popularity - a.popularity;
+            return _this2._currentSortDirectionType === _const_js__WEBPACK_IMPORTED_MODULE_7__["SortType"].ASCENDING ? a.popularity - b.popularity : b.popularity - a.popularity;
           });
           break;
 
-        case _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DEFAULT:
+        case _const_js__WEBPACK_IMPORTED_MODULE_7__["SortType"].DEFAULT:
           sortedCards = cards;
           break;
       }
@@ -1875,7 +1983,7 @@ var CardsController = /*#__PURE__*/function () {
 
       this._renderCards(sortedCards);
 
-      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["remove"])(this._sortComponent);
+      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_6__["remove"])(this._sortComponent);
 
       this._renderSortComponents();
     }
@@ -1889,28 +1997,28 @@ var CardsController = /*#__PURE__*/function () {
 
       var cards = this._cardsModel.getCards();
 
-      if (sortType === _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DEFAULT) {
+      if (sortType === _const_js__WEBPACK_IMPORTED_MODULE_7__["SortType"].DEFAULT) {
         return;
       }
 
-      if (this._currentSortFeatureType === _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DEFAULT) {
-        this._currentSortFeatureType = _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].PRICE;
+      if (this._currentSortFeatureType === _const_js__WEBPACK_IMPORTED_MODULE_7__["SortType"].DEFAULT) {
+        this._currentSortFeatureType = _const_js__WEBPACK_IMPORTED_MODULE_7__["SortType"].PRICE;
       }
 
       switch (sortType) {
-        case _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].ASCENDING:
+        case _const_js__WEBPACK_IMPORTED_MODULE_7__["SortType"].ASCENDING:
           sortedCards = cards.slice().sort(function (a, b) {
-            return _this3._currentSortFeatureType === _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].PRICE ? a.price - b.price : a.popularity - b.popularity;
+            return _this3._currentSortFeatureType === _const_js__WEBPACK_IMPORTED_MODULE_7__["SortType"].PRICE ? a.price - b.price : a.popularity - b.popularity;
           });
           break;
 
-        case _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DESCENDING:
+        case _const_js__WEBPACK_IMPORTED_MODULE_7__["SortType"].DESCENDING:
           sortedCards = cards.slice().sort(function (a, b) {
-            return _this3._currentSortFeatureType === _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].PRICE ? b.price - a.price : b.popularity - a.popularity;
+            return _this3._currentSortFeatureType === _const_js__WEBPACK_IMPORTED_MODULE_7__["SortType"].PRICE ? b.price - a.price : b.popularity - a.popularity;
           });
           break;
 
-        case _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DEFAULT:
+        case _const_js__WEBPACK_IMPORTED_MODULE_7__["SortType"].DEFAULT:
           sortedCards = cards;
           break;
       }
@@ -1919,7 +2027,7 @@ var CardsController = /*#__PURE__*/function () {
 
       this._renderCards(sortedCards);
 
-      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_4__["remove"])(this._sortComponent);
+      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_6__["remove"])(this._sortComponent);
 
       this._renderSortComponents();
     }
@@ -1940,7 +2048,7 @@ var CardsController = /*#__PURE__*/function () {
   }, {
     key: "_addToCart",
     value: function _addToCart(card) {
-      Object(_utils_local_storage_js__WEBPACK_IMPORTED_MODULE_6__["saveDataToLocalStorage"])(card);
+      Object(_utils_local_storage_js__WEBPACK_IMPORTED_MODULE_8__["saveDataToLocalStorage"])(card);
 
       this._setCartItemCount();
     }
@@ -2258,7 +2366,7 @@ var CartController = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FilterController; });
 /* harmony import */ var _components_filter_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/filter.js */ "./source/js/components/filter.js");
-/* harmony import */ var _components_checkbox_fieldsets_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/checkbox-fieldsets.js */ "./source/js/components/checkbox-fieldsets.js");
+/* harmony import */ var _components_checkbox_fieldsets_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/checkbox-fieldsets.js */ "./source/js/components/checkbox-fieldsets.js");
 /* harmony import */ var _utils_render_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/render.js */ "./source/js/utils/render.js");
 /* harmony import */ var _const_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../const.js */ "./source/js/const.js");
 /* harmony import */ var _utils_filter_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/filter.js */ "./source/js/utils/filter.js");
@@ -2306,6 +2414,27 @@ var FilterController = /*#__PURE__*/function () {
       this._renderCheckboxFieldsets();
     }
   }, {
+    key: "remove",
+    value: function remove() {
+      this._checkedCheckboxes = [];
+      this._minPrice = null;
+      this._maxPrice = null;
+
+      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_2__["remove"])(this._filterComponent);
+
+      Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_2__["remove"])(this._checkboxFieldsetsComponent);
+
+      this._filterComponent = null;
+      this._checkboxFieldsetsComponent = null;
+      _const_js__WEBPACK_IMPORTED_MODULE_3__["FILTERS_BY_TYPE"].checkboxes.map(function (checkbox) {
+        checkbox.isChecked = false;
+        return;
+      });
+      _const_js__WEBPACK_IMPORTED_MODULE_3__["FILTERS_BY_STRINGS"].checkboxes.map(function (checkbox) {
+        checkbox.isChecked = false;
+      });
+    }
+  }, {
     key: "_renderCheckboxFieldsets",
     value: function _renderCheckboxFieldsets() {
       var _this = this;
@@ -2325,7 +2454,7 @@ var FilterController = /*#__PURE__*/function () {
         var arrayLength = Object(_utils_filter_js__WEBPACK_IMPORTED_MODULE_4__["getSameStringsType"])(_this._cardsModel.getCardsByGuitarTypeFilter(), checkbox.item).length;
         checkbox.isDisabled = arrayLength === 0 && guitarTypeCheckedCheckboxes.length;
       });
-      this._checkboxFieldsetsComponent = new _components_checkbox_fieldsets_js__WEBPACK_IMPORTED_MODULE_5__["default"](_const_js__WEBPACK_IMPORTED_MODULE_3__["FILTERS_BY_TYPE"], _const_js__WEBPACK_IMPORTED_MODULE_3__["FILTERS_BY_STRINGS"]);
+      this._checkboxFieldsetsComponent = new _components_checkbox_fieldsets_js__WEBPACK_IMPORTED_MODULE_1__["default"](_const_js__WEBPACK_IMPORTED_MODULE_3__["FILTERS_BY_TYPE"], _const_js__WEBPACK_IMPORTED_MODULE_3__["FILTERS_BY_STRINGS"]);
 
       this._checkboxFieldsetsComponent.setFilterChangeHandler(this._onCheckboxChange, this._onFilterChange);
 
@@ -2604,11 +2733,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _guitars_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./guitars.js */ "./source/js/guitars.js");
 /* harmony import */ var _models_cards_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./models/cards.js */ "./source/js/models/cards.js");
 /* harmony import */ var _controllers_cards_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./controllers/cards.js */ "./source/js/controllers/cards.js");
-/* harmony import */ var _controllers_filter_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./controllers/filter.js */ "./source/js/controllers/filter.js");
-/* harmony import */ var _controllers_cart_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controllers/cart.js */ "./source/js/controllers/cart.js");
-/* harmony import */ var _components_catalog_content_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/catalog-content.js */ "./source/js/components/catalog-content.js");
-/* harmony import */ var _utils_render_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./utils/render.js */ "./source/js/utils/render.js");
-
+/* harmony import */ var _controllers_cart_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./controllers/cart.js */ "./source/js/controllers/cart.js");
+/* harmony import */ var _components_catalog_content_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/catalog-content.js */ "./source/js/components/catalog-content.js");
+/* harmony import */ var _utils_render_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/render.js */ "./source/js/utils/render.js");
 
 
 
@@ -2621,16 +2748,14 @@ var catalogSectionElement = document.querySelector(".catalog");
 var cartSectionElement = document.querySelector(".page-main--cart");
 
 if (catalogSectionElement) {
-  var filterController = new _controllers_filter_js__WEBPACK_IMPORTED_MODULE_3__["default"](catalogSectionElement, cardsModel);
-  filterController.render();
-  Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_6__["render"])(catalogSectionElement, new _components_catalog_content_js__WEBPACK_IMPORTED_MODULE_5__["default"](), _utils_render_js__WEBPACK_IMPORTED_MODULE_6__["RenderPosition"].BEFOREEND);
+  Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_5__["render"])(catalogSectionElement, new _components_catalog_content_js__WEBPACK_IMPORTED_MODULE_4__["default"](), _utils_render_js__WEBPACK_IMPORTED_MODULE_5__["RenderPosition"].BEFOREEND);
   var catalogContentSection = document.querySelector(".catalog__content");
   var cardsController = new _controllers_cards_js__WEBPACK_IMPORTED_MODULE_2__["default"](catalogContentSection, cardsModel);
   cardsController.render();
 }
 
 if (cartSectionElement) {
-  var cartController = new _controllers_cart_js__WEBPACK_IMPORTED_MODULE_4__["default"](cartSectionElement);
+  var cartController = new _controllers_cart_js__WEBPACK_IMPORTED_MODULE_3__["default"](cartSectionElement);
   cartController.render();
 }
 

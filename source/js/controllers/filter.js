@@ -1,6 +1,6 @@
 import FilterComponent from '../components/filter.js';
 import CheckboxFieldsets from '../components/checkbox-fieldsets.js';
-import {render, replace, RenderPosition} from '../utils/render.js';
+import {render, replace, remove, RenderPosition} from '../utils/render.js';
 import {FILTERS_BY_TYPE, FILTERS_BY_STRINGS} from '../const.js';
 import {getSameStringsType} from '../utils/filter.js';
 
@@ -29,6 +29,27 @@ export default class FilterController {
 
     render(container, this._filterComponent, RenderPosition.AFTERBEGIN);
     this._renderCheckboxFieldsets();
+  }
+
+  remove() {
+    this._checkedCheckboxes = [];
+    this._minPrice = null;
+    this._maxPrice = null;
+
+    remove(this._filterComponent);
+    remove(this._checkboxFieldsetsComponent);
+
+    this._filterComponent = null;
+    this._checkboxFieldsetsComponent = null;
+
+    FILTERS_BY_TYPE.checkboxes.map((checkbox) => {
+      checkbox.isChecked = false;
+      return;
+    });
+
+    FILTERS_BY_STRINGS.checkboxes.map((checkbox) => {
+      checkbox.isChecked = false;
+    });
   }
 
   _renderCheckboxFieldsets() {

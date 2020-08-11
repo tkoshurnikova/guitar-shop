@@ -1,7 +1,9 @@
 import CardsListComponent from '../components/cards-list.js';
 import PaginationComponent from '../components/pagination.js';
+import NoCardsComponent from '../components/no-cards.js';
 import SortComponent from '../components/sort.js';
 import CardController from './card.js';
+import FilterController from './filter.js';
 import {render, remove, RenderPosition} from '../utils/render.js';
 import {CARDS_PER_PAGE, SortType} from '../const.js';
 import {saveDataToLocalStorage} from '../utils/local-storage.js';
@@ -15,6 +17,8 @@ export default class CardsController {
     this._currentSortDirectionType = SortType.DEFAULT;
 
     this._cardsListComponent = new CardsListComponent();
+    this._noCardsComponent = new NoCardsComponent();
+    this._filterController = null;
 
     this._paginationComponent = null;
     this._activePage = 1;
@@ -23,6 +27,7 @@ export default class CardsController {
     this._onSortFeatureTypeChange = this._onSortFeatureTypeChange.bind(this);
     this._onSortDirectionTypeChange = this._onSortDirectionTypeChange.bind(this);
     this._addToCart = this._addToCart.bind(this);
+    this._resetFilters = this._resetFilters.bind(this);
 
     this._cardsModel.setFilterChangeHandler(this._onFilterChange);
 
@@ -38,6 +43,7 @@ export default class CardsController {
     this._renderCards(cards);
     this._renderPagination(cards);
     this._setCartItemCount();
+    this._renderFilterContoller();
   }
 
   _renderCards(cards) {
@@ -53,6 +59,12 @@ export default class CardsController {
     };
 
     this._cardControllers = renderCardControllers();
+  }
+
+  _renderFilterContoller() {
+    const catalogSectionElement = document.querySelector(`.catalog`);
+    this._filterController = new FilterController(catalogSectionElement, this._cardsModel);
+    this._filterController.render();
   }
 
   _renderPagination(cards) {
@@ -90,11 +102,31 @@ export default class CardsController {
     this._removeCards();
     this._removePagination();
     this._renderCards(this._cardsModel.getCards());
-    this._renderPagination(this._cardsModel.getCards());
     remove(this._sortComponent);
-    this._renderSortComponents();
-    this._onSortFeatureTypeChange(this._currentSortFeatureType);
-    this._onSortDirectionTypeChange(this._currentSortDirectionType);
+
+    if (this._cardsModel.getCards().length > 0) {
+
+      this._renderPagination(this._cardsModel.getCards());
+
+      this._renderSortComponents();
+      this._onSortFeatureTypeChange(this._currentSortFeatureType);
+      this._onSortDirectionTypeChange(this._currentSortDirectionType);
+
+    } else {
+      const catalogListElement = document.querySelector(`.catalog__list`);
+      render(catalogListElement, this._noCardsComponent, RenderPosition.AFTERBEGIN);
+      this._noCardsComponent.setToResetFiltersButtonClickHandler(this._resetFilters);
+    }
+  }
+
+  _resetFilters() {
+    const checkboxFilters = [];
+    const minPrice = null;
+    const maxPrice = null;
+    this._cardsModel.setFilter(checkboxFilters, minPrice, maxPrice);
+    this._onFilterChange();
+    this._filterController.remove();
+    this._filterController.render();
   }
 
   _onFilterChange() {
