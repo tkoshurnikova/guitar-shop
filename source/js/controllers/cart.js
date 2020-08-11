@@ -10,7 +10,7 @@ export default class CartController {
   constructor(container) {
     this._container = container;
     this._cartComponent = new CartComponent();
-    this._cartItemContollers = [];
+    this._cartItemControllers = [];
     this._cards = JSON.parse(localStorage.getItem(`session`));
     this._removeFromCart = this._removeFromCart.bind(this);
     this._changeItemQuantity = this._changeItemQuantity.bind(this);
@@ -31,12 +31,12 @@ export default class CartController {
   }
 
   _renderCartItems(cards) {
-    const cartList = document.querySelector(`.cart ul`);
+    const cartListElement = document.querySelector(`.cart ul`);
     const renderCartItemControllers = () => {
       const cartItemControllers = [];
       cards.forEach((card) => {
         const cartItemController = new CartItemController(
-            cartList,
+            cartListElement,
             this._removeFromCart,
             this._changeItemQuantity
         );
@@ -91,7 +91,7 @@ export default class CartController {
   _removeCartItems() {
     const cartListElement = document.querySelector(`.cart ul`);
     cartListElement.innerHTML = ``;
-    this._cartItemContollers = [];
+    this._cartItemControllers = [];
   }
 
   _checkPromocode(code) {

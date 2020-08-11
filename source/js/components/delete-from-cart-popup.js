@@ -1,9 +1,8 @@
 import AbstractComponent from './abstract-component.js';
 import {formatPrice, getImage} from '../utils/format.js';
 
-const createDeleteFromCartPopup = (
-    {item, title, article, strings, price, type}
-) => {
+const createDeleteFromCartPopup = (card) => {
+  const {item, title, article, strings, price, type} = card;
   return (
     `<div class="popup">
       <button class="popup__close-button" type="button">

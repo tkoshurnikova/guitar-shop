@@ -26,7 +26,7 @@ export default class CardsController {
 
     this._cardsModel.setFilterChangeHandler(this._onFilterChange);
 
-    this._cardContollers = [];
+    this._cardControllers = [];
     this._sortChangeHandlers = [];
   }
 
@@ -53,7 +53,7 @@ export default class CardsController {
       return cardControllers;
     };
 
-    this._cardContollers = renderCardControllers();
+    this._cardControllers = renderCardControllers();
   }
 
   _renderPagination(cards) {
@@ -80,7 +80,7 @@ export default class CardsController {
   _removeCards() {
     const catalogListElement = this._cardsListComponent.getElement();
     catalogListElement.innerHTML = ``;
-    this._cardContollers = [];
+    this._cardControllers = [];
   }
 
   _removePagination() {
@@ -127,7 +127,7 @@ export default class CardsController {
         });
         break;
 
-      case SortType.DEFAUL:
+      case SortType.DEFAULT:
         sortedCards = cards;
         break;
     }

@@ -1,4 +1,4 @@
-import {IMAGES} from '../const.js';
+import {filterImagesToType} from '../const.js';
 
 export const formatPrice = (price) => {
   return price.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, `$1 `);
@@ -13,5 +13,5 @@ export const createArray = (maxValue) => {
 };
 
 export const getImage = (item, type) => {
-  return (item < 8) ? `img/guitars/guitar-${item}.png` : IMAGES[type];
+  return (item < 8) ? `img/guitars/guitar-${item}.png` : filterImagesToType[type];
 };

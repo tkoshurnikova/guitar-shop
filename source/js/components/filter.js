@@ -97,10 +97,10 @@ export default class Filter extends AbstractComponent {
     const element = this.getElement();
 
     element.addEventListener(`change`, debounce(() => {
-      const checkedCheckboxes = Array.from(
+      const checkedCheckboxesElements = Array.from(
           element.querySelectorAll(`input:checked`)
       );
-      const checkboxNames = checkedCheckboxes.map((item) => item.dataset.label);
+      const checkboxNames = checkedCheckboxesElements.map((item) => item.dataset.label);
 
       const minPrice = element.querySelector(`#min-price`).value;
       const maxPrice = element.querySelector(`#max-price`).value;

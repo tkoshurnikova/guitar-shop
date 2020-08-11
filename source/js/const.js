@@ -63,7 +63,7 @@ export const FILTERS_BY_STRINGS = {
   ]
 };
 
-export const IMAGES = {
+export const filterImagesToType = {
   'акустическая гитара': `img/guitars/guitar-5.png`,
   'электрогитара': `img/guitars/guitar-1.png`,
   'укулеле': `img/guitars/guitar-3.png`

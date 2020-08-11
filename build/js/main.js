@@ -402,7 +402,7 @@ var createCardTemplate = function createCardTemplate(_ref) {
       type = _ref.type,
       popularity = _ref.popularity,
       price = _ref.price;
-  return "<li>\n      <img\n        width=\"68\"\n        height=\"190\"\n        src=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["getImage"])(item, type), "\"\n        alt=\"\u0424\u043E\u0442\u043E \u0433\u0438\u0442\u0430\u0440\u044B\"\n      >\n      <p>\n        <span class=\"catalog__rating-overlay\">\n          <span class=\"catalog__stars\">\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n          </span>\n          <span class=\"catalog__stars--full\">\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n          </span>\n        </span>\n        <span>").concat(popularity, "</span>\n      </p>\n      <p>\n        <span>").concat(title, "</span>\n        <span>").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price), " \u20BD</span>\n      </p>\n      <p>\n        <a class=\"button\" href=\"https://htmlacademy.ru/\">\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435</a>\n        <button class=\"button button--buy\" type=\"button\">\n          <svg width=\"10.36\" height=\"10.5\">\n            <use xlink:href=\"#icon-buy\"></use>\n          </svg>\n          \u041A\u0443\u043F\u0438\u0442\u044C\n        </button>\n      </p>\n    </li>");
+  return "<li>\n      <img\n        width=\"68\"\n        height=\"190\"\n        src=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["getImage"])(item, type), "\"\n        alt=\"\u0424\u043E\u0442\u043E \u0433\u0438\u0442\u0430\u0440\u044B\"\n      >\n      <p>\n        <span class=\"catalog__rating-overlay\">\n          <span class=\"catalog__stars\">\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n          </span>\n          <span class=\"catalog__stars--full\">\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n          </span>\n        </span>\n        <span>").concat(popularity, "</span>\n      </p>\n      <p>\n        <span>").concat(title, "</span>\n        <span>").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price), " \u20BD</span>\n      </p>\n      <p>\n        <a class=\"button\" href=\"card-").concat(item, ".html\">\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435</a>\n        <button class=\"button button--buy\" type=\"button\">\n          <svg width=\"10.36\" height=\"10.5\">\n            <use xlink:href=\"#icon-buy\"></use>\n          </svg>\n          \u041A\u0443\u043F\u0438\u0442\u044C\n        </button>\n      </p>\n    </li>");
 };
 
 var Card = /*#__PURE__*/function (_AbstractComponent) {
@@ -594,9 +594,9 @@ var CartItem = /*#__PURE__*/function (_AbstractSmartCompone) {
       var _this2 = this;
 
       var element = this.getElement();
-      var quantity = element.querySelector("#quantity");
+      var quantityElement = element.querySelector("#quantity");
       element.querySelector(".cart__quantity").addEventListener("click", function (evt) {
-        var counter = Number(quantity.value);
+        var counter = Number(quantityElement.value);
 
         if (evt.target.dataset.name !== "quantity") {
           return;
@@ -619,8 +619,8 @@ var CartItem = /*#__PURE__*/function (_AbstractSmartCompone) {
 
         _this2.rerender();
       });
-      quantity.addEventListener("change", function () {
-        var count = Number(quantity.value);
+      quantityElement.addEventListener("change", function () {
+        var count = Number(quantityElement.value);
 
         if (!count) {
           _this2._deleteButtonClickHandler();
@@ -688,7 +688,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 var createCartSumComponent = function createCartSumComponent(cartSum) {
-  return "<div class=\"promo__result\">\n      <p>\u0412\u0441\u0435\u0433\u043E: ".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(cartSum), " \u20BD</p>\n      <a\n        class=\"button button--order\"\n        href=\"https://htmlacademy.ru/\"\n      >\n        \u041E\u0444\u043E\u0440\u043C\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437\n      </a>\n    </div>");
+  return "<div class=\"promo__result\">\n      <p>\u0412\u0441\u0435\u0433\u043E: ".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(cartSum), " \u20BD</p>\n      <a\n        class=\"button button--order\"\n        href=\"order.html\"\n      >\n        \u041E\u0444\u043E\u0440\u043C\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437\n      </a>\n    </div>");
 };
 
 var CartSumComponent = /*#__PURE__*/function (_AbstractComponent) {
@@ -885,13 +885,13 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var createDeleteFromCartPopup = function createDeleteFromCartPopup(_ref) {
-  var item = _ref.item,
-      title = _ref.title,
-      article = _ref.article,
-      strings = _ref.strings,
-      price = _ref.price,
-      type = _ref.type;
+var createDeleteFromCartPopup = function createDeleteFromCartPopup(card) {
+  var item = card.item,
+      title = card.title,
+      article = card.article,
+      strings = card.strings,
+      price = card.price,
+      type = card.type;
   return "<div class=\"popup\">\n      <button class=\"popup__close-button\" type=\"button\">\n        <span class=\"visually-hidden\">\u0417\u0430\u043A\u0440\u044B\u0442\u044C \u043E\u043A\u043D\u043E</span>\n        <svg width=\"11.66\" height=\"11.66\">\n          <use xlink:href=\"#icon-cross\"></use>\n        </svg>\n      </button>\n      <h2>\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u044D\u0442\u043E\u0442 \u0442\u043E\u0432\u0430\u0440?</h2>\n      <div class=\"popup__content-info\">\n        <img\n          src=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["getImage"])(item, type), "\"\n          width=\"52\"\n          height=\"130\"\n          alt=\"\u0424\u043E\u0442\u043E \u0433\u0438\u0442\u0430\u0440\u044B\"\n        >\n        <div class=\"popup__item-info\">\n          <h3>\u0413\u0438\u0442\u0430\u0440\u0430 ").concat(title, "</h3>\n          <p>\u0410\u0440\u0442\u0438\u043A\u0443\u043B: ").concat(article, "</p>\n          <p>\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u0433\u0438\u0442\u0430\u0440\u0430, ").concat(strings, " \u0441\u0442\u0440\u0443\u043D\u043D\u0430\u044F </p>\n          <p class=\"popup__price\">\u0426\u0435\u043D\u0430: ").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price), " \u20BD</p>\n        </div>\n        <p class=\"popup__buttons popup__buttons--vertical\">\n          <button\n            class=\"button button--delete\"\n            type=\"button\"\n          >\n            \u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440\n          </button>\n          <button\n            class=\"button button--shopping\"\n            type=\"button\"\n          >\n            \u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C \u043F\u043E\u043A\u0443\u043F\u043A\u0438\n          </button>\n        </p>\n      </div>\n    </div>");
 };
 
@@ -1030,8 +1030,8 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
     value: function setFilterChangeHandler(handler) {
       var element = this.getElement();
       element.addEventListener("change", Object(_utils_debounce_js__WEBPACK_IMPORTED_MODULE_1__["debounce"])(function () {
-        var checkedCheckboxes = Array.from(element.querySelectorAll("input:checked"));
-        var checkboxNames = checkedCheckboxes.map(function (item) {
+        var checkedCheckboxesElements = Array.from(element.querySelectorAll("input:checked"));
+        var checkboxNames = checkedCheckboxesElements.map(function (item) {
           return item.dataset.label;
         });
         var minPrice = element.querySelector("#min-price").value;
@@ -1406,7 +1406,7 @@ var Sort = /*#__PURE__*/function (_AbstractComponent) {
 /*!****************************!*\
   !*** ./source/js/const.js ***!
   \****************************/
-/*! exports provided: CARDS_PER_PAGE, FILTERS_BY_TYPE, FILTERS_BY_STRINGS, IMAGES, SortType, PromoCodes */
+/*! exports provided: CARDS_PER_PAGE, FILTERS_BY_TYPE, FILTERS_BY_STRINGS, filterImagesToType, SortType, PromoCodes */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1414,7 +1414,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CARDS_PER_PAGE", function() { return CARDS_PER_PAGE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FILTERS_BY_TYPE", function() { return FILTERS_BY_TYPE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FILTERS_BY_STRINGS", function() { return FILTERS_BY_STRINGS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IMAGES", function() { return IMAGES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterImagesToType", function() { return filterImagesToType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SortType", function() { return SortType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PromoCodes", function() { return PromoCodes; });
 var CARDS_PER_PAGE = 9;
@@ -1470,7 +1470,7 @@ var FILTERS_BY_STRINGS = {
     'isDisabled': false
   }]
 };
-var IMAGES = {
+var filterImagesToType = {
   'акустическая гитара': "img/guitars/guitar-5.png",
   'электрогитара': "img/guitars/guitar-1.png",
   'укулеле': "img/guitars/guitar-3.png"
@@ -1551,11 +1551,10 @@ var CardControlled = /*#__PURE__*/function () {
 
         Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_3__["render"])(bodyElement, popup, _utils_render_js__WEBPACK_IMPORTED_MODULE_3__["RenderPosition"].BEFOREEND);
 
-        var addToCartButtonElement = popup.getElement().querySelector(".button--to-cart");
-
         _this.setPopupListeners(_this._card);
 
         Object(_utils_popup_js__WEBPACK_IMPORTED_MODULE_4__["openPopup"])(popup);
+        var addToCartButtonElement = popup.getElement().querySelector(".button--to-cart");
         addToCartButtonElement.addEventListener("click", function () {
           Object(_utils_popup_js__WEBPACK_IMPORTED_MODULE_4__["closePopup"])(popup);
           var overlayElement = document.querySelector(".overlay");
@@ -1578,8 +1577,8 @@ var CardControlled = /*#__PURE__*/function () {
 
         Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_3__["render"])(bodyElement, popup, _utils_render_js__WEBPACK_IMPORTED_MODULE_3__["RenderPosition"].BEFOREEND);
 
-        var continueShoppingButtonElement = popup.getElement().querySelector(".button--shopping");
         Object(_utils_popup_js__WEBPACK_IMPORTED_MODULE_4__["openPopup"])(popup);
+        var continueShoppingButtonElement = popup.getElement().querySelector(".button--shopping");
         continueShoppingButtonElement.addEventListener("click", function () {
           Object(_utils_popup_js__WEBPACK_IMPORTED_MODULE_4__["closePopup"])(popup);
         });
@@ -1643,7 +1642,7 @@ var CardsController = /*#__PURE__*/function () {
 
     this._cardsModel.setFilterChangeHandler(this._onFilterChange);
 
-    this._cardContollers = [];
+    this._cardControllers = [];
     this._sortChangeHandlers = [];
   }
 
@@ -1681,7 +1680,7 @@ var CardsController = /*#__PURE__*/function () {
         return cardControllers;
       };
 
-      this._cardContollers = renderCardControllers();
+      this._cardControllers = renderCardControllers();
     }
   }, {
     key: "_renderPagination",
@@ -1712,7 +1711,7 @@ var CardsController = /*#__PURE__*/function () {
       var catalogListElement = this._cardsListComponent.getElement();
 
       catalogListElement.innerHTML = "";
-      this._cardContollers = [];
+      this._cardControllers = [];
     }
   }, {
     key: "_removePagination",
@@ -1768,7 +1767,7 @@ var CardsController = /*#__PURE__*/function () {
           });
           break;
 
-        case _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DEFAUL:
+        case _const_js__WEBPACK_IMPORTED_MODULE_5__["SortType"].DEFAULT:
           sortedCards = cards;
           break;
       }
@@ -1979,7 +1978,7 @@ var CartController = /*#__PURE__*/function () {
 
     this._container = container;
     this._cartComponent = new _components_cart_js__WEBPACK_IMPORTED_MODULE_0__["default"]();
-    this._cartItemContollers = [];
+    this._cartItemControllers = [];
     this._cards = JSON.parse(localStorage.getItem("session"));
     this._removeFromCart = this._removeFromCart.bind(this);
     this._changeItemQuantity = this._changeItemQuantity.bind(this);
@@ -2011,12 +2010,12 @@ var CartController = /*#__PURE__*/function () {
     value: function _renderCartItems(cards) {
       var _this = this;
 
-      var cartList = document.querySelector(".cart ul");
+      var cartListElement = document.querySelector(".cart ul");
 
       var renderCartItemControllers = function renderCartItemControllers() {
         var cartItemControllers = [];
         cards.forEach(function (card) {
-          var cartItemController = new _cart_item_js__WEBPACK_IMPORTED_MODULE_3__["default"](cartList, _this._removeFromCart, _this._changeItemQuantity);
+          var cartItemController = new _cart_item_js__WEBPACK_IMPORTED_MODULE_3__["default"](cartListElement, _this._removeFromCart, _this._changeItemQuantity);
           cartItemController.render(card);
           cartItemControllers.push(cartItemController);
         });
@@ -2076,7 +2075,7 @@ var CartController = /*#__PURE__*/function () {
     value: function _removeCartItems() {
       var cartListElement = document.querySelector(".cart ul");
       cartListElement.innerHTML = "";
-      this._cartItemContollers = [];
+      this._cartItemControllers = [];
     }
   }, {
     key: "_checkPromocode",
@@ -2719,7 +2718,7 @@ var createArray = function createArray(maxValue) {
   return array;
 };
 var getImage = function getImage(item, type) {
-  return item < 8 ? "img/guitars/guitar-".concat(item, ".png") : _const_js__WEBPACK_IMPORTED_MODULE_0__["IMAGES"][type];
+  return item < 8 ? "img/guitars/guitar-".concat(item, ".png") : _const_js__WEBPACK_IMPORTED_MODULE_0__["filterImagesToType"][type];
 };
 
 /***/ }),

@@ -54,7 +54,7 @@ export const createCardTemplate = ({item, title, type, popularity, price}) => {
         <span>${formatPrice(price)} ₽</span>
       </p>
       <p>
-        <a class="button" href="https://htmlacademy.ru/">Подробнее</a>
+        <a class="button" href="card-${item}.html">Подробнее</a>
         <button class="button button--buy" type="button">
           <svg width="10.36" height="10.5">
             <use xlink:href="#icon-buy"></use>

@@ -59,11 +59,11 @@ export default class CartItem extends AbstractSmartComponent {
 
   setQuantityChangeHandler(handler) {
     const element = this.getElement();
-    const quantity = element.querySelector(`#quantity`);
+    const quantityElement = element.querySelector(`#quantity`);
 
     element.querySelector(`.cart__quantity`).addEventListener(`click`, (evt) => {
 
-      let counter = Number(quantity.value);
+      let counter = Number(quantityElement.value);
 
       if (evt.target.dataset.name !== `quantity`) {
         return;
@@ -86,8 +86,8 @@ export default class CartItem extends AbstractSmartComponent {
       this.rerender();
     });
 
-    quantity.addEventListener(`change`, () => {
-      let count = Number(quantity.value);
+    quantityElement.addEventListener(`change`, () => {
+      let count = Number(quantityElement.value);
 
       if (!count) {
         this._deleteButtonClickHandler();
