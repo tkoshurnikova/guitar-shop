@@ -19,8 +19,8 @@ const createPromoForm = () => {
 export default class PromoForm extends AbstractSmartComponent {
   constructor() {
     super();
-    this._promocode = null;
-    this._promocodeUsage = 0;
+    this._promoCode = null;
+    this._promoCodeUsage = 0;
     this._subscribeOnEvents();
   }
 
@@ -31,12 +31,12 @@ export default class PromoForm extends AbstractSmartComponent {
   setSubmitHandler(handler) {
     this.getElement().addEventListener(`submit`, (evt) => {
       evt.preventDefault();
-      if (!this._promocodeUsage) {
-        handler(this._promocode);
+      if (!this._promoCodeUsage) {
+        handler(this._promoCode);
       }
 
-      if (this.isValidPromocode()) {
-        this._promocodeUsage += 1;
+      if (this.isValidPromoCode()) {
+        this._promoCodeUsage += 1;
         this.getElement()
             .querySelector(`#not-valid-promocode`)
             .classList.add(`visually-hidden`);
@@ -48,9 +48,9 @@ export default class PromoForm extends AbstractSmartComponent {
     });
   }
 
-  isValidPromocode() {
-    const promocodes = Object.values(PromoCodes);
-    const index = promocodes.indexOf(this._promocode);
+  isValidPromoCode() {
+    const promoCodes = Object.values(PromoCodes);
+    const index = promoCodes.indexOf(this._promoCode);
     return index >= 0;
   }
 
@@ -58,7 +58,7 @@ export default class PromoForm extends AbstractSmartComponent {
     this.getElement()
         .querySelector(`input`)
         .addEventListener(`change`, () => {
-          this._promocode = this.getElement().querySelector(`input`).value;
+          this._promoCode = this.getElement().querySelector(`input`).value;
         });
   }
 }

@@ -17,7 +17,7 @@ export default class CartController {
     this._promoForm = null;
     this._cartSumComponent = null;
     this._cartSum = 0;
-    this._checkPromocode = this._checkPromocode.bind(this);
+    this._checkPromoCode = this._checkPromoCode.bind(this);
   }
 
   render() {
@@ -53,7 +53,7 @@ export default class CartController {
     const containerElement = this._cartComponent.getElement().querySelector(`.promo`);
     this._promoForm = new PromoForm();
     render(containerElement, this._promoForm, RenderPosition.AFTERBEGIN);
-    this._promoForm.setSubmitHandler(this._checkPromocode);
+    this._promoForm.setSubmitHandler(this._checkPromoCode);
   }
 
   _getCartSum() {
@@ -76,8 +76,7 @@ export default class CartController {
 
   _setCartItemCount() {
     const cartItemsElement = document.querySelector(`.page-header__cart-items sup`);
-    let cartItemsCounter = Number(cartItemsElement.textContent);
-    cartItemsCounter = JSON.parse(localStorage.getItem(`session`)).length;
+    let cartItemsCounter = JSON.parse(localStorage.getItem(`session`)).length;
 
     if (cartItemsCounter > 0) {
       cartItemsElement.parentElement.classList.remove(`visually-hidden`);
@@ -94,7 +93,7 @@ export default class CartController {
     this._cartItemControllers = [];
   }
 
-  _checkPromocode(code) {
+  _checkPromoCode(code) {
     switch (code) {
 
       case PromoCodes.GITARAHIT:

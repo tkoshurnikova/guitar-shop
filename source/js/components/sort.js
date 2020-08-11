@@ -43,7 +43,6 @@ const createSortTemplate = (featureSortType, directionSortType) => {
   );
 };
 
-
 export default class Sort extends AbstractComponent {
   constructor(currentSortFeatureType, currentSortDirectionType) {
     super();

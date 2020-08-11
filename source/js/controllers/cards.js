@@ -27,7 +27,6 @@ export default class CardsController {
     this._cardsModel.setFilterChangeHandler(this._onFilterChange);
 
     this._cardControllers = [];
-    this._sortChangeHandlers = [];
   }
 
   render() {
@@ -92,10 +91,10 @@ export default class CardsController {
     this._removePagination();
     this._renderCards(this._cardsModel.getCards());
     this._renderPagination(this._cardsModel.getCards());
-    this._currentSortFeatureType = SortType.DEFAULT;
-    this._currentSortDirectionType = SortType.DEFAULT;
     remove(this._sortComponent);
     this._renderSortComponents();
+    this._onSortFeatureTypeChange(this._currentSortFeatureType);
+    this._onSortDirectionTypeChange(this._currentSortDirectionType);
   }
 
   _onFilterChange() {
@@ -106,6 +105,10 @@ export default class CardsController {
     this._currentSortFeatureType = sortType;
     let sortedCards = [];
     const cards = this._cardsModel.getCards();
+
+    if (sortType === SortType.DEFAULT) {
+      return;
+    }
 
     if (this._currentSortDirectionType === SortType.DEFAULT) {
       this._currentSortDirectionType = SortType.ASCENDING;
@@ -143,6 +146,10 @@ export default class CardsController {
     let sortedCards = [];
     const cards = this._cardsModel.getCards();
 
+    if (sortType === SortType.DEFAULT) {
+      return;
+    }
+
     if (this._currentSortFeatureType === SortType.DEFAULT) {
       this._currentSortFeatureType = SortType.PRICE;
     }
@@ -163,7 +170,7 @@ export default class CardsController {
         });
         break;
 
-      case SortType.DEFAUL:
+      case SortType.DEFAULT:
         sortedCards = cards;
         break;
     }
@@ -186,7 +193,6 @@ export default class CardsController {
 
     cartItemsElement.innerHTML = cartItemsCounter;
   }
-
 
   _addToCart(card) {
     saveDataToLocalStorage(card);
