@@ -12,19 +12,19 @@ import {render, RenderPosition} from './utils/render.js';
 const cardsModel = new CardsModel();
 cardsModel.setCards(GUITARS);
 
-const catalogSection = document.querySelector(`.catalog`);
-const cartSection = document.querySelector(`.page-main--cart`);
+const catalogSectionElement = document.querySelector(`.catalog`);
+const cartSectionElement = document.querySelector(`.page-main--cart`);
 
-if (catalogSection) {
-  const filterController = new FilterController(catalogSection, cardsModel);
+if (catalogSectionElement) {
+  const filterController = new FilterController(catalogSectionElement, cardsModel);
   filterController.render();
-  render(catalogSection, new CatalogContentComponent(), RenderPosition.BEFOREEND);
+  render(catalogSectionElement, new CatalogContentComponent(), RenderPosition.BEFOREEND);
   const catalogContentSection = document.querySelector(`.catalog__content`);
   const cardsController = new CardsController(catalogContentSection, cardsModel);
   cardsController.render();
 }
 
-if (cartSection) {
-  const cartController = new CartController(cartSection);
+if (cartSectionElement) {
+  const cartController = new CartController(cartSectionElement);
   cartController.render();
 }

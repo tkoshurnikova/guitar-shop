@@ -115,23 +115,23 @@ export default class Filter extends AbstractComponent {
     const filtersByStrings = this._filtersByStrings;
 
     element.querySelector(`.form__price-fieldset`).addEventListener(`change`, () => {
-      const minPrice = element.querySelector(`#min-price`);
-      const maxPrice = element.querySelector(`#max-price`);
+      const minPriceElement = element.querySelector(`#min-price`);
+      const maxPriceElement = element.querySelector(`#max-price`);
 
-      if (maxPrice.value &&
-          minPrice.value &&
-          Number(maxPrice.value) < Number(minPrice.value)
+      if (maxPriceElement.value &&
+        minPriceElement.value &&
+          Number(maxPriceElement.value) < Number(minPriceElement.value)
       ) {
-        minPrice.value = maxPrice.value;
-        maxPrice.value = minPrice.value;
+        minPriceElement.value = maxPriceElement.value;
+        maxPriceElement.value = minPriceElement.value;
       }
 
-      if (minPrice.value < 0) {
-        minPrice.value = 0;
+      if (minPriceElement.value < 0) {
+        minPriceElement.value = 0;
       }
 
-      if (maxPrice.value < 0) {
-        maxPrice.value = 0;
+      if (maxPriceElement.value < 0) {
+        maxPriceElement.value = 0;
       }
     });
 

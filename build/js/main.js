@@ -1048,20 +1048,20 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
       var filtersByType = this._filtersByType;
       var filtersByStrings = this._filtersByStrings;
       element.querySelector(".form__price-fieldset").addEventListener("change", function () {
-        var minPrice = element.querySelector("#min-price");
-        var maxPrice = element.querySelector("#max-price");
+        var minPriceElement = element.querySelector("#min-price");
+        var maxPriceElement = element.querySelector("#max-price");
 
-        if (maxPrice.value && minPrice.value && Number(maxPrice.value) < Number(minPrice.value)) {
-          minPrice.value = maxPrice.value;
-          maxPrice.value = minPrice.value;
+        if (maxPriceElement.value && minPriceElement.value && Number(maxPriceElement.value) < Number(minPriceElement.value)) {
+          minPriceElement.value = maxPriceElement.value;
+          maxPriceElement.value = minPriceElement.value;
         }
 
-        if (minPrice.value < 0) {
-          minPrice.value = 0;
+        if (minPriceElement.value < 0) {
+          minPriceElement.value = 0;
         }
 
-        if (maxPrice.value < 0) {
-          maxPrice.value = 0;
+        if (maxPriceElement.value < 0) {
+          maxPriceElement.value = 0;
         }
       });
       element.querySelector(".guitar-type").addEventListener("change", function (evt) {
@@ -2493,20 +2493,20 @@ __webpack_require__.r(__webpack_exports__);
 
 var cardsModel = new _models_cards_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
 cardsModel.setCards(_guitars_js__WEBPACK_IMPORTED_MODULE_0__["GUITARS"]);
-var catalogSection = document.querySelector(".catalog");
-var cartSection = document.querySelector(".page-main--cart");
+var catalogSectionElement = document.querySelector(".catalog");
+var cartSectionElement = document.querySelector(".page-main--cart");
 
-if (catalogSection) {
-  var filterController = new _controllers_filter_js__WEBPACK_IMPORTED_MODULE_3__["default"](catalogSection, cardsModel);
+if (catalogSectionElement) {
+  var filterController = new _controllers_filter_js__WEBPACK_IMPORTED_MODULE_3__["default"](catalogSectionElement, cardsModel);
   filterController.render();
-  Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_6__["render"])(catalogSection, new _components_catalog_content_js__WEBPACK_IMPORTED_MODULE_5__["default"](), _utils_render_js__WEBPACK_IMPORTED_MODULE_6__["RenderPosition"].BEFOREEND);
+  Object(_utils_render_js__WEBPACK_IMPORTED_MODULE_6__["render"])(catalogSectionElement, new _components_catalog_content_js__WEBPACK_IMPORTED_MODULE_5__["default"](), _utils_render_js__WEBPACK_IMPORTED_MODULE_6__["RenderPosition"].BEFOREEND);
   var catalogContentSection = document.querySelector(".catalog__content");
   var cardsController = new _controllers_cards_js__WEBPACK_IMPORTED_MODULE_2__["default"](catalogContentSection, cardsModel);
   cardsController.render();
 }
 
-if (cartSection) {
-  var cartController = new _controllers_cart_js__WEBPACK_IMPORTED_MODULE_4__["default"](cartSection);
+if (cartSectionElement) {
+  var cartController = new _controllers_cart_js__WEBPACK_IMPORTED_MODULE_4__["default"](cartSectionElement);
   cartController.render();
 }
 
@@ -2775,7 +2775,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var openPopup = function openPopup(popup) {
   var popupElement = popup.getElement();
-  var closePopupButton = popupElement.querySelector(".popup__close-button");
+  var closePopupButtonElement = popupElement.querySelector(".popup__close-button");
   var overlayElement = document.querySelector(".overlay");
   var bodyElement = document.querySelector("body");
 
@@ -2799,7 +2799,7 @@ var openPopup = function openPopup(popup) {
   };
 
   onOpenButtonClick();
-  closePopupButton.addEventListener("click", function () {
+  closePopupButtonElement.addEventListener("click", function () {
     closePopup(popup);
   });
   overlayElement.addEventListener("click", function () {

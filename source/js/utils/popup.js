@@ -2,7 +2,7 @@ import {remove} from './render.js';
 
 export const openPopup = (popup) => {
   const popupElement = popup.getElement();
-  const closePopupButton = popupElement.querySelector(`.popup__close-button`);
+  const closePopupButtonElement = popupElement.querySelector(`.popup__close-button`);
   const overlayElement = document.querySelector(`.overlay`);
   const bodyElement = document.querySelector(`body`);
 
@@ -26,7 +26,7 @@ export const openPopup = (popup) => {
   };
 
   onOpenButtonClick();
-  closePopupButton.addEventListener(`click`, () => {
+  closePopupButtonElement.addEventListener(`click`, () => {
     closePopup(popup);
   });
   overlayElement.addEventListener(`click`, () => {
