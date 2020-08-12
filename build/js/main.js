@@ -1113,7 +1113,7 @@ var createFilterTemplate = function createFilterTemplate(cards) {
   var prices = cards.map(function (card) {
     return Number(card.price);
   });
-  return "<form class=\"form\" method=\"post\">\n      <h3>\u0424\u0438\u043B\u044C\u0442\u0440</h3>\n      <fieldset class=\"form__price-fieldset\">\n        <legend>\u0426\u0435\u043D\u0430, <span>\u20BD</span></legend>\n        <p>\n          <input\n            type=\"number\"\n            name=\"price\"\n            id=\"min-price\"\n            placeholder=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.min.apply(Math, _toConsumableArray(prices))), "\"\n          >\n          <label class=\"visually-hidden\" for=\"min-price\">\n            \u0426\u0435\u043D\u0430 \u043E\u0442\n          </label>\n          <input\n            type=\"number\"\n            name=\"price\"\n            id=\"max-price\"\n            placeholder=\"").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.max.apply(Math, _toConsumableArray(prices))), "\"\n          >\n          <label class=\"visually-hidden\" for=\"max-price\">\n            \u0426\u0435\u043D\u0430 \u0434\u043E\n          </label>\n        </p>\n      </fieldset>\n    </form>");
+  return "<form class=\"form\" method=\"post\">\n      <h3>\u0424\u0438\u043B\u044C\u0442\u0440</h3>\n      <fieldset class=\"form__price-fieldset\">\n        <legend>\u0426\u0435\u043D\u0430, <span>\u20BD</span></legend>\n        <p>\n          <input\n            type=\"text\"\n            name=\"price\"\n            id=\"min-price\"\n            placeholder=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.min.apply(Math, _toConsumableArray(prices))), "\"\n          >\n          <label class=\"visually-hidden\" for=\"min-price\">\n            \u0426\u0435\u043D\u0430 \u043E\u0442\n          </label>\n          <input\n            type=\"text\"\n            name=\"price\"\n            id=\"max-price\"\n            placeholder=\"").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.max.apply(Math, _toConsumableArray(prices))), "\"\n          >\n          <label class=\"visually-hidden\" for=\"max-price\">\n            \u0426\u0435\u043D\u0430 \u0434\u043E\n          </label>\n        </p>\n      </fieldset>\n    </form>");
 };
 
 var Filter = /*#__PURE__*/function (_AbstractComponent) {
@@ -1144,9 +1144,11 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
     value: function setFilterChangeHandler(setFilter, getCards) {
       var element = this.getElement();
       element.addEventListener("change", Object(_utils_debounce_js__WEBPACK_IMPORTED_MODULE_1__["debounce"])(function () {
-        var minPrice = element.querySelector("#min-price").value;
-        var maxPrice = element.querySelector("#max-price").value;
-        setFilter(minPrice, maxPrice);
+        var minPriceElement = element.querySelector("#min-price");
+        var minPriceValue = Number(minPriceElement.value.replace(/\s/g, ""));
+        var maxPriceElement = element.querySelector("#max-price");
+        var maxPriceValue = Number(maxPriceElement.value.replace(/\s/g, ""));
+        setFilter(minPriceValue, maxPriceValue);
         getCards();
       }));
     }
@@ -1159,22 +1161,47 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
         return Number(card.price);
       });
 
+      element.querySelector(".form__price-fieldset").addEventListener("keydown", function (evt) {
+        var key = evt.keyCode;
+
+        if (key === 46 || key === 8 || key === 37 || key === 39) {
+          return true;
+        } else if (key < 48 || key > 57) {
+          evt.returnValue = false;
+
+          if (evt.preventDefault) {
+            evt.preventDefault();
+          }
+        }
+
+        return true;
+      });
       element.querySelector(".form__price-fieldset").addEventListener("change", function () {
         var minPriceElement = element.querySelector("#min-price");
         var maxPriceElement = element.querySelector("#max-price");
+        var minPriceValue = Number(minPriceElement.value.replace(/\s/g, ""));
+        var maxPriceValue = Number(maxPriceElement.value.replace(/\s/g, ""));
 
-        if (maxPriceElement.value && minPriceElement.value && Number(maxPriceElement.value) < Number(minPriceElement.value)) {
-          var min = maxPriceElement.value < Math.min.apply(Math, _toConsumableArray(prices)) ? Math.min.apply(Math, _toConsumableArray(prices)) : maxPriceElement.value;
-          minPriceElement.value = min;
-          maxPriceElement.value = min;
+        if (maxPriceValue && minPriceValue && maxPriceValue < minPriceValue) {
+          var min = maxPriceValue < Math.min.apply(Math, _toConsumableArray(prices)) ? Math.min.apply(Math, _toConsumableArray(prices)) : maxPriceValue;
+          minPriceValue = min;
+          maxPriceValue = min;
         }
 
-        if (minPriceElement.value && minPriceElement.value < Math.min.apply(Math, _toConsumableArray(prices))) {
-          minPriceElement.value = Math.min.apply(Math, _toConsumableArray(prices));
+        if (minPriceValue && minPriceValue < Math.min.apply(Math, _toConsumableArray(prices))) {
+          minPriceValue = Math.min.apply(Math, _toConsumableArray(prices));
         }
 
-        if (maxPriceElement.value && maxPriceElement.value > Math.max.apply(Math, _toConsumableArray(prices))) {
-          maxPriceElement.value = Math.max.apply(Math, _toConsumableArray(prices));
+        if (maxPriceValue && maxPriceValue > Math.max.apply(Math, _toConsumableArray(prices))) {
+          maxPriceValue = Math.max.apply(Math, _toConsumableArray(prices));
+        }
+
+        if (minPriceValue) {
+          minPriceElement.value = new Intl.NumberFormat("ru-RU").format(minPriceValue);
+        }
+
+        if (maxPriceValue) {
+          maxPriceElement.value = new Intl.NumberFormat("ru-RU").format(maxPriceValue);
         }
       });
     }
@@ -1568,7 +1595,7 @@ var Sort = /*#__PURE__*/function (_AbstractComponent) {
 /*!****************************!*\
   !*** ./source/js/const.js ***!
   \****************************/
-/*! exports provided: CARDS_PER_PAGE, FILTERS_BY_TYPE, FILTERS_BY_STRINGS, filterImagesToType, SortType, PromoCodes */
+/*! exports provided: CARDS_PER_PAGE, FILTERS_BY_TYPE, FILTERS_BY_STRINGS, guitarTypeToImage, SortType, PromoCodes */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1576,7 +1603,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CARDS_PER_PAGE", function() { return CARDS_PER_PAGE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FILTERS_BY_TYPE", function() { return FILTERS_BY_TYPE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FILTERS_BY_STRINGS", function() { return FILTERS_BY_STRINGS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filterImagesToType", function() { return filterImagesToType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "guitarTypeToImage", function() { return guitarTypeToImage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SortType", function() { return SortType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PromoCodes", function() { return PromoCodes; });
 var CARDS_PER_PAGE = 9;
@@ -1632,7 +1659,7 @@ var FILTERS_BY_STRINGS = {
     'isDisabled': false
   }]
 };
-var filterImagesToType = {
+var guitarTypeToImage = {
   'акустическая гитара': "img/guitars/guitar-5.png",
   'электрогитара': "img/guitars/guitar-1.png",
   'укулеле': "img/guitars/guitar-3.png"
@@ -2968,7 +2995,7 @@ var createArray = function createArray(maxValue) {
   return array;
 };
 var getImage = function getImage(item, type) {
-  return item < 8 ? "img/guitars/guitar-".concat(item, ".png") : _const_js__WEBPACK_IMPORTED_MODULE_0__["filterImagesToType"][type];
+  return item < 8 ? "img/guitars/guitar-".concat(item, ".png") : _const_js__WEBPACK_IMPORTED_MODULE_0__["guitarTypeToImage"][type];
 };
 
 /***/ }),
