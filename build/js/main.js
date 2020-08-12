@@ -1074,11 +1074,12 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
       });
 
       element.querySelector(".form__price-fieldset").addEventListener("keydown", function (evt) {
-        var key = evt.keyCode;
+        var key = evt.key;
+        var serviceKeys = ["Backspace", "Delete", "ArrowLeft", "ArrowRight"];
 
-        if (key === 46 || key === 8 || key === 37 || key === 39) {
+        if (key >= 0 || key <= 9 || serviceKeys.indexOf(key) > -1) {
           return true;
-        } else if (key < 48 || key > 57) {
+        } else {
           evt.returnValue = false;
 
           if (evt.preventDefault) {
@@ -1087,6 +1088,20 @@ var Filter = /*#__PURE__*/function (_AbstractComponent) {
         }
 
         return true;
+      });
+      element.querySelector(".form__price-fieldset").addEventListener("input", function () {
+        var minPriceElement = element.querySelector("#min-price");
+        var maxPriceElement = element.querySelector("#max-price");
+        var minPriceValue = Number(minPriceElement.value.replace(/\s/g, ""));
+        var maxPriceValue = Number(maxPriceElement.value.replace(/\s/g, ""));
+
+        if (minPriceValue) {
+          minPriceElement.value = new Intl.NumberFormat("ru-RU").format(minPriceValue);
+        }
+
+        if (maxPriceValue) {
+          maxPriceElement.value = new Intl.NumberFormat("ru-RU").format(maxPriceValue);
+        }
       });
       element.querySelector(".form__price-fieldset").addEventListener("change", function () {
         var minPriceElement = element.querySelector("#min-price");
@@ -2377,11 +2392,10 @@ var FilterController = /*#__PURE__*/function () {
 
       this._filterComponent = null;
       this._checkboxFieldsetsComponent = null;
-      _const_js__WEBPACK_IMPORTED_MODULE_3__["FILTERS_BY_TYPE"].checkboxes.map(function (checkbox) {
+      _const_js__WEBPACK_IMPORTED_MODULE_3__["FILTERS_BY_TYPE"].checkboxes.forEach(function (checkbox) {
         checkbox.isChecked = false;
-        return;
       });
-      _const_js__WEBPACK_IMPORTED_MODULE_3__["FILTERS_BY_STRINGS"].checkboxes.map(function (checkbox) {
+      _const_js__WEBPACK_IMPORTED_MODULE_3__["FILTERS_BY_STRINGS"].checkboxes.forEach(function (checkbox) {
         checkbox.isChecked = false;
       });
     }

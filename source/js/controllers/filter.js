@@ -42,12 +42,11 @@ export default class FilterController {
     this._filterComponent = null;
     this._checkboxFieldsetsComponent = null;
 
-    FILTERS_BY_TYPE.checkboxes.map((checkbox) => {
+    FILTERS_BY_TYPE.checkboxes.forEach((checkbox) => {
       checkbox.isChecked = false;
-      return;
     });
 
-    FILTERS_BY_STRINGS.checkboxes.map((checkbox) => {
+    FILTERS_BY_STRINGS.checkboxes.forEach((checkbox) => {
       checkbox.isChecked = false;
     });
   }

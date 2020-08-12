@@ -66,16 +66,34 @@ export default class Filter extends AbstractComponent {
     const prices = this._cards.map((card) => Number(card.price));
 
     element.querySelector(`.form__price-fieldset`).addEventListener(`keydown`, (evt) => {
-      const key = evt.keyCode;
-      if (key === 46 || key === 8 || key === 37 || key === 39) {
+      const key = evt.key;
+      const serviceKeys = [`Backspace`, `Delete`, `ArrowLeft`, `ArrowRight`];
+
+      if (key >= 0 || key <= 9 || serviceKeys.indexOf(key) > -1) {
         return true;
-      } else if (key < 48 || key > 57) {
+      } else {
         evt.returnValue = false;
         if (evt.preventDefault) {
           evt.preventDefault();
         }
       }
       return true;
+    });
+
+    element.querySelector(`.form__price-fieldset`).addEventListener(`input`, () => {
+      const minPriceElement = element.querySelector(`#min-price`);
+      const maxPriceElement = element.querySelector(`#max-price`);
+
+      let minPriceValue = Number(minPriceElement.value.replace(/\s/g, ``));
+      let maxPriceValue = Number(maxPriceElement.value.replace(/\s/g, ``));
+
+      if (minPriceValue) {
+        minPriceElement.value = new Intl.NumberFormat(`ru-RU`).format(minPriceValue);
+      }
+
+      if (maxPriceValue) {
+        maxPriceElement.value = new Intl.NumberFormat(`ru-RU`).format(maxPriceValue);
+      }
     });
 
     element.querySelector(`.form__price-fieldset`).addEventListener(`change`, () => {
