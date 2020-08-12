@@ -1,7 +1,7 @@
-import AbstractSmartComponent from './abstract-smart-component.js';
+import AbstractComponent from './abstract-component.js';
 import {formatPrice, getImage} from '../utils/format.js';
 
-export const createCartItemTemplate = (card, quantity) => {
+export const createCartItemTemplate = (card) => {
   const {item, article, title, type, strings, price} = card;
 
   return (
@@ -19,47 +19,40 @@ export const createCartItemTemplate = (card, quantity) => {
       <p class="cart__price">${formatPrice(price)} ₽</p>
       <div class="cart__quantity">
         <button type="button" id="decrease-quantity" data-name="quantity">-</button>
-        <input type="number" name="quantity" id="quantity" value="${quantity}">
+        <input type="number" name="quantity" id="quantity" value="1">
         <label class="visually-hidden" for="quantity">Количество</label>
         <button type="button" id="increase-quantity" data-name="quantity">+</button>
       </div>
       <p
         class="cart__price cart__price--full"
-        data-sum="${price * quantity}"
+        data-sum="${price}"
       >
-        ${formatPrice(price * quantity)} ₽
+        ${formatPrice(price)} ₽
       </p>
     </li>`
   );
 };
 
-export default class CartItem extends AbstractSmartComponent {
+export default class CartItem extends AbstractComponent {
   constructor(card) {
     super();
     this._card = card;
-    this._quantity = 1;
-    this._deleteButtonClickHandler = null;
-    this._quantityChangeHandler = null;
   }
 
   getTemplate() {
-    return createCartItemTemplate(this._card, this._quantity);
-  }
-
-  rerender() {
-    super.rerender();
+    return createCartItemTemplate(this._card);
   }
 
   setDeleteButtonClickHandler(handler) {
     this.getElement()
         .querySelector(`.cart__close-button`)
         .addEventListener(`click`, handler);
-    this._deleteButtonClickHandler = handler;
   }
 
   setQuantityChangeHandler(handler) {
     const element = this.getElement();
     const quantityElement = element.querySelector(`#quantity`);
+    const totalSumElement = element.querySelector(`.cart__price--full`);
 
     element.querySelector(`.cart__quantity`).addEventListener(`click`, (evt) => {
 
@@ -83,8 +76,11 @@ export default class CartItem extends AbstractSmartComponent {
 
       counter = counter < 1 ? 1 : counter;
       counter = counter > 99 ? 99 : counter;
-      this._quantity = counter;
-      this.rerender();
+
+      totalSumElement.innerHTML = formatPrice(this._card.price * counter) + ` ₽`;
+      quantityElement.value = counter;
+      totalSumElement.dataset.sum = this._card.price * counter;
+      handler();
     });
 
     quantityElement.addEventListener(`change`, () => {
@@ -97,16 +93,11 @@ export default class CartItem extends AbstractSmartComponent {
       count = count < 1 ? 1 : count;
       count = count > 99 ? 99 : count;
       count = Math.ceil(count);
-      this._quantity = count;
-      this.rerender();
+
+      totalSumElement.innerHTML = formatPrice(this._card.price * count) + ` ₽`;
+      quantityElement.value = count;
+      totalSumElement.dataset.sum = this._card.price * count;
+      handler();
     });
-
-    handler();
-    this._quantityChangeHandler = handler;
-  }
-
-  recoveryListeners() {
-    this.setDeleteButtonClickHandler(this._deleteButtonClickHandler);
-    this.setQuantityChangeHandler(this._quantityChangeHandler);
   }
 }

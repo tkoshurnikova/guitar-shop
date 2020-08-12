@@ -214,6 +214,9 @@ export default class CardsController {
   }
 
   _setCartItemCount() {
+    if (!localStorage.getItem(`session`)) {
+      return;
+    }
     const cartItemsElement = document.querySelector(`.page-header__cart-items sup`);
     let cartItemsCounter = JSON.parse(localStorage.getItem(`session`)).length;
 

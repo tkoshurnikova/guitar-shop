@@ -59,27 +59,29 @@
 }
 
 .page-header__nav {
-  margin-right: 33px;
+  margin-right: -7px;
   margin-top: -3px;
-  max-width: 510px;
+  max-width: 610px;
 }
 
 .page-header__nav ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   margin: 0;
+  margin-top: -10px;
   padding: 0;
   list-style: none;
 }
 
 .page-header__nav li {
   margin-right: 40px;
+  margin-top: 10px;
 }
 
-.page-header__nav li:last-child {
-  margin-right: 0;
-}
+// .page-header__nav li:last-child {
+//   margin-right: 0;
+// }
 
 .page-header__nav a {
   font-family: "Droid Sans", "Verdana", sans-serif;

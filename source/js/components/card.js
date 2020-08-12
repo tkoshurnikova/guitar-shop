@@ -29,7 +29,7 @@ export const createCardTemplate = ({item, title, type, popularity, price}) => {
               <use xlink:href="#icon-star"></use>
             </svg>
           </span>
-          <span class="catalog__stars--full">
+          <span class="catalog__stars catalog__stars--full">
             <svg width="9.93" height="9.48">
               <use xlink:href="#icon-star-full"></use>
             </svg>
@@ -54,7 +54,7 @@ export const createCardTemplate = ({item, title, type, popularity, price}) => {
         <span>${formatPrice(price)} ₽</span>
       </p>
       <p>
-        <a class="button" href="card-${item}.html">Подробнее</a>
+        <a class="button" href="#">Подробнее</a>
         <button class="button button--buy" type="button">
           <svg width="10.36" height="10.5">
             <use xlink:href="#icon-buy"></use>

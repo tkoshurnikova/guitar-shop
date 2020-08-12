@@ -144,76 +144,6 @@ var AbstractComponent = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./source/js/components/abstract-smart-component.js":
-/*!**********************************************************!*\
-  !*** ./source/js/components/abstract-smart-component.js ***!
-  \**********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AbstractSmartComponent; });
-/* harmony import */ var _abstract_component_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract-component.js */ "./source/js/components/abstract-component.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-var AbstractSmartComponent = /*#__PURE__*/function (_AbstractComponent) {
-  _inherits(AbstractSmartComponent, _AbstractComponent);
-
-  var _super = _createSuper(AbstractSmartComponent);
-
-  function AbstractSmartComponent() {
-    _classCallCheck(this, AbstractSmartComponent);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(AbstractSmartComponent, [{
-    key: "recoveryListeners",
-    value: function recoveryListeners() {
-      throw new Error("Abstract method not implemented: recoveryListeners");
-    }
-  }, {
-    key: "rerender",
-    value: function rerender() {
-      var oldElement = this.getElement();
-      var parent = oldElement.parentElement;
-      this.removeElement();
-      var newElement = this.getElement();
-      parent.replaceChild(newElement, oldElement);
-      this.recoveryListeners();
-    }
-  }]);
-
-  return AbstractSmartComponent;
-}(_abstract_component_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
-
-
-
-/***/ }),
-
 /***/ "./source/js/components/add-to-cart-popup.js":
 /*!***************************************************!*\
   !*** ./source/js/components/add-to-cart-popup.js ***!
@@ -402,7 +332,7 @@ var createCardTemplate = function createCardTemplate(_ref) {
       type = _ref.type,
       popularity = _ref.popularity,
       price = _ref.price;
-  return "<li>\n      <img\n        width=\"68\"\n        height=\"190\"\n        src=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["getImage"])(item, type), "\"\n        alt=\"\u0424\u043E\u0442\u043E \u0433\u0438\u0442\u0430\u0440\u044B\"\n      >\n      <p>\n        <span class=\"catalog__rating-overlay\">\n          <span class=\"catalog__stars\">\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n          </span>\n          <span class=\"catalog__stars--full\">\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n          </span>\n        </span>\n        <span>").concat(popularity, "</span>\n      </p>\n      <p>\n        <span>").concat(title, "</span>\n        <span>").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price), " \u20BD</span>\n      </p>\n      <p>\n        <a class=\"button\" href=\"card-").concat(item, ".html\">\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435</a>\n        <button class=\"button button--buy\" type=\"button\">\n          <svg width=\"10.36\" height=\"10.5\">\n            <use xlink:href=\"#icon-buy\"></use>\n          </svg>\n          \u041A\u0443\u043F\u0438\u0442\u044C\n        </button>\n      </p>\n    </li>");
+  return "<li>\n      <img\n        width=\"68\"\n        height=\"190\"\n        src=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["getImage"])(item, type), "\"\n        alt=\"\u0424\u043E\u0442\u043E \u0433\u0438\u0442\u0430\u0440\u044B\"\n      >\n      <p>\n        <span class=\"catalog__rating-overlay\">\n          <span class=\"catalog__stars\">\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star\"></use>\n            </svg>\n          </span>\n          <span class=\"catalog__stars catalog__stars--full\">\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n            <svg width=\"9.93\" height=\"9.48\">\n              <use xlink:href=\"#icon-star-full\"></use>\n            </svg>\n          </span>\n        </span>\n        <span>").concat(popularity, "</span>\n      </p>\n      <p>\n        <span>").concat(title, "</span>\n        <span>").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price), " \u20BD</span>\n      </p>\n      <p>\n        <a class=\"button\" href=\"#\">\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435</a>\n        <button class=\"button button--buy\" type=\"button\">\n          <svg width=\"10.36\" height=\"10.5\">\n            <use xlink:href=\"#icon-buy\"></use>\n          </svg>\n          \u041A\u0443\u043F\u0438\u0442\u044C\n        </button>\n      </p>\n    </li>");
 };
 
 var Card = /*#__PURE__*/function (_AbstractComponent) {
@@ -514,7 +444,7 @@ var CardsList = /*#__PURE__*/function (_AbstractComponent) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCartItemTemplate", function() { return createCartItemTemplate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CartItem; });
-/* harmony import */ var _abstract_smart_component_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract-smart-component.js */ "./source/js/components/abstract-smart-component.js");
+/* harmony import */ var _abstract_component_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract-component.js */ "./source/js/components/abstract-component.js");
 /* harmony import */ var _utils_format_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/format.js */ "./source/js/utils/format.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -523,10 +453,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
-
-function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -544,18 +470,18 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var createCartItemTemplate = function createCartItemTemplate(card, quantity) {
+var createCartItemTemplate = function createCartItemTemplate(card) {
   var item = card.item,
       article = card.article,
       title = card.title,
       type = card.type,
       strings = card.strings,
       price = card.price;
-  return "<li>\n      <button class=\"cart__close-button\" type=\"button\">\n        <span class=\"visually-hidden\">\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0438\u0437 \u043A\u043E\u0440\u0437\u0438\u043D\u044B</span>\n        <svg width=\"11.66\" height=\"11.66\"><use xlink:href=\"#icon-cross\"></use></svg>\n      </button>\n      <img src=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["getImage"])(item, type), "\" width=\"52\" height=\"130\" alt=\"\u0424\u043E\u0442\u043E \u0433\u0438\u0442\u0430\u0440\u044B\">\n      <div class=\"cart__item-info\">\n        <h3>\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u0433\u0438\u0442\u0430\u0440\u0430 ").concat(title, "</h3>\n        <p>\u0410\u0440\u0442\u0438\u043A\u0443\u043B: ").concat(article, "</p>\n        <p>\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u0433\u0438\u0442\u0430\u0440\u0430, ").concat(strings, " \u0441\u0442\u0440\u0443\u043D\u043D\u0430\u044F </p>\n      </div>\n      <p class=\"cart__price\">").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price), " \u20BD</p>\n      <div class=\"cart__quantity\">\n        <button type=\"button\" id=\"decrease-quantity\" data-name=\"quantity\">-</button>\n        <input type=\"number\" name=\"quantity\" id=\"quantity\" value=\"").concat(quantity, "\">\n        <label class=\"visually-hidden\" for=\"quantity\">\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E</label>\n        <button type=\"button\" id=\"increase-quantity\" data-name=\"quantity\">+</button>\n      </div>\n      <p\n        class=\"cart__price cart__price--full\"\n        data-sum=\"").concat(price * quantity, "\"\n      >\n        ").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price * quantity), " \u20BD\n      </p>\n    </li>");
+  return "<li>\n      <button class=\"cart__close-button\" type=\"button\">\n        <span class=\"visually-hidden\">\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0438\u0437 \u043A\u043E\u0440\u0437\u0438\u043D\u044B</span>\n        <svg width=\"11.66\" height=\"11.66\"><use xlink:href=\"#icon-cross\"></use></svg>\n      </button>\n      <img src=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["getImage"])(item, type), "\" width=\"52\" height=\"130\" alt=\"\u0424\u043E\u0442\u043E \u0433\u0438\u0442\u0430\u0440\u044B\">\n      <div class=\"cart__item-info\">\n        <h3>\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u0433\u0438\u0442\u0430\u0440\u0430 ").concat(title, "</h3>\n        <p>\u0410\u0440\u0442\u0438\u043A\u0443\u043B: ").concat(article, "</p>\n        <p>\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u0433\u0438\u0442\u0430\u0440\u0430, ").concat(strings, " \u0441\u0442\u0440\u0443\u043D\u043D\u0430\u044F </p>\n      </div>\n      <p class=\"cart__price\">").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price), " \u20BD</p>\n      <div class=\"cart__quantity\">\n        <button type=\"button\" id=\"decrease-quantity\" data-name=\"quantity\">-</button>\n        <input type=\"number\" name=\"quantity\" id=\"quantity\" value=\"1\">\n        <label class=\"visually-hidden\" for=\"quantity\">\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E</label>\n        <button type=\"button\" id=\"increase-quantity\" data-name=\"quantity\">+</button>\n      </div>\n      <p\n        class=\"cart__price cart__price--full\"\n        data-sum=\"").concat(price, "\"\n      >\n        ").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(price), " \u20BD\n      </p>\n    </li>");
 };
 
-var CartItem = /*#__PURE__*/function (_AbstractSmartCompone) {
-  _inherits(CartItem, _AbstractSmartCompone);
+var CartItem = /*#__PURE__*/function (_AbstractComponent) {
+  _inherits(CartItem, _AbstractComponent);
 
   var _super = _createSuper(CartItem);
 
@@ -566,27 +492,18 @@ var CartItem = /*#__PURE__*/function (_AbstractSmartCompone) {
 
     _this = _super.call(this);
     _this._card = card;
-    _this._quantity = 1;
-    _this._deleteButtonClickHandler = null;
-    _this._quantityChangeHandler = null;
     return _this;
   }
 
   _createClass(CartItem, [{
     key: "getTemplate",
     value: function getTemplate() {
-      return createCartItemTemplate(this._card, this._quantity);
-    }
-  }, {
-    key: "rerender",
-    value: function rerender() {
-      _get(_getPrototypeOf(CartItem.prototype), "rerender", this).call(this);
+      return createCartItemTemplate(this._card);
     }
   }, {
     key: "setDeleteButtonClickHandler",
     value: function setDeleteButtonClickHandler(handler) {
       this.getElement().querySelector(".cart__close-button").addEventListener("click", handler);
-      this._deleteButtonClickHandler = handler;
     }
   }, {
     key: "setQuantityChangeHandler",
@@ -595,6 +512,7 @@ var CartItem = /*#__PURE__*/function (_AbstractSmartCompone) {
 
       var element = this.getElement();
       var quantityElement = element.querySelector("#quantity");
+      var totalSumElement = element.querySelector(".cart__price--full");
       element.querySelector(".cart__quantity").addEventListener("click", function (evt) {
         var counter = Number(quantityElement.value);
 
@@ -616,9 +534,10 @@ var CartItem = /*#__PURE__*/function (_AbstractSmartCompone) {
 
         counter = counter < 1 ? 1 : counter;
         counter = counter > 99 ? 99 : counter;
-        _this2._quantity = counter;
-
-        _this2.rerender();
+        totalSumElement.innerHTML = Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(_this2._card.price * counter) + " \u20BD";
+        quantityElement.value = counter;
+        totalSumElement.dataset.sum = _this2._card.price * counter;
+        handler();
       });
       quantityElement.addEventListener("change", function () {
         var count = Number(quantityElement.value);
@@ -630,23 +549,16 @@ var CartItem = /*#__PURE__*/function (_AbstractSmartCompone) {
         count = count < 1 ? 1 : count;
         count = count > 99 ? 99 : count;
         count = Math.ceil(count);
-        _this2._quantity = count;
-
-        _this2.rerender();
+        totalSumElement.innerHTML = Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(_this2._card.price * count) + " \u20BD";
+        quantityElement.value = count;
+        totalSumElement.dataset.sum = _this2._card.price * count;
+        handler();
       });
-      handler();
-      this._quantityChangeHandler = handler;
-    }
-  }, {
-    key: "recoveryListeners",
-    value: function recoveryListeners() {
-      this.setDeleteButtonClickHandler(this._deleteButtonClickHandler);
-      this.setQuantityChangeHandler(this._quantityChangeHandler);
     }
   }]);
 
   return CartItem;
-}(_abstract_smart_component_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
+}(_abstract_component_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
 
@@ -690,7 +602,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 var createCartSumComponent = function createCartSumComponent(cartSum) {
-  return "<div class=\"promo__result\">\n      <p>\u0412\u0441\u0435\u0433\u043E: ".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(cartSum), " \u20BD</p>\n      <a\n        class=\"button button--order\"\n        href=\"order.html\"\n      >\n        \u041E\u0444\u043E\u0440\u043C\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437\n      </a>\n    </div>");
+  return "<div class=\"promo__result\">\n      <p>\u0412\u0441\u0435\u0433\u043E: ".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_1__["formatPrice"])(cartSum), " \u20BD</p>\n      <a\n        class=\"button button--order\"\n        href=\"#\"\n      >\n        \u041E\u0444\u043E\u0440\u043C\u0438\u0442\u044C \u0437\u0430\u043A\u0430\u0437\n      </a>\n    </div>");
 };
 
 var CartSumComponent = /*#__PURE__*/function (_AbstractComponent) {
@@ -822,7 +734,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 var createCatalogContentTemplate = function createCatalogContentTemplate() {
-  return "<div class=\"catalog__content\">\n    </div>";
+  return "<div class=\"catalog__content\">\n      <h2 class=\"visually-hidden\">\u0422\u043E\u0432\u0430\u0440\u044B</h2>\n    </div>";
 };
 
 var CatalogContent = /*#__PURE__*/function (_AbstractComponent) {
@@ -1113,7 +1025,7 @@ var createFilterTemplate = function createFilterTemplate(cards) {
   var prices = cards.map(function (card) {
     return Number(card.price);
   });
-  return "<form class=\"form\" method=\"post\">\n      <h3>\u0424\u0438\u043B\u044C\u0442\u0440</h3>\n      <fieldset class=\"form__price-fieldset\">\n        <legend>\u0426\u0435\u043D\u0430, <span>\u20BD</span></legend>\n        <p>\n          <input\n            type=\"text\"\n            name=\"price\"\n            id=\"min-price\"\n            placeholder=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.min.apply(Math, _toConsumableArray(prices))), "\"\n          >\n          <label class=\"visually-hidden\" for=\"min-price\">\n            \u0426\u0435\u043D\u0430 \u043E\u0442\n          </label>\n          <input\n            type=\"text\"\n            name=\"price\"\n            id=\"max-price\"\n            placeholder=\"").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.max.apply(Math, _toConsumableArray(prices))), "\"\n          >\n          <label class=\"visually-hidden\" for=\"max-price\">\n            \u0426\u0435\u043D\u0430 \u0434\u043E\n          </label>\n        </p>\n      </fieldset>\n    </form>");
+  return "<form class=\"form\" method=\"post\">\n      <h2>\u0424\u0438\u043B\u044C\u0442\u0440</h2>\n      <fieldset class=\"form__price-fieldset\">\n        <legend>\u0426\u0435\u043D\u0430, <span>\u20BD</span></legend>\n        <p>\n          <input\n            type=\"text\"\n            name=\"price\"\n            id=\"min-price\"\n            placeholder=\"".concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.min.apply(Math, _toConsumableArray(prices))), "\"\n          >\n          <label class=\"visually-hidden\" for=\"min-price\">\n            \u0426\u0435\u043D\u0430 \u043E\u0442\n          </label>\n          <input\n            type=\"text\"\n            name=\"price\"\n            id=\"max-price\"\n            placeholder=\"").concat(Object(_utils_format_js__WEBPACK_IMPORTED_MODULE_2__["formatPrice"])(Math.max.apply(Math, _toConsumableArray(prices))), "\"\n          >\n          <label class=\"visually-hidden\" for=\"max-price\">\n            \u0426\u0435\u043D\u0430 \u0434\u043E\n          </label>\n        </p>\n      </fieldset>\n    </form>");
 };
 
 var Filter = /*#__PURE__*/function (_AbstractComponent) {
@@ -1379,7 +1291,7 @@ var Pagination = /*#__PURE__*/function (_AbstractComponent) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PromoForm; });
-/* harmony import */ var _abstract_smart_component_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract-smart-component.js */ "./source/js/components/abstract-smart-component.js");
+/* harmony import */ var _abstract_component_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract-component.js */ "./source/js/components/abstract-component.js");
 /* harmony import */ var _const_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../const.js */ "./source/js/const.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -1410,8 +1322,8 @@ var createPromoForm = function createPromoForm() {
   return "<form method=\"post\">\n      <h3>\u041F\u0440\u043E\u043C\u043E\u043A\u043E\u0434 \u043D\u0430 \u0441\u043A\u0438\u0434\u043A\u0443</h3>\n      <p>\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0441\u0432\u043E\u0439 \u043F\u0440\u043E\u043C\u043E\u043A\u043E\u0434, \u0435\u0441\u043B\u0438 \u043E\u043D \u0443 \u0432\u0430\u0441 \u0435\u0441\u0442\u044C.</p>\n      <p class=\"promo__coupon\">\n        <input type=\"text\" name=\"promo\" id=\"promo\">\n        <label class=\"visually-hidden\" for=\"promo\">\u041F\u0440\u043E\u043C\u043E\u043A\u043E\u0434</label>\n        <button class=\"button button--promo\" type=\"submit\">\u041F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u044C \u043A\u0443\u043F\u043E\u043D</button>\n        <p class=\"visually-hidden\" id=\"not-valid-promocode\">\u041F\u0440\u043E\u043C\u043E\u043A\u043E\u0434 \u043D\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043B\u0435\u043D</p>\n      </p>\n    </form>";
 };
 
-var PromoForm = /*#__PURE__*/function (_AbstractSmartCompone) {
-  _inherits(PromoForm, _AbstractSmartCompone);
+var PromoForm = /*#__PURE__*/function (_AbstractComponent) {
+  _inherits(PromoForm, _AbstractComponent);
 
   var _super = _createSuper(PromoForm);
 
@@ -1474,7 +1386,7 @@ var PromoForm = /*#__PURE__*/function (_AbstractSmartCompone) {
   }]);
 
   return PromoForm;
-}(_abstract_smart_component_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
+}(_abstract_component_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
 
@@ -2061,6 +1973,10 @@ var CardsController = /*#__PURE__*/function () {
   }, {
     key: "_setCartItemCount",
     value: function _setCartItemCount() {
+      if (!localStorage.getItem("session")) {
+        return;
+      }
+
       var cartItemsElement = document.querySelector(".page-header__cart-items sup");
       var cartItemsCounter = JSON.parse(localStorage.getItem("session")).length;
 
@@ -2247,6 +2163,10 @@ var CartController = /*#__PURE__*/function () {
     value: function _renderCartItems(cards) {
       var _this = this;
 
+      if (!localStorage.getItem("session")) {
+        return;
+      }
+
       var cartListElement = document.querySelector(".cart ul");
 
       var renderCartItemControllers = function renderCartItemControllers() {
@@ -2295,6 +2215,10 @@ var CartController = /*#__PURE__*/function () {
   }, {
     key: "_setCartItemCount",
     value: function _setCartItemCount() {
+      if (!localStorage.getItem("session")) {
+        return;
+      }
+
       var cartItemsElement = document.querySelector(".page-header__cart-items sup");
       var cartItemsCounter = JSON.parse(localStorage.getItem("session")).length;
 

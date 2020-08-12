@@ -31,6 +31,10 @@ export default class CartController {
   }
 
   _renderCartItems(cards) {
+    if (!localStorage.getItem(`session`)) {
+      return;
+    }
+
     const cartListElement = document.querySelector(`.cart ul`);
     const renderCartItemControllers = () => {
       const cartItemControllers = [];
@@ -75,6 +79,10 @@ export default class CartController {
   }
 
   _setCartItemCount() {
+    if (!localStorage.getItem(`session`)) {
+      return;
+    }
+
     const cartItemsElement = document.querySelector(`.page-header__cart-items sup`);
     let cartItemsCounter = JSON.parse(localStorage.getItem(`session`)).length;
 

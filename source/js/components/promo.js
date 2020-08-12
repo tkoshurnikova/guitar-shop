@@ -1,4 +1,4 @@
-import AbstractSmartComponent from './abstract-smart-component.js';
+import AbstractComponent from './abstract-component.js';
 import {PromoCodes} from '../const.js';
 
 const createPromoForm = () => {
@@ -16,7 +16,7 @@ const createPromoForm = () => {
   );
 };
 
-export default class PromoForm extends AbstractSmartComponent {
+export default class PromoForm extends AbstractComponent {
   constructor() {
     super();
     this._promoCode = null;

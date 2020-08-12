@@ -7,7 +7,7 @@ const createCartSumComponent = (cartSum) => {
       <p>Всего: ${formatPrice(cartSum)} ₽</p>
       <a
         class="button button--order"
-        href="order.html"
+        href="#"
       >
         Оформить заказ
       </a>

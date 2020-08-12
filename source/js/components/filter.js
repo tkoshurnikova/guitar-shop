@@ -2,13 +2,12 @@ import AbstractComponent from './abstract-component.js';
 import {debounce} from '../utils/debounce.js';
 import {formatPrice} from '../utils/format.js';
 
-
 const createFilterTemplate = (cards) => {
   const prices = cards.map((card) => Number(card.price));
 
   return (
     `<form class="form" method="post">
-      <h3>Фильтр</h3>
+      <h2>Фильтр</h2>
       <fieldset class="form__price-fieldset">
         <legend>Цена, <span>₽</span></legend>
         <p>
